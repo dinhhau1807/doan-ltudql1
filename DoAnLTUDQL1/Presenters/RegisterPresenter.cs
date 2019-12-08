@@ -11,7 +11,6 @@ namespace DoAnLTUDQL1.Presenters
     public class RegisterPresenter
     {
         IRegisterView view;
-        IEnumerable<RoleType> roleTypes;
 
         public RegisterPresenter(IRegisterView registerView)
         {
@@ -23,6 +22,7 @@ namespace DoAnLTUDQL1.Presenters
         {
             view.Register += Register;
 
+            IEnumerable<RoleType> roleTypes;
             using (var context = new QLThiTracNghiemDataContext())
             {
                 roleTypes = context.RoleTypes.Where(r => r.RoleName != "Admin").ToList();
@@ -54,6 +54,55 @@ namespace DoAnLTUDQL1.Presenters
                     Status = true,
                     RoleTypeId = view.RoleTypeId
                 };
+
+                // Add user to student table
+                if (view.RoleTypeId == 1)
+                {
+                    long studentId;
+                    if (context.Students.Count() == 0)
+                    {
+                        studentId = 0;
+                    }
+                    else
+                    {
+                        var studentIds = context.Students.Select(s => s.StudentId).ToList();
+                        studentId = studentIds.Select(id => long.Parse(id.Substring(2))).Max();
+                    }
+                    studentId++;
+
+                    var student = new Student
+                    {
+                        StudentId = $"HS{studentId:D6}",
+                        Username = view.Username,
+                        ClassroomId = null
+                    };
+
+                    context.Students.InsertOnSubmit(student);
+                }
+
+                // Add user to teacher table
+                if (view.RoleTypeId == 2)
+                {
+                    long teacherId;
+                    if (context.Teachers.Count() == 0)
+                    {
+                        teacherId = 0;
+                    }
+                    else
+                    {
+                        var teacherIds = context.Teachers.Select(s => s.TeacherId).ToList();
+                        teacherId = teacherIds.Select(id => long.Parse(id.Substring(2))).Max();
+                    }
+                    teacherId++;
+
+                    var teacher = new Teacher
+                    {
+                        TeacherId = $"GV{teacherId:D6}",
+                        Username = view.Username,
+                    };
+
+                    context.Teachers.InsertOnSubmit(teacher);
+                }
 
                 context.Users.InsertOnSubmit(newUser);
                 context.SubmitChanges(ConflictMode.FailOnFirstConflict);

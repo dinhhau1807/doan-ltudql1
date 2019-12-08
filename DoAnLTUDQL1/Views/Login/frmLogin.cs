@@ -24,27 +24,6 @@ namespace DoAnLTUDQL1.Views.Login
             Load += FrmLogin_Load;
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            e.Cancel = false;
-        }
-
-        private void AddValidators()
-        {
-            var required1 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập tên người dùng!",
-                ControlToValidate = mTxtUsername
-            };
-
-            var required2 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập mật khẩu!",
-                ControlToValidate = mTxtPassword
-            };
-        }
-
         #region ILoginView implementations
         public string Username
         {
@@ -76,22 +55,30 @@ namespace DoAnLTUDQL1.Views.Login
 
                 if (value == "Success:Admin")
                 {
+                    // Open form Admin
                     MessageBox.Show("Admin");
                 }
 
                 if (value == "Success:Student")
                 {
+                    // Open form Student
                     MessageBox.Show("Student");
                 }
 
                 if (value == "Success:Teacher")
                 {
+                    // Open form Teacher
                     MessageBox.Show("Teacher");
                 }
 
-                if (!value.Contains("Success"))
+                if (!value.Contains("Success") && value == "User not exists")
                 {
-                    MessageBox.Show("Đăng nhập thất bại!");
+                    MessageBox.Show("Tài khoản này không tồn tại!");
+                }
+
+                if (!value.Contains("Success") && value == "Password failed")
+                {
+                    MessageBox.Show("Mật khẩu nhập không đúng!");
                 }
             }
         }
@@ -99,10 +86,31 @@ namespace DoAnLTUDQL1.Views.Login
         public event EventHandler Login;
         #endregion
 
+        private void AddValidators()
+        {
+            var required1 = new RequiedInputValidator
+            {
+                ErrorMessage = "Bạn phải nhập tên người dùng!",
+                ControlToValidate = mTxtUsername
+            };
+
+            var required2 = new RequiedInputValidator
+            {
+                ErrorMessage = "Bạn phải nhập mật khẩu!",
+                ControlToValidate = mTxtPassword
+            };
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            e.Cancel = false;
+        }
+
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             // Add validators
-            AddValidators();
+            //AddValidators();
 
             presenter = new LoginPresenter(this);
 
@@ -113,7 +121,13 @@ namespace DoAnLTUDQL1.Views.Login
         private void MLRegister_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new frmRegister().ShowDialog();
+
+            Thread tRegister = new Thread(_ =>
+            {
+                Application.Run(new frmRegister());
+            });
+            tRegister.Start();
+
             this.Close();
         }
 

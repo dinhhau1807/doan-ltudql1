@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,7 +23,6 @@ namespace DoAnLTUDQL1.Views.Register
             InitializeComponent();
             mCbRoleType.DropDownStyle = ComboBoxStyle.DropDownList;
             Load += FrmRegister_Load;
-            AddValidators();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -91,7 +91,11 @@ namespace DoAnLTUDQL1.Views.Register
                 _message = value;
                 if (value == "Success")
                 {
-                    MessageBox.Show("Đã đăng kí thành công!");
+                    var result = MessageBox.Show("Đã đăng kí thành công!");
+                    if (result == DialogResult.OK)
+                    {
+                        mLLogin.PerformClick();
+                    }
                 }
                 else
                 {
@@ -107,6 +111,9 @@ namespace DoAnLTUDQL1.Views.Register
 
         private void FrmRegister_Load(object sender, EventArgs e)
         {
+            // Add validators
+            //AddValidators();
+
             presenter = new RegisterPresenter(this);
 
             // Set data for mCbRoleType
@@ -126,7 +133,13 @@ namespace DoAnLTUDQL1.Views.Register
         private void MLLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new frmLogin().ShowDialog();
+
+            Thread tLogin = new Thread(_ =>
+            {
+                Application.Run(new frmLogin());
+            });
+            tLogin.Start();
+
             this.Close();
         }
     }
