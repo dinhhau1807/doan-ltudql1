@@ -90,7 +90,7 @@ namespace DoAnLTUDQL1
     #endregion
 		
 		public QLThiTracNghiemDataContext() : 
-				base(global::DoAnLTUDQL1.Properties.Settings.Default.QLThiTracNghiemConnectionString, mappingSource)
+				base(global::DoAnLTUDQL1.Properties.Settings.Default.QLThiTracNghiemConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}

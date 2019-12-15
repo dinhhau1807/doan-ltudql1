@@ -1,6 +1,7 @@
 ﻿using DoAnLTUDQL1.Presenters;
 using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.Views.Register;
+using DoAnLTUDQL1.Views.Student;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -133,7 +134,14 @@ namespace DoAnLTUDQL1.Views.Login
 
         private void MBtnLogin_Click(object sender, EventArgs e)
         {
-            Login?.Invoke(this, null);
+            //Login?.Invoke(this, null);
+            User user;
+            using (var context = new QLThiTracNghiemDataContext())
+            {
+                user = context.Users.Single(s => s.Username == "ldlinh");
+            }           
+            frmStudent frm = new frmStudent(user);
+            frm.ShowDialog();
         }
     }
 }

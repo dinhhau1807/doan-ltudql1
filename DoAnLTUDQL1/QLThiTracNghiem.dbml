@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLThiTracNghiem" Class="QLThiTracNghiemDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=PUCS;Initial Catalog=QLThiTracNghiem;Integrated Security=True" SettingsObjectName="DoAnLTUDQL1.Properties.Settings" SettingsPropertyName="QLThiTracNghiemConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=TUANANH\SQLEXPRESS;Initial Catalog=QLThiTracNghiem;Integrated Security=True" SettingsObjectName="DoAnLTUDQL1.Properties.Settings" SettingsPropertyName="QLThiTracNghiemConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Answer" Member="Answers">
     <Type Name="Answer">
       <Column Name="AnswerId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
