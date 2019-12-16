@@ -72,7 +72,7 @@ namespace DoAnLTUDQL1.Presenters
 
                     var student = new Student
                     {
-                        StudentId = $"HS{studentId:D6}",
+                        StudentId = $"HS{studentId:D7}",
                         Username = view.Username,
                         ClassroomId = null
                     };
@@ -97,7 +97,7 @@ namespace DoAnLTUDQL1.Presenters
 
                     var teacher = new Teacher
                     {
-                        TeacherId = $"GV{teacherId:D6}",
+                        TeacherId = $"GV{teacherId:D7}",
                         Username = view.Username,
                     };
 

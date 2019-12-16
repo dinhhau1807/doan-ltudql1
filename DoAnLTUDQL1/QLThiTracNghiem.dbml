@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLThiTracNghiem" Class="QLThiTracNghiemDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=PUCS;Initial Catalog=QLThiTracNghiem;Integrated Security=True" SettingsObjectName="DoAnLTUDQL1.Properties.Settings" SettingsPropertyName="QLThiTracNghiemConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=HMASTER-PC;Initial Catalog=QLThiTracNghiem;Integrated Security=True" SettingsObjectName="DoAnLTUDQL1.Properties.Settings" SettingsPropertyName="QLThiTracNghiemConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Answer" Member="Answers">
     <Type Name="Answer">
       <Column Name="AnswerId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -52,7 +52,6 @@
       <Column Name="ExamName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="IsPacticeExam" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Exam_ExamDetail" Member="ExamDetails" ThisKey="ExamId" OtherKey="ExamId" Type="ExamDetail" />
-      <Association Name="Exam_ExamRegister" Member="ExamRegisters" ThisKey="ExamId" OtherKey="ExamId" Type="ExamRegister" />
     </Type>
   </Table>
   <Table Name="dbo.ExamCode" Member="ExamCodes">
@@ -63,7 +62,7 @@
       <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsPracticeExam" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="ExamCode_ExamCode_Question" Member="ExamCode_Questions" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamCode_Question" />
-      <Association Name="ExamCode_ExamDetail" Member="ExamDetails" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamDetail" />
+      <Association Name="ExamCode_ExamTake" Member="ExamTakes" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamTake" />
       <Association Name="Subject_ExamCode" Member="Subject" ThisKey="SubjectId,GradeId" OtherKey="SubjectId,GradeId" Type="Subject" IsForeignKey="true" />
     </Type>
   </Table>
@@ -79,34 +78,24 @@
     <Type Name="ExamDetail">
       <Column Name="ExamDetailId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ExamId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Duration" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SubjectId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ExamDetail_ExamResult" Member="ExamResult" ThisKey="ExamDetailId" OtherKey="ExamDetailId" Type="ExamResult" Cardinality="One" />
       <Association Name="ExamDetail_ExamTake" Member="ExamTakes" ThisKey="ExamDetailId" OtherKey="ExamDetailId" Type="ExamTake" />
-      <Association Name="ExamCode_ExamDetail" Member="ExamCode" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamCode" IsForeignKey="true" />
       <Association Name="Exam_ExamDetail" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
       <Association Name="Subject_ExamDetail" Member="Subject" ThisKey="SubjectId,GradeId" OtherKey="SubjectId,GradeId" Type="Subject" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ExamRegister" Member="ExamRegisters">
-    <Type Name="ExamRegister">
-      <Column Name="StudentId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ExamId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Exam_ExamRegister" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
-      <Association Name="Student_ExamRegister" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ExamResult" Member="ExamResults">
     <Type Name="ExamResult">
       <Column Name="ExamDetailId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="StudentId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="StudentId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NumberOfQuestionsAnswered" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NumberOfCorrectAnswers" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Mark" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="ExamDetail_ExamResult" Member="ExamDetail" ThisKey="ExamDetailId" OtherKey="ExamDetailId" Type="ExamDetail" IsForeignKey="true" />
+      <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ExamResult_ExamTake" Member="ExamTake" ThisKey="ExamDetailId,StudentId,ExamCodeId" OtherKey="ExamDetailId,StudentId,ExamCodeId" Type="ExamTake" Cardinality="One" />
       <Association Name="Student_ExamResult" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
@@ -116,7 +105,10 @@
       <Column Name="StudentId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="ExamDetail_ExamTake" Member="ExamDetail" ThisKey="ExamDetailId" OtherKey="ExamDetailId" Type="ExamDetail" IsForeignKey="true" />
+      <Association Name="ExamCode_ExamTake" Member="ExamCode" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamCode" IsForeignKey="true" />
+      <Association Name="ExamResult_ExamTake" Member="ExamResult" ThisKey="ExamDetailId,StudentId,ExamCodeId" OtherKey="ExamDetailId,StudentId,ExamCodeId" Type="ExamResult" IsForeignKey="true" />
       <Association Name="Student_ExamTake" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
@@ -170,7 +162,6 @@
       <Column Name="StudentId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ClassroomId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Association Name="Student_ExamRegister" Member="ExamRegisters" ThisKey="StudentId" OtherKey="StudentId" Type="ExamRegister" />
       <Association Name="Student_ExamResult" Member="ExamResults" ThisKey="StudentId" OtherKey="StudentId" Type="ExamResult" />
       <Association Name="Student_ExamTake" Member="ExamTakes" ThisKey="StudentId" OtherKey="StudentId" Type="ExamTake" />
       <Association Name="Student_QuestionDistribute" Member="QuestionDistributes" ThisKey="StudentId" OtherKey="StudentId" Type="QuestionDistribute" />
