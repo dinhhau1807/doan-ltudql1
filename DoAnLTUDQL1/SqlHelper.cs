@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -59,6 +60,12 @@ namespace DoAnLTUDQL1
             }
         }
 
-        
+        public static string GetConnectionString
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ConnectionString;
+            }
+        }
     }
 }

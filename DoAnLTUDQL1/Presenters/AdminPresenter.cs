@@ -1,24 +1,21 @@
 ﻿using DoAnLTUDQL1.ViewModels;
 using DoAnLTUDQL1.Views.Admin;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Office.Core;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Configuration;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DoAnLTUDQL1.Presenters
 {
     public class AdminPresenter
     {
-        IAdminView view;
+        private IAdminView view;
 
         public AdminPresenter(IAdminView adminView)
         {
@@ -35,7 +32,7 @@ namespace DoAnLTUDQL1.Presenters
             }
             view.RoleTypes = roleTypes;
 
-            view.ConnectionString = ConfigurationManager.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ConnectionString;
+            view.ConnectionString = SqlHelper.GetConnectionString;
 
             LoadData();
             view.Reload += Reload;
@@ -107,6 +104,13 @@ namespace DoAnLTUDQL1.Presenters
         {
             using (var context = new QLThiTracNghiemDataContext())
             {
+                var checkExist = view.Users.FirstOrDefault(u => u.Username == view.UserAdd.Username);
+                if (checkExist != null)
+                {
+                    view.AddMessage = "User existed";
+                    return;
+                }
+
                 view.UserAdd.Password = Common.HashPassword(view.UserAdd.Password);
                 view.UserAdd.CreatedDate = DateTime.Now;
 
@@ -247,7 +251,6 @@ namespace DoAnLTUDQL1.Presenters
                     range.EntireColumn.NumberFormat = "DD/MM/YYYY";
                     xlRange.Cells[1, 9].Value2 = "Mã vai trò";
 
-
                     int rowCount = exportUsers.Count + 1;
 
                     //iterate over the rows and columns
@@ -305,7 +308,7 @@ namespace DoAnLTUDQL1.Presenters
 
         private DateTime FromExcelSerialDate(double SerialDate)
         {
-            if (SerialDate > 59) SerialDate -= 1; //Excel/Lotus 2/29/1900 bug   
+            if (SerialDate > 59) SerialDate -= 1; //Excel/Lotus 2/29/1900 bug
             return new DateTime(1899, 12, 31).AddDays(SerialDate);
         }
 
@@ -411,10 +414,10 @@ namespace DoAnLTUDQL1.Presenters
         {
             try
             {
-                var connectionString = ConfigurationManager.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ConnectionString;
+                var connectionString = SqlHelper.GetConnectionString;
                 SqlHelper sqlHelper = new SqlHelper(connectionString);
 
-                ServerConnection serverConnection = sqlHelper.Username != null ? new ServerConnection(sqlHelper.ServerName, sqlHelper.Username, sqlHelper.Password) : new ServerConnection("HMASTER-PC");
+                ServerConnection serverConnection = sqlHelper.Username != null ? new ServerConnection(sqlHelper.ServerName, sqlHelper.Username, sqlHelper.Password) : new ServerConnection(sqlHelper.ServerName);
                 Server dbServer = new Server(serverConnection);
                 Restore dbRestore = new Restore
                 {
@@ -441,10 +444,10 @@ namespace DoAnLTUDQL1.Presenters
         {
             try
             {
-                var connectionString = ConfigurationManager.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ConnectionString;
+                var connectionString = SqlHelper.GetConnectionString;
                 SqlHelper sqlHelper = new SqlHelper(connectionString);
 
-                ServerConnection serverConnection = sqlHelper.Username != null ? new ServerConnection(sqlHelper.ServerName, sqlHelper.Username, sqlHelper.Password) : new ServerConnection("HMASTER-PC");
+                ServerConnection serverConnection = sqlHelper.Username != null ? new ServerConnection(sqlHelper.ServerName, sqlHelper.Username, sqlHelper.Password) : new ServerConnection(sqlHelper.ServerName);
                 Server dbServer = new Server(serverConnection);
                 Backup dbBackup = new Backup
                 {

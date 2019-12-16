@@ -1,6 +1,6 @@
 ﻿namespace DoAnLTUDQL1.Views.Admin
 {
-    partial class FrmAdmin
+    partial class frmAdmin
     {
         /// <summary>
         /// Required designer variable.

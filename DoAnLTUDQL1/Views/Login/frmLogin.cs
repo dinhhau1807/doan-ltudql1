@@ -1,6 +1,7 @@
 ﻿using DoAnLTUDQL1.Presenters;
 using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.Views.Admin;
+using DoAnLTUDQL1.Views.Config;
 using DoAnLTUDQL1.Views.Register;
 using System;
 using System.Collections.Generic;
@@ -27,10 +28,11 @@ namespace DoAnLTUDQL1.Views.Login
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            presenter = new LoginPresenter(this);
+            CheckConnection?.Invoke(this, null);
+
             // Add validators
             //AddValidators();
-
-            presenter = new LoginPresenter(this);
 
             mBtnLogin.Click += MBtnLogin_Click;
             mLRegister.Click += MLRegister_Click;
@@ -110,7 +112,7 @@ namespace DoAnLTUDQL1.Views.Login
                     this.Hide();
                     Thread tRegister = new Thread(_ =>
                     {
-                        Application.Run(new FrmAdmin());
+                        Application.Run(new frmAdmin());
                     });
                     tRegister.Start();
                     this.Close();
@@ -140,7 +142,28 @@ namespace DoAnLTUDQL1.Views.Login
             }
         }
 
+        public string CheckConnectionMessage
+        {
+            set
+            {
+                if (value == "Failed")
+                {
+                    MessageBox.Show("Kết nối database chưa được thiết lập, vui lòng thiết lập kết nối!");
+
+                    // Open form Config
+                    this.Hide();
+                    Thread tRegister = new Thread(_ =>
+                    {
+                        Application.Run(new frmConfig());
+                    });
+                    tRegister.Start();
+                    this.Close();
+                }
+            }
+        }
+
         public event EventHandler Login;
+        public event EventHandler CheckConnection;
         #endregion
     }
 }

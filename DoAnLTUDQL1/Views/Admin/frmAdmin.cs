@@ -15,12 +15,12 @@ using System.Windows.Forms;
 
 namespace DoAnLTUDQL1.Views.Admin
 {
-    public partial class FrmAdmin : MetroFramework.Forms.MetroForm, IAdminView
+    public partial class frmAdmin : MetroFramework.Forms.MetroForm, IAdminView
     {
         private AdminPresenter presenter;
         private BindingSource bs = new BindingSource();
 
-        public FrmAdmin()
+        public frmAdmin()
         {
             InitializeComponent();
         }
