@@ -1,5 +1,6 @@
 ﻿using DoAnLTUDQL1.Presenters;
 using DoAnLTUDQL1.Validators;
+using DoAnLTUDQL1.Views.Admin;
 using DoAnLTUDQL1.Views.Register;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,56 @@ namespace DoAnLTUDQL1.Views.Login
         {
             InitializeComponent();
             Load += FrmLogin_Load;
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            // Add validators
+            //AddValidators();
+
+            presenter = new LoginPresenter(this);
+
+            mBtnLogin.Click += MBtnLogin_Click;
+            mLRegister.Click += MLRegister_Click;
+        }
+
+        private void AddValidators()
+        {
+            var required1 = new RequiedInputValidator
+            {
+                ErrorMessage = "Bạn phải nhập tên người dùng!",
+                ControlToValidate = mTxtUsername
+            };
+
+            var required2 = new RequiedInputValidator
+            {
+                ErrorMessage = "Bạn phải nhập mật khẩu!",
+                ControlToValidate = mTxtPassword
+            };
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            e.Cancel = false;
+        }
+
+        private void MLRegister_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Thread tRegister = new Thread(_ =>
+            {
+                Application.Run(new frmRegister());
+            });
+            tRegister.Start();
+
+            this.Close();
+        }
+
+        private void MBtnLogin_Click(object sender, EventArgs e)
+        {
+            Login?.Invoke(this, null);
         }
 
         #region ILoginView implementations
@@ -56,7 +107,13 @@ namespace DoAnLTUDQL1.Views.Login
                 if (value == "Success:Admin")
                 {
                     // Open form Admin
-                    MessageBox.Show("Admin");
+                    this.Hide();
+                    Thread tRegister = new Thread(_ =>
+                    {
+                        Application.Run(new FrmAdmin());
+                    });
+                    tRegister.Start();
+                    this.Close();
                 }
 
                 if (value == "Success:Student")
@@ -85,55 +142,5 @@ namespace DoAnLTUDQL1.Views.Login
 
         public event EventHandler Login;
         #endregion
-
-        private void AddValidators()
-        {
-            var required1 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập tên người dùng!",
-                ControlToValidate = mTxtUsername
-            };
-
-            var required2 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập mật khẩu!",
-                ControlToValidate = mTxtPassword
-            };
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            e.Cancel = false;
-        }
-
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-            // Add validators
-            //AddValidators();
-
-            presenter = new LoginPresenter(this);
-
-            mBtnLogin.Click += MBtnLogin_Click;
-            mLRegister.Click += MLRegister_Click;
-        }
-
-        private void MLRegister_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-
-            Thread tRegister = new Thread(_ =>
-            {
-                Application.Run(new frmRegister());
-            });
-            tRegister.Start();
-
-            this.Close();
-        }
-
-        private void MBtnLogin_Click(object sender, EventArgs e)
-        {
-            Login?.Invoke(this, null);
-        }
     }
 }
