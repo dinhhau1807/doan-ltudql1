@@ -15,7 +15,7 @@ namespace DoAnLTUDQL1.Presenters
 {
     public class AdminPresenter
     {
-        IAdminView view;
+        private IAdminView view;
 
         public AdminPresenter(IAdminView adminView)
         {
@@ -32,7 +32,7 @@ namespace DoAnLTUDQL1.Presenters
             }
             view.RoleTypes = roleTypes;
 
-            view.ConnectionString = ConfigurationManager.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ConnectionString;
+            view.ConnectionString = SqlHelper.GetConnectionString;
 
             LoadData();
             view.Reload += Reload;
@@ -251,7 +251,6 @@ namespace DoAnLTUDQL1.Presenters
                     range.EntireColumn.NumberFormat = "DD/MM/YYYY";
                     xlRange.Cells[1, 9].Value2 = "Mã vai trò";
 
-
                     int rowCount = exportUsers.Count + 1;
 
                     //iterate over the rows and columns
@@ -309,7 +308,7 @@ namespace DoAnLTUDQL1.Presenters
 
         private DateTime FromExcelSerialDate(double SerialDate)
         {
-            if (SerialDate > 59) SerialDate -= 1; //Excel/Lotus 2/29/1900 bug   
+            if (SerialDate > 59) SerialDate -= 1; //Excel/Lotus 2/29/1900 bug
             return new DateTime(1899, 12, 31).AddDays(SerialDate);
         }
 

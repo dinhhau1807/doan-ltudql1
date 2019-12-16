@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Presenters
 {
     public class RegisterPresenter
     {
-        IRegisterView view;
+        private IRegisterView view;
 
         public RegisterPresenter(IRegisterView registerView)
         {

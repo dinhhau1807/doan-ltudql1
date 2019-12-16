@@ -158,6 +158,7 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="Presenters\AdminPresenter.cs" />
+    <Compile Include="Presenters\ConfigPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -188,6 +189,13 @@
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\IAdminView.cs" />
+    <Compile Include="Views\Config\frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Config\frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Config\IConfigView.cs" />
     <Compile Include="Views\Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +221,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Config\frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

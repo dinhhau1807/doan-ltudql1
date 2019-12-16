@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoAnLTUDQL1.Views.Login
+namespace DoAnLTUDQL1.Views.Config
 {
-    public interface ILoginView
+    public interface IConfigView
     {
-        string Username { get; }
-        string Password { get; }
-        string Message { get; set; }
-        string CheckConnectionMessage { set; }
+        string ConnectionString { get; set; }
 
-        event EventHandler Login;
+        string CheckConnectionMessage { set; }
+        string SaveConfigMessage { set; }
+
+        event EventHandler SaveConfig;
         event EventHandler CheckConnection;
     }
 }
