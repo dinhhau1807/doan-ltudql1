@@ -27,6 +27,8 @@ namespace DoAnLTUDQL1.Views.Login
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+
+
             // Add validators
             //AddValidators();
 
