@@ -260,11 +260,11 @@ namespace DoAnLTUDQL1.Presenters
                         xlRange.Cells[i, 1].Value2 = exportUsers[i - 2].Username;
                         xlRange.Cells[i, 2].Value2 = exportUsers[i - 2].FirstName;
                         xlRange.Cells[i, 3].Value2 = exportUsers[i - 2].LastName;
-                        xlRange.Cells[i, 4].Value2 = exportUsers[i - 2].Dob;
+                        xlRange.Cells[i, 4].Value2 = exportUsers[i - 2].Dob.GetValueOrDefault(DateTime.Parse("01/01/0001"));
                         xlRange.Cells[i, 5].Value2 = exportUsers[i - 2].Phone;
-                        xlRange.Cells[i, 6].Value2 = exportUsers[i - 2].CreatedDate;
+                        xlRange.Cells[i, 6].Value2 = exportUsers[i - 2].CreatedDate.GetValueOrDefault(DateTime.Parse("01/01/0001"));
                         xlRange.Cells[i, 7].Value2 = exportUsers[i - 2].Status;
-                        xlRange.Cells[i, 8].Value2 = exportUsers[i - 2].LastLoginDate;
+                        xlRange.Cells[i, 8].Value2 = exportUsers[i - 2].LastLoginDate.GetValueOrDefault(DateTime.Parse("01/01/0001"));
                         xlRange.Cells[i, 9].Value2 = exportUsers[i - 2].RoleTypeId;
                     }
 
