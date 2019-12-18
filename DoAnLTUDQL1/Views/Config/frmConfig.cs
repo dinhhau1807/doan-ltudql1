@@ -82,8 +82,8 @@ namespace DoAnLTUDQL1.Views.Config
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã lưu cài đặt, vui lòng tắt chương trình để thực hiện các thay đổi!", "Lưu thành công", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    Close();
+                    MessageBox.Show("Đã lưu cài đặt, chương trình sẽ khởi động lại để thực hiện các thay đổi!", "Lưu thành công", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    Application.Restart();
                 }
                 else
                 {
