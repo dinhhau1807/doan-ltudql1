@@ -20,8 +20,9 @@ namespace DoAnLTUDQL1.Views.Admin
         private AdminPresenter presenter;
         private BindingSource bs = new BindingSource();
 
-        public frmAdmin()
+        public frmAdmin(User admin)
         {
+            Admin = admin;
             InitializeComponent();
         }
 
@@ -346,6 +347,8 @@ namespace DoAnLTUDQL1.Views.Admin
         public event EventHandler CheckConnection;
         public event EventHandler RestoreData;
         public event EventHandler BackupData;
+
+        public User Admin { get; set; }
 
         public IList<AdminViewModel> Users { get; set; }
 

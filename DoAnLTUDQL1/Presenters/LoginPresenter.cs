@@ -38,31 +38,43 @@ namespace DoAnLTUDQL1.Presenters
         {
             using (var context = new QLThiTracNghiemDataContext())
             {
+                // TEMP TO TEST
+                var tempUser = context.Teachers.FirstOrDefault(u => u.Username == "lbngoc");
+                view.User = tempUser;
+                view.Message = "Success:Teacher";
+                return;
+                //
+
                 var user = context.Users.FirstOrDefault(u => u.Username == view.Username);
 
                 if (user != null && Common.VerifyPassword(view.Password, user.Password))
                 {
                     string role;
 
-                    role = user.RoleType.RoleName;
+                    role = user.RoleType.RoleName.ToLower();
                     user.LastLoginDate = DateTime.Now;
                     context.SubmitChanges();
 
                     // TODO: Authorization
-                    if (role == "Admin")
+                    if (role == "admin")
                     {
+                        view.User = user;
                         view.Message = "Success:Admin";
                         return;
                     }
 
-                    if (role == "Học sinh")
+                    if (role == "học sinh")
                     {
+                        var student = context.Students.FirstOrDefault(s => s.Username == user.Username);
+                        view.User = student;
                         view.Message = "Success:Student";
                         return;
                     }
 
-                    if (role == "Giáo viên")
+                    if (role == "giáo viên")
                     {
+                        var teacher = context.Teachers.FirstOrDefault(t => t.Username == user.Username);
+                        view.User = teacher;
                         view.Message = "Success:Teacher";
                         return;
                     }

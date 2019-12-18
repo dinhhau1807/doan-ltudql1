@@ -372,8 +372,8 @@ namespace DoAnLTUDQL1.Presenters
                 if (sqlHelper.IsConnection)
                 {
                     var MyConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                    MyConfig.ConnectionStrings.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ConnectionString = view.ConnectionString;
-                    MyConfig.ConnectionStrings.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ProviderName = "System.Data.SqlClient";
+                    MyConfig.ConnectionStrings.ConnectionStrings[SqlHelper.ContextName].ConnectionString = view.ConnectionString;
+                    MyConfig.ConnectionStrings.ConnectionStrings[SqlHelper.ContextName].ProviderName = SqlHelper.ProviderName;
                     MyConfig.Save(ConfigurationSaveMode.Modified);
 
                     view.SaveConfigMessage = "Succeed";

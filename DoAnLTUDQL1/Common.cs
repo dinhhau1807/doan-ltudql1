@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1
 {
@@ -39,7 +37,7 @@ namespace DoAnLTUDQL1
             // Hash password salt
             var bufferPasswordHashed = sha.ComputeHash(bufferPasswordSalt);
             var bufferPasswordSaltHashed = new byte[bufferPasswordHashed.Length + bufferTimeNow.Length];
-            // 
+            //
             Array.Copy(bufferPasswordHashed, bufferPasswordSaltHashed, bufferPasswordHashed.Length);
             Array.Copy(bufferTimeNow, 0, bufferPasswordSaltHashed, bufferPasswordHashed.Length, bufferTimeNow.Length);
 
@@ -78,7 +76,7 @@ namespace DoAnLTUDQL1
             // Hash password salt
             var bufferPasswordHashed = sha.ComputeHash(bufferPasswordSalt);
             var bufferPasswordSaltHashed = new byte[bufferPasswordHashed.Length + buffer.Length];
-            // 
+            //
             Array.Copy(bufferPasswordHashed, bufferPasswordSaltHashed, bufferPasswordHashed.Length);
             Array.Copy(buffer, 0, bufferPasswordSaltHashed, bufferPasswordHashed.Length, buffer.Length);
 
