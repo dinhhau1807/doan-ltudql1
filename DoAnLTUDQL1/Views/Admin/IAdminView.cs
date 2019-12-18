@@ -9,6 +9,8 @@ namespace DoAnLTUDQL1.Views.Admin
 {
     public interface IAdminView
     {
+        User Admin { get; set; }
+
         IList<AdminViewModel> Users { get; set; }
         IEnumerable<RoleType> RoleTypes { get; set; }
 

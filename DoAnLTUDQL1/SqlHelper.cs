@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1
 {
     public class SqlHelper
     {
-        SqlConnection connection;
+        public static readonly string ContextName = "DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString";
+        public static readonly string ProviderName = "System.Data.SqlClient";
+
+        private SqlConnection connection;
         public string ServerName { get; set; }
         public string DatabaseName { get; private set; }
         public string Username { get; private set; }
@@ -64,7 +63,7 @@ namespace DoAnLTUDQL1
         {
             get
             {
-                return ConfigurationManager.ConnectionStrings["DoAnLTUDQL1.Properties.Settings.QLThiTracNghiemConnectionString"].ConnectionString;
+                return ConfigurationManager.ConnectionStrings[ContextName].ConnectionString;
             }
         }
     }

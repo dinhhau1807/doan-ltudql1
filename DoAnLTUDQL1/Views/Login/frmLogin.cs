@@ -3,6 +3,7 @@ using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.Views.Admin;
 using DoAnLTUDQL1.Views.Config;
 using DoAnLTUDQL1.Views.Register;
+using DoAnLTUDQL1.Views.TeacherView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -108,11 +109,13 @@ namespace DoAnLTUDQL1.Views.Login
 
                 if (value == "Success:Admin")
                 {
+                    User admin = (User)User;
+
                     // Open form Admin
                     this.Hide();
                     Thread tRegister = new Thread(_ =>
                     {
-                        Application.Run(new frmAdmin());
+                        Application.Run(new frmAdmin(admin));
                     });
                     tRegister.Start();
                     this.Close();
@@ -120,14 +123,24 @@ namespace DoAnLTUDQL1.Views.Login
 
                 if (value == "Success:Student")
                 {
+                    Student student = (Student)User;
+
                     // Open form Student
-                    MessageBox.Show("Student");
+                    MessageBox.Show(student.StudentId);
                 }
 
                 if (value == "Success:Teacher")
                 {
+                    Teacher teacher = (Teacher)User;
+
                     // Open form Teacher
-                    MessageBox.Show("Teacher");
+                    this.Hide();
+                    Thread tRegister = new Thread(_ =>
+                    {
+                        Application.Run(new frmTeacher(teacher));
+                    });
+                    tRegister.Start();
+                    this.Close();
                 }
 
                 if (!value.Contains("Success") && value == "User not exists")
@@ -161,6 +174,8 @@ namespace DoAnLTUDQL1.Views.Login
                 }
             }
         }
+
+        public object User { get; set; }
 
         public event EventHandler Login;
         public event EventHandler CheckConnection;

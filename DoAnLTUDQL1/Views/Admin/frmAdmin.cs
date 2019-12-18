@@ -20,8 +20,9 @@ namespace DoAnLTUDQL1.Views.Admin
         private AdminPresenter presenter;
         private BindingSource bs = new BindingSource();
 
-        public frmAdmin()
+        public frmAdmin(User admin)
         {
+            Admin = admin;
             InitializeComponent();
         }
 
@@ -347,6 +348,8 @@ namespace DoAnLTUDQL1.Views.Admin
         public event EventHandler RestoreData;
         public event EventHandler BackupData;
 
+        public User Admin { get; set; }
+
         public IList<AdminViewModel> Users { get; set; }
 
         public IEnumerable<RoleType> RoleTypes { get; set; }
@@ -448,8 +451,8 @@ namespace DoAnLTUDQL1.Views.Admin
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã lưu cài đặt, vui lòng tắt chương trình để thực hiện các thay đổi!", "Lưu thành công", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    Close();
+                    MessageBox.Show("Đã lưu cài đặt, chương trình sẽ khởi động lại để thực hiện các thay đổi!", "Lưu thành công", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    Application.Restart();
                 }
                 else
                 {
