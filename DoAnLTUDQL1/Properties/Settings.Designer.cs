@@ -26,21 +26,11 @@ namespace DoAnLTUDQL1.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PUCS;Initial Catalog=QLThiTracNghiem;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TUANANH\\SQLEXPRESS;Initial Catalog=QLThiTracNghiem;Integrated Securit" +
+            "y=True")]
         public string QLThiTracNghiemConnectionString {
             get {
                 return ((string)(this["QLThiTracNghiemConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=TUANANH\\SQLEXPRESS;Initial Catalog=QLThiTracNghiem;Integrated Securit" +
-            "y=True")]
-        public string QLThiTracNghiemConnectionString1 {
-            get {
-                return ((string)(this["QLThiTracNghiemConnectionString1"]));
             }
         }
     }

@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Presenters\ExamPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="Presenters\StudentPresenter.cs" />
@@ -84,17 +85,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLThiTracNghiem.dbml</DependentUpon>
     </Compile>
+    <Compile Include="RegexPattern.cs" />
     <Compile Include="Validators\BaseValidator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Validators\BaseValidator.Designer.cs">
       <DependentUpon>BaseValidator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validators\RegexValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Validators\RequiredInputValidator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Validators\RequiredInputValidator.Designer.cs">
       <DependentUpon>RequiredInputValidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\frmExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\frmExam.Designer.cs">
+      <DependentUpon>frmExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\frmGetExamCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\frmGetExamCode.Designer.cs">
+      <DependentUpon>frmGetExamCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\IExamView.cs" />
+    <Compile Include="Views\Exam\ucAnswers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\ucAnswers.Designer.cs">
+      <DependentUpon>ucAnswers.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Login\frmLogin.cs">
       <SubType>Form</SubType>
@@ -127,6 +151,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\Exam\frmExam.resx">
+      <DependentUpon>frmExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Exam\frmGetExamCode.resx">
+      <DependentUpon>frmGetExamCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Exam\ucAnswers.resx">
+      <DependentUpon>ucAnswers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

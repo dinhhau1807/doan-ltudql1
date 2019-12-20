@@ -170,7 +170,8 @@ namespace DoAnLTUDQL1.Presenters
 			{
 				result = (from examDetail in context.ExamDetails
 						let currentDatetime = DateTime.Now
-						where examDetail.GradeId == gradeId && DateTime.Compare(currentDatetime, examDetail.StartTime.Value) < 0
+						where examDetail.GradeId == gradeId 
+						&& DateTime.Compare(currentDatetime, examDetail.StartTime.Value.AddMinutes(examDetail.Duration.Value)) < 0
 						join exam in context.Exams
 						on examDetail.ExamId equals exam.ExamId
 						join subject in context.Subjects
@@ -180,6 +181,7 @@ namespace DoAnLTUDQL1.Presenters
 						on examDetail.GradeId equals grade.GradeId
 						select new
 						{
+							examDetail.ExamDetailId,
 							exam.ExamName,
 							subject.SubjectId,
 							subject.SubjectName,
@@ -192,7 +194,8 @@ namespace DoAnLTUDQL1.Presenters
 			{
 				result = (from examDetail in context.ExamDetails
 						let currentDatetime = DateTime.Now
-						where examDetail.GradeId == gradeId && DateTime.Compare(currentDatetime, examDetail.StartTime.Value) < 0
+						where examDetail.GradeId == gradeId
+						&& DateTime.Compare(currentDatetime, examDetail.StartTime.Value.AddMinutes(examDetail.Duration.Value)) < 0
 						join exam in context.Exams
 						on examDetail.ExamId equals exam.ExamId
 						where exam.IsPacticeExam == (typeOfExamFilter == (int)Enums.TYPE_OF_EXAM.PRACTICE_EXAM)
@@ -203,6 +206,7 @@ namespace DoAnLTUDQL1.Presenters
 						on examDetail.GradeId equals grade.GradeId
 						select new
 						{
+							examDetail.ExamDetailId,
 							exam.ExamName,
 							subject.SubjectId,
 							subject.SubjectName,
@@ -231,16 +235,16 @@ namespace DoAnLTUDQL1.Presenters
 					   join subject in context.Subjects
 					   on examDetail.SubjectId equals subject.SubjectId
 					   where examDetail.GradeId == subject.GradeId
-					   select new
+					   let examTake = context.ExamTakes.SingleOrDefault(s => s.ExamDetailId == examResult.ExamDetailId
+											&& s.StudentId == examResult.StudentId)
+						  select new
 					   {
 						   exam.ExamName,
 						   Subject = $"{subject.SubjectId} - {subject.SubjectName}",
-						   examDetail.ExamCodeId,
+						   ExamCodeId = examTake != null ? examTake.ExamCodeId : "",
 						   examResult.Mark,
 						   examDetail.StartTime,
-						   Status = context.ExamTakes
-									 .SingleOrDefault(s => s.ExamDetailId == examDetail.ExamDetailId
-										 && s.StudentId == studentId) != null ? "Đã tham gia" : "Không tham gia"
+						   Status = examTake != null ? "Đã tham gia" : "Không tham gia"
 					   }).OrderByDescending(o => o.StartTime);
 			}
 			else
@@ -255,24 +259,40 @@ namespace DoAnLTUDQL1.Presenters
 					   join subject in context.Subjects
 					   on examDetail.SubjectId equals subject.SubjectId
 					   where examDetail.GradeId == subject.GradeId
-					   select new
-					   {
-						   exam.ExamName,
-						   Subject = $"{subject.SubjectId} - {subject.SubjectName}",
-						   examDetail.ExamCodeId,
-						   examResult.Mark,
-						   examDetail.StartTime,
-						   Status = context.ExamTakes
-									 .SingleOrDefault(s => s.ExamDetailId == examDetail.ExamDetailId
-										 && s.StudentId == studentId) != null ? "Đã tham gia" : "Không tham gia"
-					   }).OrderByDescending(o => o.StartTime);
+						  let examTake = context.ExamTakes.SingleOrDefault(s => s.ExamDetailId == examResult.ExamDetailId
+											   && s.StudentId == examResult.StudentId)
+						  select new
+						  {
+							  exam.ExamName,
+							  Subject = $"{subject.SubjectId} - {subject.SubjectName}",
+							  ExamCodeId = examTake != null ? examTake.ExamCodeId : "",
+							  examResult.Mark,
+							  examDetail.StartTime,
+							  Status = examTake != null ? "Đã tham gia" : "Không tham gia"
+						  }).OrderByDescending(o => o.StartTime);
 			}
 			return result;
 		}
 
+		//get the lastest exam detail with exam take has no exists
 		dynamic getTheLastestExamDetail(IEnumerable<dynamic> listExamDetail)
 		{
-			return listExamDetail.Count() > 0 ? listExamDetail.First() : null;
+			if(listExamDetail.Count() > 0)
+			{
+				foreach (var examDetail in listExamDetail)
+				{
+					string examDetailId = examDetail.ExamDetailId;
+					var examTake = context.ExamTakes
+									.SingleOrDefault(s => s.ExamDetailId == examDetailId 
+														&& s.StudentId == view.StudentId);
+
+					if(examTake == null)
+					{
+						return examDetail;
+					}
+				}
+			}
+			return null;
 		}
 	}
 }
