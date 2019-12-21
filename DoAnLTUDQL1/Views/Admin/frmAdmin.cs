@@ -326,11 +326,11 @@ namespace DoAnLTUDQL1.Views.Admin
             {
                 this.Hide();
 
-                Thread tRegister = new Thread(_ =>
+                Thread tLogin = new Thread(_ =>
                 {
                     Application.Run(new frmLogin());
                 });
-                tRegister.Start();
+                tLogin.Start();
 
                 this.Close();
             }

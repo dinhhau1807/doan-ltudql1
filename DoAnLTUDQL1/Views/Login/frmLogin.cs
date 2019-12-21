@@ -165,11 +165,11 @@ namespace DoAnLTUDQL1.Views.Login
 
                     // Open form Config
                     this.Hide();
-                    Thread tRegister = new Thread(_ =>
+                    Thread tConfig = new Thread(_ =>
                     {
                         Application.Run(new frmConfig());
                     });
-                    tRegister.Start();
+                    tConfig.Start();
                     this.Close();
                 }
             }
