@@ -341,7 +341,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
 		public string Content
 		{
 			get
@@ -891,7 +891,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
 		public string Content
 		{
 			get
@@ -1373,8 +1373,6 @@ namespace DoAnLTUDQL1
 		
 		private EntitySet<ExamCode_Question> _ExamCode_Questions;
 		
-		private EntitySet<ExamTake> _ExamTakes;
-		
 		private EntityRef<Subject> _Subject;
 		
     #region Extensibility Method Definitions
@@ -1396,7 +1394,6 @@ namespace DoAnLTUDQL1
 		public ExamCode()
 		{
 			this._ExamCode_Questions = new EntitySet<ExamCode_Question>(new Action<ExamCode_Question>(this.attach_ExamCode_Questions), new Action<ExamCode_Question>(this.detach_ExamCode_Questions));
-			this._ExamTakes = new EntitySet<ExamTake>(new Action<ExamTake>(this.attach_ExamTakes), new Action<ExamTake>(this.detach_ExamTakes));
 			this._Subject = default(EntityRef<Subject>);
 			OnCreated();
 		}
@@ -1522,19 +1519,6 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExamCode_ExamTake", Storage="_ExamTakes", ThisKey="ExamCodeId", OtherKey="ExamCodeId")]
-		public EntitySet<ExamTake> ExamTakes
-		{
-			get
-			{
-				return this._ExamTakes;
-			}
-			set
-			{
-				this._ExamTakes.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subject_ExamCode", Storage="_Subject", ThisKey="SubjectId,GradeId", OtherKey="SubjectId,GradeId", IsForeignKey=true)]
 		public Subject Subject
 		{
@@ -1598,18 +1582,6 @@ namespace DoAnLTUDQL1
 		}
 		
 		private void detach_ExamCode_Questions(ExamCode_Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.ExamCode = null;
-		}
-		
-		private void attach_ExamTakes(ExamTake entity)
-		{
-			this.SendPropertyChanging();
-			entity.ExamCode = this;
-		}
-		
-		private void detach_ExamTakes(ExamTake entity)
 		{
 			this.SendPropertyChanging();
 			entity.ExamCode = null;
@@ -2140,6 +2112,10 @@ namespace DoAnLTUDQL1
 			{
 				if ((this._ExamDetailId != value))
 				{
+					if (this._ExamTake.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnExamDetailIdChanging(value);
 					this.SendPropertyChanging();
 					this._ExamDetailId = value;
@@ -2160,7 +2136,7 @@ namespace DoAnLTUDQL1
 			{
 				if ((this._StudentId != value))
 				{
-					if (this._Student.HasLoadedOrAssignedValue)
+					if ((this._ExamTake.HasLoadedOrAssignedValue || this._Student.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2233,7 +2209,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamCodeId", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamCodeId", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string ExamCodeId
 		{
 			get
@@ -2253,7 +2229,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExamResult_ExamTake", Storage="_ExamTake", ThisKey="ExamDetailId,StudentId,ExamCodeId", OtherKey="ExamDetailId,StudentId,ExamCodeId", IsUnique=true, IsForeignKey=false)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExamTake_ExamResult", Storage="_ExamTake", ThisKey="ExamDetailId,StudentId", OtherKey="ExamDetailId,StudentId", IsForeignKey=true)]
 		public ExamTake ExamTake
 		{
 			get
@@ -2276,6 +2252,13 @@ namespace DoAnLTUDQL1
 					if ((value != null))
 					{
 						value.ExamResult = this;
+						this._ExamDetailId = value.ExamDetailId;
+						this._StudentId = value.StudentId;
+					}
+					else
+					{
+						this._ExamDetailId = default(string);
+						this._StudentId = default(string);
 					}
 					this.SendPropertyChanged("ExamTake");
 				}
@@ -2353,11 +2336,9 @@ namespace DoAnLTUDQL1
 		
 		private string _ExamCodeId;
 		
-		private EntityRef<ExamDetail> _ExamDetail;
-		
-		private EntityRef<ExamCode> _ExamCode;
-		
 		private EntityRef<ExamResult> _ExamResult;
+		
+		private EntityRef<ExamDetail> _ExamDetail;
 		
 		private EntityRef<Student> _Student;
 		
@@ -2379,9 +2360,8 @@ namespace DoAnLTUDQL1
 		
 		public ExamTake()
 		{
-			this._ExamDetail = default(EntityRef<ExamDetail>);
-			this._ExamCode = default(EntityRef<ExamCode>);
 			this._ExamResult = default(EntityRef<ExamResult>);
+			this._ExamDetail = default(EntityRef<ExamDetail>);
 			this._Student = default(EntityRef<Student>);
 			OnCreated();
 		}
@@ -2397,7 +2377,7 @@ namespace DoAnLTUDQL1
 			{
 				if ((this._ExamDetailId != value))
 				{
-					if ((this._ExamDetail.HasLoadedOrAssignedValue || this._ExamResult.HasLoadedOrAssignedValue))
+					if (this._ExamDetail.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2421,7 +2401,7 @@ namespace DoAnLTUDQL1
 			{
 				if ((this._StudentId != value))
 				{
-					if ((this._ExamResult.HasLoadedOrAssignedValue || this._Student.HasLoadedOrAssignedValue))
+					if (this._Student.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -2474,7 +2454,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamCodeId", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExamCodeId", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string ExamCodeId
 		{
 			get
@@ -2485,15 +2465,40 @@ namespace DoAnLTUDQL1
 			{
 				if ((this._ExamCodeId != value))
 				{
-					if ((this._ExamCode.HasLoadedOrAssignedValue || this._ExamResult.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnExamCodeIdChanging(value);
 					this.SendPropertyChanging();
 					this._ExamCodeId = value;
 					this.SendPropertyChanged("ExamCodeId");
 					this.OnExamCodeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExamTake_ExamResult", Storage="_ExamResult", ThisKey="ExamDetailId,StudentId", OtherKey="ExamDetailId,StudentId", IsUnique=true, IsForeignKey=false)]
+		public ExamResult ExamResult
+		{
+			get
+			{
+				return this._ExamResult.Entity;
+			}
+			set
+			{
+				ExamResult previousValue = this._ExamResult.Entity;
+				if (((previousValue != value) 
+							|| (this._ExamResult.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ExamResult.Entity = null;
+						previousValue.ExamTake = null;
+					}
+					this._ExamResult.Entity = value;
+					if ((value != null))
+					{
+						value.ExamTake = this;
+					}
+					this.SendPropertyChanged("ExamResult");
 				}
 			}
 		}
@@ -2528,78 +2533,6 @@ namespace DoAnLTUDQL1
 						this._ExamDetailId = default(string);
 					}
 					this.SendPropertyChanged("ExamDetail");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExamCode_ExamTake", Storage="_ExamCode", ThisKey="ExamCodeId", OtherKey="ExamCodeId", IsForeignKey=true)]
-		public ExamCode ExamCode
-		{
-			get
-			{
-				return this._ExamCode.Entity;
-			}
-			set
-			{
-				ExamCode previousValue = this._ExamCode.Entity;
-				if (((previousValue != value) 
-							|| (this._ExamCode.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ExamCode.Entity = null;
-						previousValue.ExamTakes.Remove(this);
-					}
-					this._ExamCode.Entity = value;
-					if ((value != null))
-					{
-						value.ExamTakes.Add(this);
-						this._ExamCodeId = value.ExamCodeId;
-					}
-					else
-					{
-						this._ExamCodeId = default(string);
-					}
-					this.SendPropertyChanged("ExamCode");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExamResult_ExamTake", Storage="_ExamResult", ThisKey="ExamDetailId,StudentId,ExamCodeId", OtherKey="ExamDetailId,StudentId,ExamCodeId", IsForeignKey=true)]
-		public ExamResult ExamResult
-		{
-			get
-			{
-				return this._ExamResult.Entity;
-			}
-			set
-			{
-				ExamResult previousValue = this._ExamResult.Entity;
-				if (((previousValue != value) 
-							|| (this._ExamResult.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ExamResult.Entity = null;
-						previousValue.ExamTake = null;
-					}
-					this._ExamResult.Entity = value;
-					if ((value != null))
-					{
-						value.ExamTake = this;
-						this._ExamDetailId = value.ExamDetailId;
-						this._StudentId = value.StudentId;
-						this._ExamCodeId = value.ExamCodeId;
-					}
-					else
-					{
-						this._ExamDetailId = default(string);
-						this._StudentId = default(string);
-						this._ExamCodeId = default(string);
-					}
-					this.SendPropertyChanged("ExamResult");
 				}
 			}
 		}
@@ -2875,7 +2808,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
 		public string Content
 		{
 			get
@@ -3216,7 +3149,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
 		public string Content
 		{
 			get
@@ -3236,7 +3169,7 @@ namespace DoAnLTUDQL1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hint", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hint", DbType="NVarChar(MAX)")]
 		public string Hint
 		{
 			get

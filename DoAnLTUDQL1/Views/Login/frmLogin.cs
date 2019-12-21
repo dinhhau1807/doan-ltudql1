@@ -3,6 +3,7 @@ using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.Views.Admin;
 using DoAnLTUDQL1.Views.Config;
 using DoAnLTUDQL1.Views.Register;
+using DoAnLTUDQL1.Views.Student;
 using DoAnLTUDQL1.Views.TeacherView;
 using System;
 using System.Collections.Generic;
@@ -73,11 +74,6 @@ namespace DoAnLTUDQL1.Views.Login
             this.Close();
         }
 
-        private void MBtnLogin_Click(object sender, EventArgs e)
-        {
-            Login?.Invoke(this, null);
-        }
-
         #region ILoginView implementations
         public string Username
         {
@@ -120,13 +116,13 @@ namespace DoAnLTUDQL1.Views.Login
                     tRegister.Start();
                     this.Close();
                 }
-
+                
                 if (value == "Success:Student")
                 {
-                    Student student = (Student)User;
+                    //Student student = (Student)User;
 
                     // Open form Student
-                    MessageBox.Show(student.StudentId);
+                    //MessageBox.Show(student.StudentId);
                 }
 
                 if (value == "Success:Teacher")
@@ -177,6 +173,20 @@ namespace DoAnLTUDQL1.Views.Login
 
         public object User { get; set; }
 
+        private void MBtnLogin_Click(object sender, EventArgs e)
+        {
+            //Login?.Invoke(this, null);
+            User user;
+            using (var context = new QLThiTracNghiemDataContext())
+            {
+                user = context.Users.Single(s => s.Username == "ldlinh");
+            }
+            //frmAdmin frm = new frmAdmin(user);
+            //frm.ShowDialog();
+
+            frmStudent frm = new frmStudent(user);
+            frm.ShowDialog();
+        }
         public event EventHandler Login;
         public event EventHandler CheckConnection;
         #endregion

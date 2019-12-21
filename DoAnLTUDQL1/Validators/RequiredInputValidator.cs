@@ -13,12 +13,12 @@ namespace DoAnLTUDQL1.Validators
     {
         public RequiedInputValidator()
         {
-            ErrorMessage = "Bạn phải nhập dữ liệu vào trường này!";
+            ErrorMessage = "Dữ liệu không được để trống!";
         }
 
         public override bool Validate()
         {
-            return ControlToValidate.Text.Length > 0;
+            return ControlToValidate.Text.Trim().Length > 0;
         }
     }
 }

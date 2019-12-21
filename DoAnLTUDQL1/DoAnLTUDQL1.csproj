@@ -12,8 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -157,10 +170,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Presenters\ExamPresenter.cs" />
     <Compile Include="Presenters\AdminPresenter.cs" />
     <Compile Include="Presenters\ConfigPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
+    <Compile Include="Presenters\StudentPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QLThiTracNghiem.designer.cs">
@@ -168,6 +184,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLThiTracNghiem.dbml</DependentUpon>
     </Compile>
+    <Compile Include="RegexPattern.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="Validators\BaseValidator.cs">
       <SubType>Component</SubType>
@@ -175,11 +192,33 @@
     <Compile Include="Validators\BaseValidator.Designer.cs">
       <DependentUpon>BaseValidator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validators\RegexValidator.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Validators\RequiredInputValidator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Validators\RequiredInputValidator.Designer.cs">
       <DependentUpon>RequiredInputValidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\frmExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\frmExam.Designer.cs">
+      <DependentUpon>frmExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\frmGetExamCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\frmGetExamCode.Designer.cs">
+      <DependentUpon>frmGetExamCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Exam\IExamView.cs" />
+    <Compile Include="Views\Exam\ucAnswers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Exam\ucAnswers.Designer.cs">
+      <DependentUpon>ucAnswers.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="Views\Admin\frmAdmin.cs">
@@ -210,6 +249,13 @@
     <Compile Include="Views\Register\frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Student\frmStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Student\frmStudent.Designer.cs">
+      <DependentUpon>frmStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student\IStudentView.cs" />
     <Compile Include="Views\TeacherView\frmTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,7 +271,17 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\Exam\frmExam.resx">
+      <DependentUpon>frmExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Exam\frmGetExamCode.resx">
+      <DependentUpon>frmGetExamCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Exam\ucAnswers.resx">
+      <DependentUpon>ucAnswers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Register\frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Student\frmStudent.resx">
+      <DependentUpon>frmStudent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -262,6 +321,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

@@ -14,7 +14,7 @@ namespace DoAnLTUDQL1.Validators
     {
         ErrorProvider errorProvider = new ErrorProvider();
 
-        public string Pattern { get; set; }
+        public bool IsValid { get; set; }
         public string ErrorMessage { get; set; }
 
         public Icon ErrorIcon
@@ -24,20 +24,17 @@ namespace DoAnLTUDQL1.Validators
         }
 
 
-        private Control _controlToValidate;
+        private Control controlToValidate;
+        [TypeConverter(typeof(ReferenceConverter))]
         public Control ControlToValidate
         {
-            get { return _controlToValidate; }
+            get { return controlToValidate; }
             set
             {
-                if (_controlToValidate != null && !DesignMode)
+                controlToValidate = value;
+                if (controlToValidate != null && !DesignMode)
                 {
-                    _controlToValidate.Validating -= ControlToValidate_Validating;
-                }
-                _controlToValidate = value;
-                if (_controlToValidate != null && !DesignMode)
-                {
-                    _controlToValidate.Validating += ControlToValidate_Validating;
+                    controlToValidate.Validating += ControlToValidate_Validating;
                 }
             }
         }
@@ -45,24 +42,21 @@ namespace DoAnLTUDQL1.Validators
         public BaseValidator()
         {
             InitializeComponent();
-        }
 
-        public BaseValidator(IContainer container)
-        {
-            container.Add(this);
-            InitializeComponent();
+            IsValid = true;
         }
 
         private void ControlToValidate_Validating(object sender, CancelEventArgs e)
         {
             if (!Validate())
             {
-                e.Cancel = true;
                 errorProvider.SetError(ControlToValidate, ErrorMessage);
+                IsValid = false;
             }
             else
             {
                 errorProvider.SetError(ControlToValidate, "");
+                IsValid = true;
             }
         }
 
