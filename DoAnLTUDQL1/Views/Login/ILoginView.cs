@@ -11,7 +11,10 @@ namespace DoAnLTUDQL1.Views.Login
         string Username { get; }
         string Password { get; }
         string Message { get; set; }
+        string CheckConnectionMessage { set; }
+        object User { get; set;  }
 
         event EventHandler Login;
+        event EventHandler CheckConnection;
     }
 }

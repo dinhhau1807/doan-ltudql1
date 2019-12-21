@@ -62,6 +62,7 @@
       <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsPracticeExam" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="ExamCode_ExamCode_Question" Member="ExamCode_Questions" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamCode_Question" />
+      <Association Name="ExamCode_ExamTake" Member="ExamTakes" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamTake" />
       <Association Name="Subject_ExamCode" Member="Subject" ThisKey="SubjectId,GradeId" OtherKey="SubjectId,GradeId" Type="Subject" IsForeignKey="true" />
     </Type>
   </Table>
@@ -95,6 +96,8 @@
       <Column Name="Mark" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="ExamTake_ExamResult" Member="ExamTake" ThisKey="ExamDetailId,StudentId" OtherKey="ExamDetailId,StudentId" Type="ExamTake" IsForeignKey="true" />
+      <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ExamResult_ExamTake" Member="ExamTake" ThisKey="ExamDetailId,StudentId,ExamCodeId" OtherKey="ExamDetailId,StudentId,ExamCodeId" Type="ExamTake" Cardinality="One" />
       <Association Name="Student_ExamResult" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
@@ -106,7 +109,10 @@
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="ExamTake_ExamResult" Member="ExamResult" ThisKey="ExamDetailId,StudentId" OtherKey="ExamDetailId,StudentId" Type="ExamResult" Cardinality="One" />
+      <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="ExamDetail_ExamTake" Member="ExamDetail" ThisKey="ExamDetailId" OtherKey="ExamDetailId" Type="ExamDetail" IsForeignKey="true" />
+      <Association Name="ExamCode_ExamTake" Member="ExamCode" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamCode" IsForeignKey="true" />
+      <Association Name="ExamResult_ExamTake" Member="ExamResult" ThisKey="ExamDetailId,StudentId,ExamCodeId" OtherKey="ExamDetailId,StudentId,ExamCodeId" Type="ExamResult" IsForeignKey="true" />
       <Association Name="Student_ExamTake" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>

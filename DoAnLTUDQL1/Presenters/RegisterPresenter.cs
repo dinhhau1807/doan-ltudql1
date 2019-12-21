@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Presenters
 {
     public class RegisterPresenter
     {
-        IRegisterView view;
+        private IRegisterView view;
 
         public RegisterPresenter(IRegisterView registerView)
         {
@@ -72,7 +70,7 @@ namespace DoAnLTUDQL1.Presenters
 
                     var student = new Student
                     {
-                        StudentId = $"HS{studentId:D6}",
+                        StudentId = $"HS{studentId:D7}",
                         Username = view.Username,
                         ClassroomId = null
                     };
@@ -97,7 +95,7 @@ namespace DoAnLTUDQL1.Presenters
 
                     var teacher = new Teacher
                     {
-                        TeacherId = $"GV{teacherId:D6}",
+                        TeacherId = $"GV{teacherId:D7}",
                         Username = view.Username,
                     };
 

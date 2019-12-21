@@ -1,7 +1,10 @@
 ﻿using DoAnLTUDQL1.Presenters;
 using DoAnLTUDQL1.Validators;
+using DoAnLTUDQL1.Views.Admin;
+using DoAnLTUDQL1.Views.Config;
 using DoAnLTUDQL1.Views.Register;
 using DoAnLTUDQL1.Views.Student;
+using DoAnLTUDQL1.Views.TeacherView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +26,57 @@ namespace DoAnLTUDQL1.Views.Login
         {
             InitializeComponent();
             Load += FrmLogin_Load;
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            presenter = new LoginPresenter(this);
+            CheckConnection?.Invoke(this, null);
+
+            // Add validators
+            //AddValidators();
+
+            mBtnLogin.Click += MBtnLogin_Click;
+            mLRegister.Click += MLRegister_Click;
+        }
+
+        private void AddValidators()
+        {
+            var required1 = new RequiedInputValidator
+            {
+                ErrorMessage = "Bạn phải nhập tên người dùng!",
+                ControlToValidate = mTxtUsername
+            };
+
+            var required2 = new RequiedInputValidator
+            {
+                ErrorMessage = "Bạn phải nhập mật khẩu!",
+                ControlToValidate = mTxtPassword
+            };
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            e.Cancel = false;
+        }
+
+        private void MLRegister_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Thread tRegister = new Thread(_ =>
+            {
+                Application.Run(new frmRegister());
+            });
+            tRegister.Start();
+
+            this.Close();
+        }
+
+        private void MBtnLogin_Click(object sender, EventArgs e)
+        {
+            Login?.Invoke(this, null);
         }
 
         #region ILoginView implementations
@@ -56,20 +110,38 @@ namespace DoAnLTUDQL1.Views.Login
 
                 if (value == "Success:Admin")
                 {
+                    User admin = (User)User;
+
                     // Open form Admin
-                    MessageBox.Show("Admin");
+                    this.Hide();
+                    Thread tRegister = new Thread(_ =>
+                    {
+                        Application.Run(new frmAdmin(admin));
+                    });
+                    tRegister.Start();
+                    this.Close();
                 }
 
                 if (value == "Success:Student")
                 {
+                    Student student = (Student)User;
+
                     // Open form Student
-                    MessageBox.Show("Student");
+                    MessageBox.Show(student.StudentId);
                 }
 
                 if (value == "Success:Teacher")
                 {
+                    Teacher teacher = (Teacher)User;
+
                     // Open form Teacher
-                    MessageBox.Show("Teacher");
+                    this.Hide();
+                    Thread tRegister = new Thread(_ =>
+                    {
+                        Application.Run(new frmTeacher(teacher));
+                    });
+                    tRegister.Start();
+                    this.Close();
                 }
 
                 if (!value.Contains("Success") && value == "User not exists")
@@ -84,53 +156,27 @@ namespace DoAnLTUDQL1.Views.Login
             }
         }
 
-        public event EventHandler Login;
-        #endregion
-
-        private void AddValidators()
+        public string CheckConnectionMessage
         {
-            var required1 = new RequiedInputValidator
+            set
             {
-                ErrorMessage = "Bạn phải nhập tên người dùng!",
-                ControlToValidate = mTxtUsername
-            };
+                if (value == "Failed")
+                {
+                    MessageBox.Show("Kết nối database chưa được thiết lập, vui lòng thiết lập kết nối!");
 
-            var required2 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập mật khẩu!",
-                ControlToValidate = mTxtPassword
-            };
+                    // Open form Config
+                    this.Hide();
+                    Thread tRegister = new Thread(_ =>
+                    {
+                        Application.Run(new frmConfig());
+                    });
+                    tRegister.Start();
+                    this.Close();
+                }
+            }
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            e.Cancel = false;
-        }
-
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-            // Add validators
-            //AddValidators();
-
-            presenter = new LoginPresenter(this);
-
-            mBtnLogin.Click += MBtnLogin_Click;
-            mLRegister.Click += MLRegister_Click;
-        }
-
-        private void MLRegister_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-
-            Thread tRegister = new Thread(_ =>
-            {
-                Application.Run(new frmRegister());
-            });
-            tRegister.Start();
-
-            this.Close();
-        }
+        public object User { get; set; }
 
         private void MBtnLogin_Click(object sender, EventArgs e)
         {
@@ -143,5 +189,8 @@ namespace DoAnLTUDQL1.Views.Login
             frmStudent frm = new frmStudent(user);
             frm.ShowDialog();
         }
+        public event EventHandler Login;
+        public event EventHandler CheckConnection;
+        #endregion
     }
 }

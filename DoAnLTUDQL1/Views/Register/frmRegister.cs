@@ -25,6 +25,22 @@ namespace DoAnLTUDQL1.Views.Register
             Load += FrmRegister_Load;
         }
 
+        private void FrmRegister_Load(object sender, EventArgs e)
+        {
+            // Add validators
+            //AddValidators();
+
+            presenter = new RegisterPresenter(this);
+
+            // Set data for mCbRoleType
+            mCbRoleType.DataSource = RoleTypes;
+            mCbRoleType.DisplayMember = "RoleName";
+            mCbRoleType.ValueMember = "RoleTypeId";
+
+            mLLogin.Click += MLLogin_Click;
+            mBtnRegister.Click += MBtnRegister_Click;
+        }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
@@ -70,6 +86,24 @@ namespace DoAnLTUDQL1.Views.Register
             };
         }
 
+        private void MBtnRegister_Click(object sender, EventArgs e)
+        {
+            Register?.Invoke(this, null);
+        }
+
+        private void MLLogin_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Thread tLogin = new Thread(_ =>
+            {
+                Application.Run(new frmLogin());
+            });
+            tLogin.Start();
+
+            this.Close();
+        }
+
         #region IRegisterView implementations
         public string Username { get { return mTxtUsername.Text; } }
         public string Password { get { return mTxtPassword.Text; } }
@@ -108,39 +142,5 @@ namespace DoAnLTUDQL1.Views.Register
 
         public event EventHandler Register;
         #endregion
-
-        private void FrmRegister_Load(object sender, EventArgs e)
-        {
-            // Add validators
-            //AddValidators();
-
-            presenter = new RegisterPresenter(this);
-
-            // Set data for mCbRoleType
-            mCbRoleType.DataSource = RoleTypes;
-            mCbRoleType.DisplayMember = "RoleName";
-            mCbRoleType.ValueMember = "RoleTypeId";
-
-            mLLogin.Click += MLLogin_Click;
-            mBtnRegister.Click += MBtnRegister_Click;
-        }
-
-        private void MBtnRegister_Click(object sender, EventArgs e)
-        {
-            Register?.Invoke(this, null);
-        }
-
-        private void MLLogin_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-
-            Thread tLogin = new Thread(_ =>
-            {
-                Application.Run(new frmLogin());
-            });
-            tLogin.Start();
-
-            this.Close();
-        }
     }
 }
