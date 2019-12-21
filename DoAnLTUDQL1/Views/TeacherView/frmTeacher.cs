@@ -17,14 +17,11 @@ namespace DoAnLTUDQL1.Views.TeacherView
     public partial class frmTeacher : MetroFramework.Forms.MetroForm, ITeacherView
     {
         TeacherPresenter presenter;
-        BindingSource bsQuestionList;
-        BindingSource bsDetailQuestionExamCodeList;
-        BindingSource bsApproveQuestionList;
 
         public frmTeacher(Teacher teacher)
         {
-            InitializeComponent();
             CurrentUser = teacher;
+            InitializeComponent();
             Load += FrmTeacher_Load;
         }
 
@@ -37,6 +34,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Logout page
             mLblLastLoginDate.Text = CurrentUserInfo.LastLoginDate.ToString();
 
+
             // Init for change info tab
             mTxtInfoTeacherId.Text = CurrentUser.TeacherId;
             mTxtInfoFirstName.Text = CurrentUserInfo.FirstName;
@@ -46,145 +44,52 @@ namespace DoAnLTUDQL1.Views.TeacherView
             mTxtInfoCreatedDate.Text = CurrentUserInfo.CreatedDate.ToString();
             EnableChangeInfo(false);
 
-            // Tab question
-            bsQuestionList = new BindingSource();
-            bsQuestionList.DataSource = ListQuestion;
-            mGridListQuestion.DataSource = bsQuestionList;
-            // --- Load combobox difficultLevel
-            var difficulLevels = new List<object>
-            {
-                new { DifficultLevel=1, Value="Dễ" },
-                new { DifficultLevel=2, Value="Trung bình" },
-                new { DifficultLevel=3, Value="Khó" },
-                new { DifficultLevel=4, Value="Nâng cao" },
-            };
-            mCbbEditQuestionDifficultLevel.ValueMember = "DifficultLevel";
-            mCbbEditQuestionDifficultLevel.DisplayMember = "Value";
-            mCbbEditQuestionDifficultLevel.DataSource = difficulLevels;
-            // --- Load detail question examcode
-            bsDetailQuestionExamCodeList = new BindingSource();
-            bsDetailQuestionExamCodeList.DataSource = ListDetailQuestionExamCode;
-            mGridDetailQuestionExamCode.DataSource = bsDetailQuestionExamCodeList;
-            // --- Approve question
-            LoadApproveQuestion?.Invoke(this, null);
-            bsApproveQuestionList = new BindingSource();
-            bsApproveQuestionList.DataSource = ListQuestionDistributed;
-            mGridApproveQuestion.DataSource = bsApproveQuestionList;
-            // --- Add question
-            mCbbAddQuestionDifficultLevel.ValueMember = "DifficultLevel";
-            mCbbAddQuestionDifficultLevel.DisplayMember = "Value";
-            mCbbAddQuestionDifficultLevel.DataSource = difficulLevels;
-
-            mCbbAddQuestionSubject.DisplayMember = "SubjectName";
-            mCbbAddQuestionSubject.DataSource = Subjects;
-            if (mCbbAddQuestionSubject.SelectedItem != null)
-            {
-                var subject = mCbbAddQuestionSubject.SelectedItem as Subject;
-                mTxtAddQuestionSubjectId.Text = subject.SubjectId;
-                mTxtAddQuestionGradeId.Text = subject.GradeId.ToString();
-            }
-            // --- Import/Export question
-            // DOIT LATER
-
-
 
             // Set data bindings
             SetDataBinding();
 
 
             // Register events
+            // Tab manage
+            mTileQuestion.Click += MTileQuestion_Click;
+            mTileExamCode.Click += MTileExamCode_Click;
+            mTileExam.Click += MTileExam_Click;
+            mTilePracticeExam.Click += MTilePracticeExam_Click;
+            mTileStudent.Click += MTileStudent_Click;
+
             // Change info - Change password - Logout
             mBtnChangeInfo.Click += MBtnChangeInfo_Click;
             mBtnChangePassword.Click += MBtnChangePassword_Click;
             mBtnLogout.Click += MBtnLogout_Click;
-            // Tab question
-            // --- List question
-            mBtnReloadListQuestion.Click += MBtnReloadListQuestion_Click;
-            // --- Edit question
-            mTileEditAnswer.Click += MTileEditAnswer_Click;
-            mBtnSaveEditQuestion.Click += MBtnSaveEditQuestion_Click;
-            // --- Detail question
-            mTxtDetailQuestionId.TextChanged += MTxtDetailQuestionId_TextChanged;
-            // --- Approve question
-            mBtnApproveQuestion.Click += MBtnApproveQuestion_Click;
-            // --- Add question
-            mCbbAddQuestionSubject.SelectedIndexChanged += MCbbAddQuestionSubject_SelectedIndexChanged;
-            mBtnAddQuestion.Click += MBtnAddQuestion_Click;
-            // --- Import/Export question
-            // DOIT LATER
 
 
             // Select tab first startup
             mTabCtrl.SelectTab(0);
-            mTabQuestion.SelectTab(0);
         }
 
-        private void MBtnAddQuestion_Click(object sender, EventArgs e)
+
+        // Tab manage
+        private void MTileQuestion_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(mTxtAddQuestionContent.Text) || mCbbAddQuestionSubject.SelectedItem == null)
-            {
-                MessageBox.Show("Không thể thêm câu hỏi vì chưa đủ dữ liệu!");
-                return;
-            }
-
-            Question = new Question
-            {
-                Content = mTxtAddQuestionContent.Text,
-                DifficultLevel = (int)mCbbAddQuestionDifficultLevel.SelectedValue,
-                SubjectId = ((Subject)mCbbAddQuestionSubject.SelectedItem).SubjectId,
-                GradeId = ((Subject)mCbbAddQuestionSubject.SelectedItem).GradeId,
-                IsDistributed = false
-            };
-
-            AddQuestion?.Invoke(this, null);
+            var frmQuestion = new frmQuestion(CurrentUser, CurrentUserInfo);
+            frmQuestion.ShowDialog();
         }
 
-        // Tab question
-        private void MBtnReloadListQuestion_Click(object sender, EventArgs e)
+        private void MTileExamCode_Click(object sender, EventArgs e)
         {
-            ReloadListQuestion?.Invoke(this, null);
-            bsQuestionList.DataSource = ListQuestion;
+
         }
 
-        private void MBtnSaveEditQuestion_Click(object sender, EventArgs e)
+        private void MTileExam_Click(object sender, EventArgs e)
         {
-            EditQuestionId = int.Parse(mTxtEditQuestionId.Text);
-            SaveEditQuestion?.Invoke(this, null);
         }
 
-        private void MTileEditAnswer_Click(object sender, EventArgs e)
+        private void MTilePracticeExam_Click(object sender, EventArgs e)
         {
-            EditQuestionId = int.Parse(mTxtEditQuestionId.Text);
-            var frmEditAnswer = new frmEditAnswer(EditQuestionId);
-            frmEditAnswer.ShowDialog();
         }
 
-        private void MTxtDetailQuestionId_TextChanged(object sender, EventArgs e)
+        private void MTileStudent_Click(object sender, EventArgs e)
         {
-            EditQuestionId = int.Parse(mTxtDetailQuestionId.Text);
-            LoadDetailQuestionExamCode?.Invoke(this, null);
-            bsDetailQuestionExamCodeList.DataSource = ListDetailQuestionExamCode;
-        }
-
-        private void MBtnApproveQuestion_Click(object sender, EventArgs e)
-        {
-            if (mGridApproveQuestion.Rows.Count > 0)
-            {
-                ApproveQuestionId = (int)mGridApproveQuestion.SelectedRows[0].Cells[0].Value;
-                ApproveQuestion?.Invoke(this, null);
-                LoadApproveQuestion?.Invoke(this, null);
-                bsApproveQuestionList.DataSource = ListQuestionDistributed;
-            }
-        }
-
-        private void MCbbAddQuestionSubject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (mCbbAddQuestionSubject.SelectedItem != null)
-            {
-                var subject = mCbbAddQuestionSubject.SelectedItem as Subject;
-                mTxtAddQuestionSubjectId.Text = subject.SubjectId;
-                mTxtAddQuestionGradeId.Text = subject.GradeId.ToString();
-            }
         }
 
 
@@ -210,6 +115,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             }
         }
 
+
         // Tab change password
         private void MBtnChangePassword_Click(object sender, EventArgs e)
         {
@@ -219,6 +125,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
             ChangePassword?.Invoke(this, null);
         }
+
 
         // Tab logout
         private void MBtnLogout_Click(object sender, EventArgs e)
@@ -244,12 +151,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
         // Events
         public event EventHandler ChangePassword;
         public event EventHandler SaveInfo;
-        public event EventHandler ReloadListQuestion;
-        public event EventHandler SaveEditQuestion;
-        public event EventHandler LoadDetailQuestionExamCode;
-        public event EventHandler ApproveQuestion;
-        public event EventHandler LoadApproveQuestion;
-        public event EventHandler AddQuestion;
 
         // Get user information
         public Teacher CurrentUser { get; set; }
@@ -275,88 +176,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 MessageBox.Show("Thay đổi mật khẩu thất bại!");
             }
         }
-
-        // Tab Question
-        public IList<QuestionListViewModel> ListQuestion { get; set; }
-        public int EditQuestionId { get; set; }
-        public string EditQuestionMessage
-        {
-            set
-            {
-                if (value == "Succeed")
-                {
-                    MessageBox.Show("Đã lưu câu hỏi!");
-                }
-                else
-                {
-                    MessageBox.Show("Lưu câu hỏi thất bại!");
-                }
-            }
-        }
-        // --- Detail question
-        public IList<DetailQuestionExamCodeViewModel> ListDetailQuestionExamCode { get; set; }
-        public int DetailQuestionId { get; set; }
-        // --- Approve question
-        public IList<QuestionDistribute> ListQuestionDistributed { get; set; }
-        public int ApproveQuestionId { get; set; }
-        public string ApproveQuestionMessage
-        {
-            set
-            {
-                if (value == "Succeed")
-                {
-                    MessageBox.Show("Đã duyệt câu hỏi!");
-                }
-                else
-                {
-                    MessageBox.Show("Duyệt câu hỏi thất bại!");
-                }
-            }
-        }
-        // --- Add question
-        public IList<Subject> Subjects { get; set; }
-        public Question Question { get; set; }
-        public string AddQuestionMessage
-        {
-            set
-            {
-                if (value == "Succeed")
-                {
-                    MessageBox.Show("Đã thêm câu hỏi!");
-                    mTxtAddQuestionContent.ResetText();
-                    mCbbAddQuestionDifficultLevel.SelectedIndex = 0;
-                    mCbbAddQuestionSubject.SelectedIndex = 0;
-                    ReloadListQuestion?.Invoke(this, null);
-                    bsQuestionList.DataSource = ListQuestion;
-                }
-                else
-                {
-                    MessageBox.Show("Thêm câu hỏi thất bại!");
-                }
-            }
-        }
-        // --- Import/Export question
-        // DOIT LATER
-
         #endregion
 
         #region Utilities
         private void SetDataBinding()
         {
-            // Tab Question - EditQuestion
-            mTxtEditQuestionContent.DataBindings.Add("Text", bsQuestionList, "Content");
-            mTxtEditQuestionId.DataBindings.Add("Text", bsQuestionList, "QuestionId");
-            mTxtEditQuestionSubjectId.DataBindings.Add("Text", bsQuestionList, "SubjectId");
-            mTxtEditQuestionSubjectName.DataBindings.Add("Text", bsQuestionList, "SubjectName");
-            mTxtEditQuestionGradeId.DataBindings.Add("Text", bsQuestionList, "GradeId");
-            mCbbEditQuestionDifficultLevel.DataBindings.Add("SelectedValue", bsQuestionList, "DifficultLevel", true, DataSourceUpdateMode.OnPropertyChanged);
-            mToggleEditQuestionIsDistributed.DataBindings.Add("Checked", bsQuestionList, "IsDistributed");
-
-            // Tab Question - DetailQuestionExamCode
-            mTxtDetailQuestionId.DataBindings.Add("Text", bsQuestionList, "QuestionId");
-            mTxtDetailQuestionSubjectId.DataBindings.Add("Text", bsQuestionList, "SubjectId");
-            mTxtDetailQuestionSubjectName.DataBindings.Add("Text", bsQuestionList, "SubjectName");
-            mTxtDetailQuestionGradeId.DataBindings.Add("Text", bsQuestionList, "GradeId");
+            // Bindings something
         }
 
         private void EnableChangeInfo(bool enable)

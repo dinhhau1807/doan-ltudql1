@@ -19,42 +19,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
         string ConfirmNewPassword { get; set; }
         string ChangePasswordMessage { set; }
 
-        // Tab question
-        // --- List question
-        IList<QuestionListViewModel> ListQuestion { get; set; }
-        // --- Edit question
-        int EditQuestionId { get; set; }
-        string EditQuestionMessage { set; }
-        // --- Detail question
-        IList<DetailQuestionExamCodeViewModel> ListDetailQuestionExamCode { get; set; }
-        int DetailQuestionId { get; set; }
-        // --- Approve question
-        IList<QuestionDistribute> ListQuestionDistributed { get; set; }
-        int ApproveQuestionId { get; set; }
-        string ApproveQuestionMessage { set; }
-        // --- Add question 
-        IList<Subject> Subjects { get; set; }
-        Question Question { get; set; }
-        string AddQuestionMessage { set; }
-        // --- Import/Export question
-        // DOIT LATER
 
         // Events
         event EventHandler ChangePassword;
         event EventHandler SaveInfo;
-        // Tab question
-        // --- List question
-        event EventHandler ReloadListQuestion;
-        // --- Edit question
-        event EventHandler SaveEditQuestion;
-        // --- Detail question
-        event EventHandler LoadDetailQuestionExamCode;
-        // --- Approve question
-        event EventHandler LoadApproveQuestion;
-        event EventHandler ApproveQuestion;
-        // --- Add question
-        event EventHandler AddQuestion;
-        // --- Import/Export question
-        // DOIT LATER
     }
 }

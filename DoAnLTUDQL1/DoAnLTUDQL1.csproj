@@ -160,7 +160,9 @@
     <Compile Include="Presenters\AdminPresenter.cs" />
     <Compile Include="Presenters\ConfigPresenter.cs" />
     <Compile Include="Presenters\EditAnswerPresenter.cs" />
+    <Compile Include="Presenters\ExamCodePresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\QuestionPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="Presenters\TeacherPresenter.cs" />
     <Compile Include="Program.cs" />
@@ -220,6 +222,18 @@
     <Compile Include="Views\TeacherView\frmEditAnswer.Designer.cs">
       <DependentUpon>frmEditAnswer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TeacherView\frmExamCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmExamCode.Designer.cs">
+      <DependentUpon>frmExamCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmQuestion.Designer.cs">
+      <DependentUpon>frmQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TeacherView\frmTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +241,8 @@
       <DependentUpon>frmTeacher.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TeacherView\IEditAnswerView.cs" />
+    <Compile Include="Views\TeacherView\IExamCodeView.cs" />
+    <Compile Include="Views\TeacherView\IQuestionView.cs" />
     <Compile Include="Views\TeacherView\ITeacherView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -251,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmEditAnswer.resx">
       <DependentUpon>frmEditAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmQuestion.resx">
+      <DependentUpon>frmQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmTeacher.resx">
       <DependentUpon>frmTeacher.cs</DependentUpon>
