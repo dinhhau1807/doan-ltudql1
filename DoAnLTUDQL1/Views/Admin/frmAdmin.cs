@@ -1,4 +1,5 @@
 ﻿using DoAnLTUDQL1.Presenters;
+using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
 using DoAnLTUDQL1.Views.Login;
 using MetroFramework.Controls;
@@ -19,6 +20,12 @@ namespace DoAnLTUDQL1.Views.Admin
     {
         private AdminPresenter presenter;
         private BindingSource bs = new BindingSource();
+        List<BaseValidator> EditUserValidatorList;
+        List<BaseValidator> AddUserValidatorList;
+        //import, export data
+        RequiedInputValidator rqImportData, rqExportData;
+        //restore, backup data
+        RequiedInputValidator rqRestoreData, rqBackupData;
 
         public frmAdmin(User admin)
         {
@@ -33,12 +40,6 @@ namespace DoAnLTUDQL1.Views.Admin
 
             // Select first tabPage
             mTabCtrl.SelectTab(0);
-
-            // Set data for mGridListUser
-            bs.DataSource = Users;
-            mGridListUser.DataSource = bs;
-            SetHeaderDataGridView();
-            SetDataBinding();
 
             // Set data for mCbAddRoleType
             mCbAddRoleType.DataSource = RoleTypes;
@@ -70,6 +71,12 @@ namespace DoAnLTUDQL1.Views.Admin
             mBtnBackup.Click += MBtnBackup_Click;
             mBtnConfigTestConnection.Click += MBtnConfigTestConnection_Click;
             mBtnConfigSaveConnectionString.Click += MBtnConfigSaveConnectionString_Click;
+
+            EditUserValidatorList = new List<BaseValidator>();
+            AddUserValidatorList = new List<BaseValidator>();
+
+            RequiredValidatingControls();
+            RegexValidatingControls();
         }
 
         private void MTabCtrl_KeyDown(object sender, KeyEventArgs e)
@@ -106,6 +113,23 @@ namespace DoAnLTUDQL1.Views.Admin
 
         private void MBtnEditSave_Click(object sender, EventArgs e)
         {
+            if(!string.IsNullOrEmpty(mTxtEditNewPassword.Text))
+            {
+                if(!mTxtEditNewPassword.Text.Equals(mTxtEditConfirmPassword.Text))
+                {
+                    MessageBox.Show("Nhập lại mật khẩu không chính xác!");
+                    return;
+                }
+            }
+
+            if (!EditUserValidatorList.All(a => a.IsValid))
+            {
+                var InvalidValidatingControl = EditUserValidatorList.First(f => !f.IsValid);
+                InvalidValidatingControl.ControlToValidate.Focus();
+
+                return;
+            }
+
             UserEdit = new User
             {
                 Username = mTxtEditUsername.Text,
@@ -144,6 +168,20 @@ namespace DoAnLTUDQL1.Views.Admin
 
         private void MBtnAddUser_Click(object sender, EventArgs e)
         {
+            if (!mTxtAddPassword.Text.Equals(mTxtAddConfirmPassword.Text))
+            {
+                MessageBox.Show("Nhập lại mật khẩu không chính xác!");
+                return;
+            }
+
+            if (!AddUserValidatorList.All(a => a.IsValid))
+            {
+                var InvalidValidatingControl = AddUserValidatorList.First(f => !f.IsValid);
+                InvalidValidatingControl.ControlToValidate.Focus();
+
+                return;
+            }
+
             UserAdd = new User
             {
                 Username = mTxtAddUsername.Text,
@@ -152,10 +190,13 @@ namespace DoAnLTUDQL1.Views.Admin
                 LastName = mTxtAddLastName.Text,
                 Dob = mDateTimeAddDob.Value,
                 Phone = mTxtAddPhone.Text,
+                Status = true,
                 RoleTypeId = (int)mCbAddRoleType.SelectedValue
             };
 
             AddUser?.Invoke(this, null);
+
+            Reload?.Invoke(this, null);
         }
 
         private void MBtnAddCancel_Click(object sender, EventArgs e)
@@ -193,15 +234,27 @@ namespace DoAnLTUDQL1.Views.Admin
             if (result == DialogResult.OK)
             {
                 mTxtImportPath.Text = openFileDialog.FileName;
+                mTxtImportPath.Focus();
             }
         }
 
         private void MBtnImportUser_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(mTxtImportPath.Text))
+            if(!rqImportData.IsValid)
+            {
+                rqImportData.ControlToValidate.Focus();
+
+                return;
+            }
+
+            try
             {
                 Path = mTxtImportPath.Text;
                 ImportUser?.Invoke(this, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi nhập dữ liệu: " + ex.Message);
             }
         }
 
@@ -213,24 +266,49 @@ namespace DoAnLTUDQL1.Views.Admin
             if (result == DialogResult.OK)
             {
                 mTxtExportPath.Text = folderBrowserDialog.SelectedPath;
+                mTxtExportPath.Focus();
             }
         }
 
         private void MBtnExportUser_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(mTxtExportPath.Text))
+            if (!rqExportData.IsValid)
+            {
+                rqExportData.ControlToValidate.Focus();
+
+                return;
+            }
+
+            try
             {
                 Path = mTxtExportPath.Text;
                 ExportUser?.Invoke(this, null);
+                mTxtExportPath.Text = "";
             }
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi xuất dữ liệu: " + ex.Message);
+            }
 
-        private void MBtnRestore_Click(object sender, EventArgs e)
+		}
+
+		private void MBtnRestore_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(mTxtRestorePath.Text))
+            if (!rqRestoreData.IsValid)
+            {
+                rqRestoreData.ControlToValidate.Focus();
+
+                return;
+            }
+
+            try
             {
                 Path = mTxtRestorePath.Text;
                 RestoreData?.Invoke(this, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi phục hồi dữ liệu: " + ex.Message);
             }
         }
 
@@ -257,15 +335,27 @@ namespace DoAnLTUDQL1.Views.Admin
             if (result == DialogResult.OK)
             {
                 mTxtRestorePath.Text = openFileDialog.FileName;
+                mTxtRestorePath.Focus();
             }
         }
 
         private void MBtnBackup_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(mTxtBackupPath.Text))
+        {           
+            if (!rqBackupData.IsValid)
+            {
+                rqBackupData.ControlToValidate.Focus();
+
+                return;
+            }
+
+            try
             {
                 Path = mTxtBackupPath.Text;
                 BackupData?.Invoke(this, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi sao lưu dữ liệu: " + ex.Message);
             }
         }
 
@@ -277,6 +367,7 @@ namespace DoAnLTUDQL1.Views.Admin
             if (result == DialogResult.OK)
             {
                 mTxtBackupPath.Text = folderBrowserDialog.SelectedPath;
+                mTxtBackupPath.Focus();
             }
         }
 
@@ -350,7 +441,23 @@ namespace DoAnLTUDQL1.Views.Admin
 
         public User Admin { get; set; }
 
-        public IList<AdminViewModel> Users { get; set; }
+        private IList<AdminViewModel> _users;
+        public IList<AdminViewModel> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+                if(_users != null)
+                {
+                    // Set data for mGridListUser
+                    bs.DataSource = Users;
+                    mGridListUser.DataSource = bs;
+                    SetHeaderDataGridView();
+                    SetDataBinding();
+                }
+            }
+        }
 
         public IEnumerable<RoleType> RoleTypes { get; set; }
 
@@ -493,7 +600,126 @@ namespace DoAnLTUDQL1.Views.Admin
         #endregion
 
         #region Utilities
-        private void SetHeaderDataGridView()
+        void RequiredValidatingControls()
+        {
+            //edit, add user vars
+            RequiedInputValidator rqEditFirstName, rqEditLastName, rqEditPhone, rqEditStatus,
+                rqAddUserName, rqAddPassword, rqAddFirstName, rqAddLastName, rqAddPhone;
+
+            #region edit, add user
+            rqEditFirstName = new RequiedInputValidator();
+            rqEditLastName = new RequiedInputValidator();
+            rqEditPhone = new RequiedInputValidator();
+            rqEditStatus = new RequiedInputValidator();
+
+            rqAddUserName = new RequiedInputValidator();
+            rqAddPassword = new RequiedInputValidator();
+            rqAddFirstName = new RequiedInputValidator();
+            rqAddLastName = new RequiedInputValidator();
+            rqAddPhone = new RequiedInputValidator();
+
+            rqEditFirstName.ControlToValidate = mTxtEditFirstName;
+            rqEditLastName.ControlToValidate = mTxtEditLastName;
+            rqEditPhone.ControlToValidate = mTxtEditPhone;
+            rqEditStatus.ControlToValidate = mTxtEditStatus;
+
+            rqAddUserName.ControlToValidate = mTxtAddUsername;
+            rqAddPassword.ControlToValidate = mTxtAddPassword;
+            rqAddFirstName.ControlToValidate = mTxtAddFirstName;
+            rqAddLastName.ControlToValidate = mTxtAddLastName;
+            rqAddPhone.ControlToValidate = mTxtAddPhone;
+
+            EditUserValidatorList.Add(rqEditFirstName);
+            EditUserValidatorList.Add(rqEditLastName);
+            EditUserValidatorList.Add(rqEditPhone);
+            EditUserValidatorList.Add(rqEditStatus);
+
+            AddUserValidatorList.Add(rqAddUserName);
+            AddUserValidatorList.Add(rqAddPassword);
+            AddUserValidatorList.Add(rqAddFirstName);
+            AddUserValidatorList.Add(rqAddLastName);
+            AddUserValidatorList.Add(rqAddPhone);
+
+            //set default to false
+            foreach (var item in AddUserValidatorList)
+            {
+                item.IsValid = false;
+            }
+            #endregion
+
+            #region import, export data
+            rqImportData = new RequiedInputValidator();
+            rqExportData = new RequiedInputValidator();
+
+            rqImportData.ControlToValidate = mTxtImportPath;
+            rqExportData.ControlToValidate = mTxtExportPath;
+
+            rqImportData.IsValid = false;
+            rqExportData.IsValid = false;
+            #endregion
+
+            #region restore, backup data
+            rqRestoreData = new RequiedInputValidator();
+            rqBackupData = new RequiedInputValidator();
+
+            rqRestoreData.ControlToValidate = mTxtRestorePath;
+            rqBackupData.ControlToValidate = mTxtBackupPath;
+
+            rqRestoreData.IsValid = false;
+            rqBackupData.IsValid = false;
+            #endregion
+
+        }
+
+        void RegexValidatingControls()
+        {
+            RegexValidator rgEditFirstName, rgEditLastName, rgEditPhone,
+                rgAddUserName, rgAddPassword, rgAddLastName, rgAddFirstName, rgAddPhone;
+
+            string errorMessageName = "Không được nhập số hoặc ký tự đặc biệt";
+            string errorMessagePassword = "Chỉ gồm chữ và số, tối thiểu 3 ký tự";
+            string errorMessageUserName = "Chỉ gồm chữ và số, tối thiểu 3 kí tự";
+            string errorMessagePhone = "Chỉ chứa số và phải chứa từ 10 kí tự trở lên";            
+
+            rgEditFirstName = new RegexValidator(RegexPattern.Name);
+            rgEditFirstName.ErrorMessage = errorMessageName;
+            rgEditLastName = new RegexValidator(RegexPattern.Name);
+            rgEditLastName.ErrorMessage = errorMessageName;
+            rgEditPhone = new RegexValidator(RegexPattern.Phone);
+            rgEditPhone.ErrorMessage = errorMessagePhone;
+
+            rgAddUserName = new RegexValidator(RegexPattern.UserName);
+            rgAddUserName.ErrorMessage = errorMessageUserName;
+            rgAddPassword = new RegexValidator(RegexPattern.Password);
+            rgAddPassword.ErrorMessage = errorMessagePassword;
+            rgAddLastName = new RegexValidator(RegexPattern.Name);
+            rgAddLastName.ErrorMessage = errorMessageName;
+            rgAddFirstName = new RegexValidator(RegexPattern.Name);
+            rgAddFirstName.ErrorMessage = errorMessageName;
+            rgAddPhone = new RegexValidator(RegexPattern.Phone);
+            rgAddPhone.ErrorMessage = errorMessagePhone;
+
+            rgEditFirstName.ControlToValidate = mTxtEditFirstName;
+            rgEditLastName.ControlToValidate = mTxtEditLastName;
+            rgEditPhone.ControlToValidate = mTxtEditPhone;
+
+            rgAddUserName.ControlToValidate = mTxtAddUsername;
+            rgAddPassword.ControlToValidate = mTxtAddPassword;
+            rgAddLastName.ControlToValidate = mTxtAddLastName;
+            rgAddFirstName.ControlToValidate = mTxtAddFirstName;
+            rgAddPhone.ControlToValidate = mTxtAddPhone;
+
+            EditUserValidatorList.Add(rgEditLastName);
+            EditUserValidatorList.Add(rgEditFirstName);
+            EditUserValidatorList.Add(rgEditPhone);
+
+            AddUserValidatorList.Add(rgAddUserName);
+            AddUserValidatorList.Add(rgAddPassword);
+            AddUserValidatorList.Add(rgAddFirstName);
+            AddUserValidatorList.Add(rgAddLastName);
+            AddUserValidatorList.Add(rgAddPhone);
+        }
+		private void SetHeaderDataGridView()
         {
             mGridListUser.AutoGenerateColumns = false;
 
@@ -536,6 +762,16 @@ namespace DoAnLTUDQL1.Views.Admin
 
         private void SetDataBinding()
         {
+            mTxtEditUsername.DataBindings.Clear();
+            mTxtEditFirstName.DataBindings.Clear();
+            mTxtEditLastName.DataBindings.Clear();
+            mDateTimeEditDob.DataBindings.Clear();
+            mTxtEditPhone.DataBindings.Clear();
+            mTxtEditCreatedDate.DataBindings.Clear();
+            mTxtEditStatus.DataBindings.Clear();
+            mTxtEditLastLoginDate.DataBindings.Clear();
+            mTxtEditRoleName.DataBindings.Clear();
+
             // Data binding for tab EditUser
             mTxtEditUsername.DataBindings.Add("Text", bs, "Username");
             mTxtEditFirstName.DataBindings.Add("Text", bs, "FirstName");

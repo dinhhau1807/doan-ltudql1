@@ -209,6 +209,7 @@ namespace DoAnLTUDQL1.Views.Student
 			rqOldPassword = new RequiedInputValidator();
 			rqNewPassword = new RequiedInputValidator();
 			rqReNewPassword = new RequiedInputValidator();
+
 			rqFirstName = new RequiedInputValidator();
 			rqLastName = new RequiedInputValidator();
 			rqPhone = new RequiedInputValidator();
@@ -216,6 +217,7 @@ namespace DoAnLTUDQL1.Views.Student
 			rqOldPassword.ControlToValidate = mtxtOldPassword;
 			rqNewPassword.ControlToValidate = mtxtNewPassword;
 			rqReNewPassword.ControlToValidate = mtxtRenewPassword;
+
 			rqFirstName.ControlToValidate = mtxtFirstName;
 			rqLastName.ControlToValidate = mtxtLastName;
 			rqPhone.ControlToValidate = mtxtPhone;
@@ -233,7 +235,7 @@ namespace DoAnLTUDQL1.Views.Student
 		{
 			RegexValidator rgPassword, rgLastName, rgFirstName, rgPhone;
 
-			string errorMessagePassword = "Chỉ gồm các ký tự: a-z, A-Z, 0-9, tối thiểu 3 ký tự";
+			string errorMessagePassword = "Chỉ gồm chữ và số, tối thiểu 3 ký tự";
 			string errorMessageName = "Không được nhập số hoặc ký tự đặc biệt";
 			string errorMessagePhone = "Chỉ chứa số và phải chứa từ 10 kí tự trở lên";
 
@@ -303,8 +305,6 @@ namespace DoAnLTUDQL1.Views.Student
 		{
 			if(!PasswordValidatorList.All(a => a.IsValid))
 			{
-				MessageBox.Show("Dữ liệu nhập không đúng định dạng, mời nhập lại!");
-
 				var InvalidValidatingControl = PasswordValidatorList.First(f => !f.IsValid);
 				InvalidValidatingControl.ControlToValidate.Focus();
 
@@ -344,8 +344,6 @@ namespace DoAnLTUDQL1.Views.Student
 			{
 				if (!ProfileValidatorList.All(a => a.IsValid))
 				{
-					MessageBox.Show("Dữ liệu nhập không đúng định dạng, mời nhập lại!");
-
 					var InvalidValidatingControl = ProfileValidatorList.First(f => !f.IsValid);
 					InvalidValidatingControl.ControlToValidate.Focus();
 

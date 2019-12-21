@@ -74,11 +74,6 @@ namespace DoAnLTUDQL1.Views.Login
             this.Close();
         }
 
-        private void MBtnLogin_Click(object sender, EventArgs e)
-        {
-            Login?.Invoke(this, null);
-        }
-
         #region ILoginView implementations
         public string Username
         {
@@ -121,13 +116,13 @@ namespace DoAnLTUDQL1.Views.Login
                     tRegister.Start();
                     this.Close();
                 }
-
+                
                 if (value == "Success:Student")
                 {
-                    Student student = (Student)User;
+                    //Student student = (Student)User;
 
                     // Open form Student
-                    MessageBox.Show(student.StudentId);
+                    //MessageBox.Show(student.StudentId);
                 }
 
                 if (value == "Success:Teacher")
@@ -185,7 +180,10 @@ namespace DoAnLTUDQL1.Views.Login
             using (var context = new QLThiTracNghiemDataContext())
             {
                 user = context.Users.Single(s => s.Username == "ldlinh");
-            }           
+            }
+            //frmAdmin frm = new frmAdmin(user);
+            //frm.ShowDialog();
+
             frmStudent frm = new frmStudent(user);
             frm.ShowDialog();
         }
