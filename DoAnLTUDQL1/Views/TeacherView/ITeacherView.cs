@@ -19,7 +19,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
         string ConfirmNewPassword { get; set; }
         string ChangePasswordMessage { set; }
 
-
         // Events
         event EventHandler ChangePassword;
         event EventHandler SaveInfo;

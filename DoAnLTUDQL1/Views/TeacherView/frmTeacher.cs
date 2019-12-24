@@ -77,19 +77,23 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
         private void MTileExamCode_Click(object sender, EventArgs e)
         {
-
+            var frmExamCode = new frmExamCode(CurrentUser, CurrentUserInfo);
+            frmExamCode.ShowDialog();
         }
 
         private void MTileExam_Click(object sender, EventArgs e)
         {
+
         }
 
         private void MTilePracticeExam_Click(object sender, EventArgs e)
         {
+
         }
 
         private void MTileStudent_Click(object sender, EventArgs e)
         {
+
         }
 
 

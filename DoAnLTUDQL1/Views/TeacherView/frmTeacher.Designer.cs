@@ -690,6 +690,7 @@
             this.Controls.Add(this.mTabCtrl);
             this.MaximizeBox = false;
             this.Name = "frmTeacher";
+            this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Text = "frmTeacher";
             this.mTabLogout.ResumeLayout(false);
