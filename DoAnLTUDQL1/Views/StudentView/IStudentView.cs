@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoAnLTUDQL1.Views.Student
+namespace DoAnLTUDQL1.Views.StudentView
 {
 	public interface IStudentView
 	{

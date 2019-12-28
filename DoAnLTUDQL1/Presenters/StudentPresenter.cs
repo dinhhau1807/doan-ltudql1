@@ -1,4 +1,4 @@
-﻿using DoAnLTUDQL1.Views.Student;
+﻿using DoAnLTUDQL1.Views.StudentView;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,7 +3,7 @@ using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.Views.Admin;
 using DoAnLTUDQL1.Views.Config;
 using DoAnLTUDQL1.Views.Register;
-using DoAnLTUDQL1.Views.Student;
+using DoAnLTUDQL1.Views.StudentView;
 using DoAnLTUDQL1.Views.TeacherView;
 using System;
 using System.Collections.Generic;
@@ -22,37 +22,32 @@ namespace DoAnLTUDQL1.Views.Login
     {
         LoginPresenter presenter;
 
+        RequiedInputValidator rqUserName, rqPassword;
+
         public frmLogin()
         {
             InitializeComponent();
+
             Load += FrmLogin_Load;
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            this.Hide();
+            using (SplashScreen frm = new SplashScreen())
+            {
+                frm.ShowDialog();
+            }
+            this.Show();
+
+
             presenter = new LoginPresenter(this);
             CheckConnection?.Invoke(this, null);
 
-            // Add validators
-            //AddValidators();
-
             mBtnLogin.Click += MBtnLogin_Click;
             mLRegister.Click += MLRegister_Click;
-        }
 
-        private void AddValidators()
-        {
-            var required1 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập tên người dùng!",
-                ControlToValidate = mTxtUsername
-            };
-
-            var required2 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập mật khẩu!",
-                ControlToValidate = mTxtPassword
-            };
+            RequiredValidatingControls();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -72,6 +67,17 @@ namespace DoAnLTUDQL1.Views.Login
             tRegister.Start();
 
             this.Close();
+        }
+
+        void RequiredValidatingControls()
+        {
+            rqUserName = new RequiedInputValidator();
+            rqPassword = new RequiedInputValidator();
+
+            rqUserName.ControlToValidate = mTxtUsername;
+            rqPassword.ControlToValidate = mTxtPassword;
+
+            rqUserName.IsValid = rqPassword.IsValid = false;
         }
 
         #region ILoginView implementations
@@ -119,10 +125,10 @@ namespace DoAnLTUDQL1.Views.Login
                 
                 if (value == "Success:Student")
                 {
-                    //Student student = (Student)User;
+                    Student student = (Student)User;
 
-                    // Open form Student
-                    //MessageBox.Show(student.StudentId);
+                    //Open form Student
+                    MessageBox.Show(student.StudentId);
                 }
 
                 if (value == "Success:Teacher")
@@ -175,6 +181,18 @@ namespace DoAnLTUDQL1.Views.Login
 
         private void MBtnLogin_Click(object sender, EventArgs e)
         {
+            if(!rqUserName.IsValid)
+            {
+                rqUserName.ControlToValidate.Focus();
+                return;
+            }
+
+            if (!rqPassword.IsValid)
+            {
+                rqPassword.ControlToValidate.Focus();
+                return;
+            }
+
             //Login?.Invoke(this, null);
             User user;
             using (var context = new QLThiTracNghiemDataContext())

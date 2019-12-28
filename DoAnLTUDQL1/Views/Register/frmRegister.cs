@@ -17,6 +17,7 @@ namespace DoAnLTUDQL1.Views.Register
     public partial class frmRegister : MetroFramework.Forms.MetroForm, IRegisterView
     {
         RegisterPresenter presenter;
+        List<BaseValidator> registerValidatorList;
 
         public frmRegister()
         {
@@ -39,6 +40,11 @@ namespace DoAnLTUDQL1.Views.Register
 
             mLLogin.Click += MLLogin_Click;
             mBtnRegister.Click += MBtnRegister_Click;
+
+            registerValidatorList = new List<BaseValidator>();
+
+            RequiredValidatingControls();
+            RegexValidatingControls();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -47,47 +53,84 @@ namespace DoAnLTUDQL1.Views.Register
             e.Cancel = false;
         }
 
-        private void AddValidators()
+        void RequiredValidatingControls()
         {
-            var required1 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập tên người dùng!",
-                ControlToValidate = mTxtUsername
-            };
+            RequiedInputValidator rqUserName, rqPassword, rqFirstName, rqLastName, rqPhone;
 
-            var required2 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập mật khẩu!",
-                ControlToValidate = mTxtPassword
-            };
+            rqUserName = new RequiedInputValidator();
+            rqPassword = new RequiedInputValidator();
+            rqFirstName = new RequiedInputValidator();
+            rqLastName = new RequiedInputValidator();
+            rqPhone = new RequiedInputValidator();
 
-            var required3 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải nhập lại mật khẩu!",
-                ControlToValidate = mTxtConfirmPassword
-            };
+            rqUserName.ControlToValidate = mTxtUsername;
+            rqPassword.ControlToValidate = mTxtPassword;
+            rqFirstName.ControlToValidate = mTxtFirstName;
+            rqLastName.ControlToValidate = mTxtLastName;
+            rqPhone.ControlToValidate = mTxtPhone;
 
-            var required4 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải số điện thoại!",
-                ControlToValidate = mTxtPhone
-            };
+            registerValidatorList.Add(rqUserName);
+            registerValidatorList.Add(rqPassword);
+            registerValidatorList.Add(rqFirstName);
+            registerValidatorList.Add(rqLastName);
+            registerValidatorList.Add(rqPhone);
 
-            var required5 = new RequiedInputValidator
+            //set default to false
+            foreach (var item in registerValidatorList)
             {
-                ErrorMessage = "Bạn phải nhập tên!",
-                ControlToValidate = mTxtFirstName
-            };
+                item.IsValid = false;
+            }
+        }
 
-            var required6 = new RequiedInputValidator
-            {
-                ErrorMessage = "Bạn phải họ và tên đệm!",
-                ControlToValidate = mTxtLastName
-            };
+        void RegexValidatingControls()
+        {
+            RegexValidator rgUserName, rgPassword, rgFirstName, rgLastName, rgPhone;
+
+            string errorMessageName = "Không được nhập số hoặc ký tự đặc biệt";
+            string errorMessagePassword = "Chỉ gồm chữ và số, tối thiểu 3 ký tự";
+            string errorMessageUserName = "Chỉ gồm chữ và số, tối thiểu 3 kí tự";
+            string errorMessagePhone = "Chỉ chứa số và phải chứa từ 10 kí tự trở lên";
+
+            rgUserName = new RegexValidator(RegexPattern.UserName);
+            rgUserName.ErrorMessage = errorMessageUserName;
+            rgPassword = new RegexValidator(RegexPattern.Password);
+            rgPassword.ErrorMessage = errorMessagePassword;
+            rgFirstName = new RegexValidator(RegexPattern.Name);
+            rgFirstName.ErrorMessage = errorMessageName;
+            rgLastName = new RegexValidator(RegexPattern.Name);
+            rgLastName.ErrorMessage = errorMessageName;
+            rgPhone = new RegexValidator(RegexPattern.Phone);
+            rgPhone.ErrorMessage = errorMessagePhone;
+
+            rgUserName.ControlToValidate = mTxtUsername;
+            rgPassword.ControlToValidate = mTxtPassword;
+            rgFirstName.ControlToValidate = mTxtFirstName;
+            rgLastName.ControlToValidate = mTxtLastName;
+            rgPhone.ControlToValidate = mTxtPhone;
+
+            registerValidatorList.Add(rgUserName);
+            registerValidatorList.Add(rgPassword);
+            registerValidatorList.Add(rgFirstName);
+            registerValidatorList.Add(rgLastName);
+            registerValidatorList.Add(rgPhone);
         }
 
         private void MBtnRegister_Click(object sender, EventArgs e)
         {
+            if (!registerValidatorList.All(a => a.IsValid))
+            {
+                var InvalidValidatingControl = registerValidatorList.First(f => !f.IsValid);
+                InvalidValidatingControl.ControlToValidate.Focus();
+
+                return;
+            }
+
+            if (!mTxtPassword.Text.Equals(mTxtConfirmPassword.Text))
+            {
+                MessageBox.Show("Nhập lại mật khẩu không chính xác!");
+                return;
+            }
+
             Register?.Invoke(this, null);
         }
 

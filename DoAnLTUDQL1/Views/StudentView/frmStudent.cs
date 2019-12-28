@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
 
-namespace DoAnLTUDQL1.Views.Student
+namespace DoAnLTUDQL1.Views.StudentView
 {
 	public partial class frmStudent : MetroForm, IStudentView
 	{
