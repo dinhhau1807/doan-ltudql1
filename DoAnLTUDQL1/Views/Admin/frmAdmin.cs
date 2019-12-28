@@ -168,17 +168,17 @@ namespace DoAnLTUDQL1.Views.Admin
 
         private void MBtnAddUser_Click(object sender, EventArgs e)
         {
-            if (!mTxtAddPassword.Text.Equals(mTxtAddConfirmPassword.Text))
-            {
-                MessageBox.Show("Nhập lại mật khẩu không chính xác!");
-                return;
-            }
-
             if (!AddUserValidatorList.All(a => a.IsValid))
             {
                 var InvalidValidatingControl = AddUserValidatorList.First(f => !f.IsValid);
                 InvalidValidatingControl.ControlToValidate.Focus();
 
+                return;
+            }
+
+            if (!mTxtAddPassword.Text.Equals(mTxtAddConfirmPassword.Text))
+            {
+                MessageBox.Show("Nhập lại mật khẩu không chính xác!");
                 return;
             }
 

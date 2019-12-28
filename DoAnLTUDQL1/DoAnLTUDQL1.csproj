@@ -185,6 +185,12 @@
       <DependentUpon>QLThiTracNghiem.dbml</DependentUpon>
     </Compile>
     <Compile Include="RegexPattern.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlHelper.cs" />
     <Compile Include="Validators\BaseValidator.cs">
       <SubType>Component</SubType>
@@ -249,13 +255,13 @@
     <Compile Include="Views\Register\frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\frmStudent.cs">
+    <Compile Include="Views\StudentView\frmStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Student\frmStudent.Designer.cs">
+    <Compile Include="Views\StudentView\frmStudent.Designer.cs">
       <DependentUpon>frmStudent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Student\IStudentView.cs" />
+    <Compile Include="Views\StudentView\IStudentView.cs" />
     <Compile Include="Views\TeacherView\frmTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +279,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Exam\frmExam.resx">
       <DependentUpon>frmExam.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,7 +303,7 @@
     <EmbeddedResource Include="Views\Register\frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Student\frmStudent.resx">
+    <EmbeddedResource Include="Views\StudentView\frmStudent.resx">
       <DependentUpon>frmStudent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

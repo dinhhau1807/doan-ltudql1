@@ -1,4 +1,4 @@
-﻿namespace DoAnLTUDQL1.Views.Student
+﻿namespace DoAnLTUDQL1.Views.StudentView
 {
 	partial class frmStudent
 	{
@@ -406,13 +406,13 @@
 			this.mdgExamDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.mdgExamDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.mdgExamDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ExamNameDetail,
-            this.StartTimeDetail,
-            this.SubjectIdDetail,
-            this.SubjectNameDetail,
-            this.GradeNameDetail,
-            this.DurationDetail,
-            this.ExamDetailId});
+			this.ExamNameDetail,
+			this.StartTimeDetail,
+			this.SubjectIdDetail,
+			this.SubjectNameDetail,
+			this.GradeNameDetail,
+			this.DurationDetail,
+			this.ExamDetailId});
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -572,12 +572,12 @@
 			this.mdgExamResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.mdgExamResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.mdgExamResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ExamNameResult,
-            this.StartTimeResult,
-            this.SubjectResult,
-            this.ExamCodeIdResult,
-            this.MarkResult,
-            this.StatusResult});
+			this.ExamNameResult,
+			this.StartTimeResult,
+			this.SubjectResult,
+			this.ExamCodeIdResult,
+			this.MarkResult,
+			this.StatusResult});
 			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -735,7 +735,7 @@
 			this.mtxtPhone.CustomButton.Visible = false;
 			this.mtxtPhone.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtPhone.Lines = new string[] {
-        "metroTextBox6"};
+		"metroTextBox6"};
 			this.mtxtPhone.Location = new System.Drawing.Point(657, 49);
 			this.mtxtPhone.MaxLength = 32767;
 			this.mtxtPhone.Name = "mtxtPhone";
@@ -768,7 +768,7 @@
 			this.mtxtFirstName.CustomButton.Visible = false;
 			this.mtxtFirstName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtFirstName.Lines = new string[] {
-        "metroTextBox3"};
+		"metroTextBox3"};
 			this.mtxtFirstName.Location = new System.Drawing.Point(176, 131);
 			this.mtxtFirstName.MaxLength = 32767;
 			this.mtxtFirstName.Name = "mtxtFirstName";
@@ -801,7 +801,7 @@
 			this.mtxtLastName.CustomButton.Visible = false;
 			this.mtxtLastName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtLastName.Lines = new string[] {
-        "metroTextBox2"};
+		"metroTextBox2"};
 			this.mtxtLastName.Location = new System.Drawing.Point(176, 89);
 			this.mtxtLastName.MaxLength = 32767;
 			this.mtxtLastName.Name = "mtxtLastName";
@@ -834,7 +834,7 @@
 			this.mtxtStudentId.CustomButton.Visible = false;
 			this.mtxtStudentId.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtStudentId.Lines = new string[] {
-        "metroTextBox1"};
+		"metroTextBox1"};
 			this.mtxtStudentId.Location = new System.Drawing.Point(176, 49);
 			this.mtxtStudentId.MaxLength = 32767;
 			this.mtxtStudentId.Name = "mtxtStudentId";
