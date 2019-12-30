@@ -71,6 +71,7 @@
             this.mLblAddExamName = new MetroFramework.Controls.MetroLabel();
             this.mBtnAddExam = new MetroFramework.Controls.MetroButton();
             this.mTileAddExam = new MetroFramework.Controls.MetroTile();
+            this.mTabReport = new MetroFramework.Controls.MetroTabPage();
             this.mTabExam.SuspendLayout();
             this.mTabListExam.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mGridListExam)).BeginInit();
@@ -83,11 +84,12 @@
             this.mTabExam.Controls.Add(this.mTabListExam);
             this.mTabExam.Controls.Add(this.mTabEditExam);
             this.mTabExam.Controls.Add(this.mTabAddExam);
+            this.mTabExam.Controls.Add(this.mTabReport);
             this.mTabExam.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mTabExam.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.mTabExam.Location = new System.Drawing.Point(20, 60);
             this.mTabExam.Name = "mTabExam";
-            this.mTabExam.SelectedIndex = 2;
+            this.mTabExam.SelectedIndex = 3;
             this.mTabExam.Size = new System.Drawing.Size(1151, 578);
             this.mTabExam.TabIndex = 1;
             this.mTabExam.UseSelectable = true;
@@ -237,7 +239,7 @@
             // mDateTimeEditDateStart
             // 
             this.mDateTimeEditDateStart.Location = new System.Drawing.Point(159, 124);
-            this.mDateTimeEditDateStart.MinimumSize = new System.Drawing.Size(0, 29);
+            this.mDateTimeEditDateStart.MinimumSize = new System.Drawing.Size(4, 29);
             this.mDateTimeEditDateStart.Name = "mDateTimeEditDateStart";
             this.mDateTimeEditDateStart.Size = new System.Drawing.Size(317, 29);
             this.mDateTimeEditDateStart.TabIndex = 48;
@@ -757,6 +759,20 @@
             this.mTileAddExam.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.mTileAddExam.UseSelectable = true;
             // 
+            // mTabReport
+            // 
+            this.mTabReport.HorizontalScrollbarBarColor = true;
+            this.mTabReport.HorizontalScrollbarHighlightOnWheel = false;
+            this.mTabReport.HorizontalScrollbarSize = 10;
+            this.mTabReport.Location = new System.Drawing.Point(4, 38);
+            this.mTabReport.Name = "mTabReport";
+            this.mTabReport.Size = new System.Drawing.Size(1143, 536);
+            this.mTabReport.TabIndex = 3;
+            this.mTabReport.Text = "Thống kê / In";
+            this.mTabReport.VerticalScrollbarBarColor = true;
+            this.mTabReport.VerticalScrollbarHighlightOnWheel = false;
+            this.mTabReport.VerticalScrollbarSize = 10;
+            // 
             // frmExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -821,5 +837,6 @@
         private MetroFramework.Controls.MetroLabel mLblAddStartTime;
         private MetroFramework.Controls.MetroTextBox mTxtAddExamName;
         private MetroFramework.Controls.MetroLabel mLblAddExamName;
+        private MetroFramework.Controls.MetroTabPage mTabReport;
     }
 }

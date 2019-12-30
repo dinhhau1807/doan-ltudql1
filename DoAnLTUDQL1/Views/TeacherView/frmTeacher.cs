@@ -89,12 +89,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
         private void MTilePracticeExam_Click(object sender, EventArgs e)
         {
-
+            var frmPracticeExam = new frmPracticeExam(CurrentUser, CurrentUserInfo);
+            frmPracticeExam.ShowDialog();
         }
 
         private void MTileStudent_Click(object sender, EventArgs e)
         {
-
+            var frmTeacherStudent = new frmTeacherStudent(CurrentUser, CurrentUserInfo);
+            frmTeacherStudent.ShowDialog();
         }
 
 

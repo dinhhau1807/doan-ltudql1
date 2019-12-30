@@ -244,6 +244,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 if (value == "Succeed")
                 {
                     MessageBox.Show("Đã tạo kỳ thi!");
+
+                    // Refresh form
+                    mTxtAddExamName.ResetText();
+                    mDateTimeAddDateStart.ResetText();
+                    dateTimeAddTimeStart.ResetText();
+                    mTxtAddDuration.ResetText();
                 }
                 else
                 {
