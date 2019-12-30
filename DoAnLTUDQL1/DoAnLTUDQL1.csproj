@@ -162,6 +162,7 @@
     <Compile Include="Presenters\EditAnswerPresenter.cs" />
     <Compile Include="Presenters\EditExamCodeQuestionPresenter.cs" />
     <Compile Include="Presenters\ExamCodePresenter.cs" />
+    <Compile Include="Presenters\ExamPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\QuestionPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\DetailQuestionExamCodeViewModel.cs" />
     <Compile Include="ViewModels\ExamCodeListViewModel.cs" />
+    <Compile Include="ViewModels\ExamListViewModel.cs" />
     <Compile Include="ViewModels\QuestionListViewModel.cs" />
     <Compile Include="Views\Admin\frmAdmin.cs">
       <SubType>Form</SubType>
@@ -230,6 +232,12 @@
     <Compile Include="Views\TeacherView\frmEditExamCodeQuestions.Designer.cs">
       <DependentUpon>frmEditExamCodeQuestions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TeacherView\frmExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmExam.Designer.cs">
+      <DependentUpon>frmExam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TeacherView\frmExamCode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +259,7 @@
     <Compile Include="Views\TeacherView\IEditAnswerView.cs" />
     <Compile Include="Views\TeacherView\IEditExamCodeQuestionsView.cs" />
     <Compile Include="Views\TeacherView\IExamCodeView.cs" />
+    <Compile Include="Views\TeacherView\IExamView.cs" />
     <Compile Include="Views\TeacherView\IQuestionView.cs" />
     <Compile Include="Views\TeacherView\ITeacherView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -279,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmEditExamCodeQuestions.resx">
       <DependentUpon>frmEditExamCodeQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmExam.resx">
+      <DependentUpon>frmExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmExamCode.resx">
       <DependentUpon>frmExamCode.cs</DependentUpon>

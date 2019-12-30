@@ -1098,7 +1098,7 @@
             this.Name = "frmQuestion";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
-            this.Text = "Quản lí câu hỏi";
+            this.Text = "Quản lý câu hỏi";
             this.mTabQuestion.ResumeLayout(false);
             this.mTabListQuestion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mGridListQuestion)).EndInit();
