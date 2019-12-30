@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public interface IEditExamCodeQuestionsView
+    public interface ITeacherEditExamCodeQuestionsView
     {
         string TeacherId { get; set; }
         ExamCodeListViewModel ExamCode { get; set; }

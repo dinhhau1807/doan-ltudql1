@@ -7,29 +7,29 @@ using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public interface IExamView
+    public interface ITeacherPracticeExamView
     {
         // Get user infomation
         Teacher CurrentUser { get; set; }
         User CurrentUserInfo { get; set; }
 
         // List Exam
-        IList<ExamListViewModel> Exams { get; set; }
+        IList<PracticeExamListViewModel> PracticeExams { get; set; }
 
         // Delete Exam
-        string DeleteExamMessage { set; }
+        string DeletePracticeExamMessage { set; }
 
         // Edit Exam
         IList<Subject> Subjects { get; set; }
-        string SaveEditExamMessage { set; }
+        string SaveEditPracticeExamMessage { set; }
 
         // Add Exam
-        string AddExamMessage { set; }
+        string AddPracticeExamMessage { set; }
 
         // Events
-        event EventHandler ReloadListExam;
-        event EventHandler DeleteExam;
-        event EventHandler SaveEditExam;
-        event EventHandler AddExam;
+        event EventHandler ReloadListPracticeExam;
+        event EventHandler DeletePracticeExam;
+        event EventHandler SaveEditPracticeExam;
+        event EventHandler AddPracticeExam;
     }
 }

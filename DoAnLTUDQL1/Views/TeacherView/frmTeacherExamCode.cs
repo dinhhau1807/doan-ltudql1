@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public partial class frmExamCode : MetroFramework.Forms.MetroForm, IExamCodeView
+    public partial class frmTeacherExamCode : MetroFramework.Forms.MetroForm, ITeacherExamCodeView
     {
-        ExamCodePresenter presenter;
+        TeacherExamCodePresenter presenter;
         BindingSource bsListExamCode;
 
 
-        public frmExamCode(Teacher teacher, User user)
+        public frmTeacherExamCode(Teacher teacher, User user)
         {
             CurrentUser = teacher;
             CurrentUserInfo = user;
@@ -30,7 +30,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         #region Events
         private void FrmExamCode_Load(object sender, EventArgs e)
         {
-            presenter = new ExamCodePresenter(this);
+            presenter = new TeacherExamCodePresenter(this);
 
             // Set grid view
             bsListExamCode = new BindingSource();
@@ -148,7 +148,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
                     IsPracticeExam = mToggleAddExamCodeIsPracticeExam.Checked
                 };
 
-                var frmEditExamCodeQuestions = new frmEditExamCodeQuestions(CurrentUser.TeacherId, examCode, AddExamCodeQuestionIds);
+                var frmEditExamCodeQuestions = new frmTeacherEditExamCodeQuestions(CurrentUser.TeacherId, examCode, AddExamCodeQuestionIds);
                 frmEditExamCodeQuestions.ShowDialog();
             }
             else
@@ -179,7 +179,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             if (bsListExamCode.Count > 0)
             {
                 var examCode = (ExamCodeListViewModel)mGridListExamCode.SelectedRows[0].DataBoundItem;
-                var frmEditExamCodeQuestions = new frmEditExamCodeQuestions(CurrentUser.TeacherId, examCode, EditExamCodeQuestionIds);
+                var frmEditExamCodeQuestions = new frmTeacherEditExamCodeQuestions(CurrentUser.TeacherId, examCode, EditExamCodeQuestionIds);
                 frmEditExamCodeQuestions.ShowDialog();
             }
         }

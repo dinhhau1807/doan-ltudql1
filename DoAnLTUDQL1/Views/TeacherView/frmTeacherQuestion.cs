@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public partial class frmQuestion : MetroFramework.Forms.MetroForm, IQuestionView
+    public partial class frmTeacherQuestion : MetroFramework.Forms.MetroForm, ITeacherQuestionView
     {
-        QuestionPresenter presenter;
+        TeacherQuestionPresenter presenter;
         BindingSource bsQuestionList;
         BindingSource bsDetailQuestionExamCodeList;
         BindingSource bsApproveQuestionList;
 
-        public frmQuestion(Teacher teacher, User user)
+        public frmTeacherQuestion(Teacher teacher, User user)
         {
             CurrentUser = teacher;
             CurrentUserInfo = user;
@@ -30,7 +30,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         #region Events
         private void FrmQuestion_Load(object sender, EventArgs e)
         {
-            presenter = new QuestionPresenter(this);
+            presenter = new TeacherQuestionPresenter(this);
 
             // Tab question
             bsQuestionList = new BindingSource();
@@ -115,7 +115,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         private void MTileEditAnswer_Click(object sender, EventArgs e)
         {
             EditQuestionId = int.Parse(mTxtEditQuestionId.Text);
-            var frmEditAnswer = new frmEditAnswer(EditQuestionId);
+            var frmEditAnswer = new frmTeacherEditAnswer(EditQuestionId);
             frmEditAnswer.ShowDialog();
         }
 

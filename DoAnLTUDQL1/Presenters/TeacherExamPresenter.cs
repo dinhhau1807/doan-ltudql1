@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Presenters
 {
-    public class ExamPresenter
+    public class TeacherExamPresenter
     {
-        IExamView view;
+        ITeacherExamView view;
 
-        public ExamPresenter(IExamView examView)
+        public TeacherExamPresenter(ITeacherExamView examView)
         {
             view = examView;
             Initializer();

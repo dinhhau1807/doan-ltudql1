@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public interface IExamCodeView
+    public interface ITeacherExamCodeView
     {
         // Get user infomation
         Teacher CurrentUser { get; set; }

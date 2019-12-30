@@ -1,6 +1,6 @@
 ﻿namespace DoAnLTUDQL1.Views.TeacherView
 {
-    partial class frmEditExamCodeQuestions
+    partial class frmTeacherEditExamCodeQuestions
     {
         /// <summary>
         /// Required designer variable.

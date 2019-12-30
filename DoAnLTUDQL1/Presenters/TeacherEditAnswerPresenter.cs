@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Presenters
 {
-    public class EditAnswerPresenter
+    public class TeacherEditAnswerPresenter
     {
-        IEditAnswerView view;
+        ITeacherEditAnswerView view;
 
-        public EditAnswerPresenter(IEditAnswerView answerView)
+        public TeacherEditAnswerPresenter(ITeacherEditAnswerView answerView)
         {
             view = answerView;
             Initializer();

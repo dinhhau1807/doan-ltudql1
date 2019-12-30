@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public interface IEditAnswerView
+    public interface ITeacherEditAnswerView
     {
         int QuestionId { get; set; }
         IList<Answer> Answers { get; set; }

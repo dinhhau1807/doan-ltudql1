@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DoAnLTUDQL1.Presenters
 {
-    public class EditExamCodeQuestionPresenter
+    public class TeacherEditExamCodeQuestionPresenter
     {
-        IEditExamCodeQuestionsView view;
+        ITeacherEditExamCodeQuestionsView view;
 
-        public EditExamCodeQuestionPresenter(IEditExamCodeQuestionsView editExamCodeQuestiosView)
+        public TeacherEditExamCodeQuestionPresenter(ITeacherEditExamCodeQuestionsView editExamCodeQuestiosView)
         {
             view = editExamCodeQuestiosView;
             Inititalizer();

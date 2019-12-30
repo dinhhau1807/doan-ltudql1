@@ -71,25 +71,25 @@ namespace DoAnLTUDQL1.Views.TeacherView
         // Tab manage
         private void MTileQuestion_Click(object sender, EventArgs e)
         {
-            var frmQuestion = new frmQuestion(CurrentUser, CurrentUserInfo);
+            var frmQuestion = new frmTeacherQuestion(CurrentUser, CurrentUserInfo);
             frmQuestion.ShowDialog();
         }
 
         private void MTileExamCode_Click(object sender, EventArgs e)
         {
-            var frmExamCode = new frmExamCode(CurrentUser, CurrentUserInfo);
+            var frmExamCode = new frmTeacherExamCode(CurrentUser, CurrentUserInfo);
             frmExamCode.ShowDialog();
         }
 
         private void MTileExam_Click(object sender, EventArgs e)
         {
-            var frmExam = new frmExam(CurrentUser, CurrentUserInfo);
+            var frmExam = new frmTeacherExam(CurrentUser, CurrentUserInfo);
             frmExam.ShowDialog();
         }
 
         private void MTilePracticeExam_Click(object sender, EventArgs e)
         {
-            var frmPracticeExam = new frmPracticeExam(CurrentUser, CurrentUserInfo);
+            var frmPracticeExam = new frmTeacherPracticeExam(CurrentUser, CurrentUserInfo);
             frmPracticeExam.ShowDialog();
         }
 

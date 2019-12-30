@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public partial class frmEditAnswer : MetroFramework.Forms.MetroForm, IEditAnswerView
+    public partial class frmTeacherEditAnswer : MetroFramework.Forms.MetroForm, ITeacherEditAnswerView
     {
-        EditAnswerPresenter presenter;
+        TeacherEditAnswerPresenter presenter;
         BindingSource bsListAnswer;
 
 
-        public frmEditAnswer(int questionId)
+        public frmTeacherEditAnswer(int questionId)
         {
             InitializeComponent();
             Load += FrmEditAnswer_Load;
@@ -28,7 +28,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         #region Events
         private void FrmEditAnswer_Load(object sender, EventArgs e)
         {
-            presenter = new EditAnswerPresenter(this);
+            presenter = new TeacherEditAnswerPresenter(this);
 
             bsListAnswer = new BindingSource();
             bsListAnswer.DataSource = Answers;

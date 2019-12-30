@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public partial class frmEditExamCodeQuestions : MetroFramework.Forms.MetroForm, IEditExamCodeQuestionsView
+    public partial class frmTeacherEditExamCodeQuestions : MetroFramework.Forms.MetroForm, ITeacherEditExamCodeQuestionsView
     {
-        EditExamCodeQuestionPresenter presenter;
+        TeacherEditExamCodeQuestionPresenter presenter;
         BindingSource bsListQuestions;
         BindingSource bsListQuestionsAdded;
 
-        public frmEditExamCodeQuestions(string teacherId, ExamCodeListViewModel examCode, IList<int> examCodeQuestionIds)
+        public frmTeacherEditExamCodeQuestions(string teacherId, ExamCodeListViewModel examCode, IList<int> examCodeQuestionIds)
         {
             TeacherId = teacherId;
             ExamCode = examCode;
@@ -31,7 +31,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         #region Events
         private void FrmEditExamCodeQuestions_Load(object sender, EventArgs e)
         {
-            presenter = new EditExamCodeQuestionPresenter(this);
+            presenter = new TeacherEditExamCodeQuestionPresenter(this);
             Text = $"Đề thi {ExamCode.ExamCodeId}";
 
             bsListQuestions = new BindingSource();

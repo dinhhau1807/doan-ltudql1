@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace DoAnLTUDQL1.Views.TeacherView
 {
-    public partial class frmExam : MetroFramework.Forms.MetroForm, IExamView
+    public partial class frmTeacherExam : MetroFramework.Forms.MetroForm, ITeacherExamView
     {
-        ExamPresenter presenter;
+        TeacherExamPresenter presenter;
         BindingSource bsListExam;
 
-        public frmExam(Teacher teacher, User user)
+        public frmTeacherExam(Teacher teacher, User user)
         {
             CurrentUser = teacher;
             CurrentUserInfo = user;
@@ -30,7 +30,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         #region Events
         private void FrmExam_Load(object sender, EventArgs e)
         {
-            presenter = new ExamPresenter(this);
+            presenter = new TeacherExamPresenter(this);
 
             // Set grid view
             bsListExam = new BindingSource();
