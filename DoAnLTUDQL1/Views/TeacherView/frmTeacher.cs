@@ -25,6 +25,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             Load += FrmTeacher_Load;
         }
 
+
         #region Events
         private void FrmTeacher_Load(object sender, EventArgs e)
         {
@@ -184,6 +185,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             }
         }
         #endregion
+
 
         #region Utilities
         private void SetDataBinding()

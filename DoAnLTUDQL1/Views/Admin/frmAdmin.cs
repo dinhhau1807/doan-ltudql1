@@ -24,6 +24,15 @@ namespace DoAnLTUDQL1.Views.Admin
         {
             Admin = admin;
             InitializeComponent();
+
+            // Hide header tabControl
+            mTabCtrl.Appearance = TabAppearance.FlatButtons;
+            mTabCtrl.ItemSize = new Size(0, 1);
+            mTabCtrl.SizeMode = TabSizeMode.Fixed;
+            foreach (MetroTabPage tabPage in mTabCtrl.TabPages)
+            {
+                tabPage.Text = "";
+            }
         }
 
         #region Events

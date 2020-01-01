@@ -90,6 +90,13 @@
             this.mGridApproveQuestion = new MetroFramework.Controls.MetroGrid();
             this.mTitleApproveQuestion = new MetroFramework.Controls.MetroTile();
             this.mTabImportExportQuestion = new MetroFramework.Controls.MetroTabPage();
+            this.mTxtExportPath = new MetroFramework.Controls.MetroTextBox();
+            this.mBtnExportQuestion = new MetroFramework.Controls.MetroButton();
+            this.mBtnExportChosePath = new MetroFramework.Controls.MetroButton();
+            this.mTxtImportPath = new MetroFramework.Controls.MetroTextBox();
+            this.mBtnImportQuestion = new MetroFramework.Controls.MetroButton();
+            this.mBtnImportChosePath = new MetroFramework.Controls.MetroButton();
+            this.mTileImportExportQuestion = new MetroFramework.Controls.MetroTile();
             this.mTabQuestion.SuspendLayout();
             this.mTabListQuestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mGridListQuestion)).BeginInit();
@@ -99,6 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mGridDetailQuestionExamCode)).BeginInit();
             this.mTabApproveQuestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mGridApproveQuestion)).BeginInit();
+            this.mTabImportExportQuestion.SuspendLayout();
             this.SuspendLayout();
             // 
             // mTabQuestion
@@ -1077,6 +1085,13 @@
             // 
             // mTabImportExportQuestion
             // 
+            this.mTabImportExportQuestion.Controls.Add(this.mTileImportExportQuestion);
+            this.mTabImportExportQuestion.Controls.Add(this.mTxtExportPath);
+            this.mTabImportExportQuestion.Controls.Add(this.mBtnExportQuestion);
+            this.mTabImportExportQuestion.Controls.Add(this.mBtnExportChosePath);
+            this.mTabImportExportQuestion.Controls.Add(this.mTxtImportPath);
+            this.mTabImportExportQuestion.Controls.Add(this.mBtnImportQuestion);
+            this.mTabImportExportQuestion.Controls.Add(this.mBtnImportChosePath);
             this.mTabImportExportQuestion.HorizontalScrollbarBarColor = true;
             this.mTabImportExportQuestion.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabImportExportQuestion.HorizontalScrollbarSize = 10;
@@ -1089,13 +1104,133 @@
             this.mTabImportExportQuestion.VerticalScrollbarHighlightOnWheel = false;
             this.mTabImportExportQuestion.VerticalScrollbarSize = 10;
             // 
-            // frmQuestion
+            // mTxtExportPath
+            // 
+            // 
+            // 
+            // 
+            this.mTxtExportPath.CustomButton.Image = null;
+            this.mTxtExportPath.CustomButton.Location = new System.Drawing.Point(933, 1);
+            this.mTxtExportPath.CustomButton.Name = "";
+            this.mTxtExportPath.CustomButton.Size = new System.Drawing.Size(31, 31);
+            this.mTxtExportPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mTxtExportPath.CustomButton.TabIndex = 1;
+            this.mTxtExportPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mTxtExportPath.CustomButton.UseSelectable = true;
+            this.mTxtExportPath.CustomButton.Visible = false;
+            this.mTxtExportPath.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.mTxtExportPath.Lines = new string[0];
+            this.mTxtExportPath.Location = new System.Drawing.Point(175, 160);
+            this.mTxtExportPath.MaxLength = 32767;
+            this.mTxtExportPath.Name = "mTxtExportPath";
+            this.mTxtExportPath.PasswordChar = '\0';
+            this.mTxtExportPath.ReadOnly = true;
+            this.mTxtExportPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mTxtExportPath.SelectedText = "";
+            this.mTxtExportPath.SelectionLength = 0;
+            this.mTxtExportPath.SelectionStart = 0;
+            this.mTxtExportPath.ShortcutsEnabled = true;
+            this.mTxtExportPath.Size = new System.Drawing.Size(965, 33);
+            this.mTxtExportPath.TabIndex = 10;
+            this.mTxtExportPath.UseSelectable = true;
+            this.mTxtExportPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mTxtExportPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // mBtnExportQuestion
+            // 
+            this.mBtnExportQuestion.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.mBtnExportQuestion.FontWeight = MetroFramework.MetroButtonWeight.Light;
+            this.mBtnExportQuestion.Location = new System.Drawing.Point(909, 199);
+            this.mBtnExportQuestion.Name = "mBtnExportQuestion";
+            this.mBtnExportQuestion.Size = new System.Drawing.Size(231, 41);
+            this.mBtnExportQuestion.TabIndex = 12;
+            this.mBtnExportQuestion.Text = "Xuất dữ liệu";
+            this.mBtnExportQuestion.UseSelectable = true;
+            // 
+            // mBtnExportChosePath
+            // 
+            this.mBtnExportChosePath.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.mBtnExportChosePath.FontWeight = MetroFramework.MetroButtonWeight.Light;
+            this.mBtnExportChosePath.Location = new System.Drawing.Point(4, 160);
+            this.mBtnExportChosePath.Name = "mBtnExportChosePath";
+            this.mBtnExportChosePath.Size = new System.Drawing.Size(165, 33);
+            this.mBtnExportChosePath.TabIndex = 11;
+            this.mBtnExportChosePath.Text = "Chọn vị trí xuất";
+            this.mBtnExportChosePath.UseSelectable = true;
+            // 
+            // mTxtImportPath
+            // 
+            // 
+            // 
+            // 
+            this.mTxtImportPath.CustomButton.Image = null;
+            this.mTxtImportPath.CustomButton.Location = new System.Drawing.Point(933, 1);
+            this.mTxtImportPath.CustomButton.Name = "";
+            this.mTxtImportPath.CustomButton.Size = new System.Drawing.Size(31, 31);
+            this.mTxtImportPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mTxtImportPath.CustomButton.TabIndex = 1;
+            this.mTxtImportPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mTxtImportPath.CustomButton.UseSelectable = true;
+            this.mTxtImportPath.CustomButton.Visible = false;
+            this.mTxtImportPath.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.mTxtImportPath.Lines = new string[0];
+            this.mTxtImportPath.Location = new System.Drawing.Point(175, 62);
+            this.mTxtImportPath.MaxLength = 32767;
+            this.mTxtImportPath.Name = "mTxtImportPath";
+            this.mTxtImportPath.PasswordChar = '\0';
+            this.mTxtImportPath.ReadOnly = true;
+            this.mTxtImportPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mTxtImportPath.SelectedText = "";
+            this.mTxtImportPath.SelectionLength = 0;
+            this.mTxtImportPath.SelectionStart = 0;
+            this.mTxtImportPath.ShortcutsEnabled = true;
+            this.mTxtImportPath.Size = new System.Drawing.Size(965, 33);
+            this.mTxtImportPath.TabIndex = 7;
+            this.mTxtImportPath.UseSelectable = true;
+            this.mTxtImportPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mTxtImportPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // mBtnImportQuestion
+            // 
+            this.mBtnImportQuestion.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.mBtnImportQuestion.FontWeight = MetroFramework.MetroButtonWeight.Light;
+            this.mBtnImportQuestion.Location = new System.Drawing.Point(909, 101);
+            this.mBtnImportQuestion.Name = "mBtnImportQuestion";
+            this.mBtnImportQuestion.Size = new System.Drawing.Size(231, 41);
+            this.mBtnImportQuestion.TabIndex = 9;
+            this.mBtnImportQuestion.Text = "Nhập dữ liệu";
+            this.mBtnImportQuestion.UseSelectable = true;
+            // 
+            // mBtnImportChosePath
+            // 
+            this.mBtnImportChosePath.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.mBtnImportChosePath.FontWeight = MetroFramework.MetroButtonWeight.Light;
+            this.mBtnImportChosePath.Location = new System.Drawing.Point(4, 62);
+            this.mBtnImportChosePath.Name = "mBtnImportChosePath";
+            this.mBtnImportChosePath.Size = new System.Drawing.Size(165, 33);
+            this.mBtnImportChosePath.TabIndex = 8;
+            this.mBtnImportChosePath.Text = "Chọn tệp nhập";
+            this.mBtnImportChosePath.UseSelectable = true;
+            // 
+            // mTileImportExportQuestion
+            // 
+            this.mTileImportExportQuestion.ActiveControl = null;
+            this.mTileImportExportQuestion.Location = new System.Drawing.Point(1, 3);
+            this.mTileImportExportQuestion.Name = "mTileImportExportQuestion";
+            this.mTileImportExportQuestion.Size = new System.Drawing.Size(1143, 40);
+            this.mTileImportExportQuestion.TabIndex = 13;
+            this.mTileImportExportQuestion.Text = "Nhập / Xuất danh sách câu hỏi";
+            this.mTileImportExportQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mTileImportExportQuestion.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.mTileImportExportQuestion.UseSelectable = true;
+            // 
+            // frmTeacherQuestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 658);
             this.Controls.Add(this.mTabQuestion);
-            this.Name = "frmQuestion";
+            this.Name = "frmTeacherQuestion";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Text = "Quản lý câu hỏi";
@@ -1111,6 +1246,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mGridDetailQuestionExamCode)).EndInit();
             this.mTabApproveQuestion.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mGridApproveQuestion)).EndInit();
+            this.mTabImportExportQuestion.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1170,5 +1306,12 @@
         private MetroFramework.Controls.MetroGrid mGridApproveQuestion;
         private MetroFramework.Controls.MetroTile mTitleApproveQuestion;
         private MetroFramework.Controls.MetroTabPage mTabImportExportQuestion;
+        private MetroFramework.Controls.MetroTextBox mTxtExportPath;
+        private MetroFramework.Controls.MetroButton mBtnExportQuestion;
+        private MetroFramework.Controls.MetroButton mBtnExportChosePath;
+        private MetroFramework.Controls.MetroTextBox mTxtImportPath;
+        private MetroFramework.Controls.MetroButton mBtnImportQuestion;
+        private MetroFramework.Controls.MetroButton mBtnImportChosePath;
+        private MetroFramework.Controls.MetroTile mTileImportExportQuestion;
     }
 }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mPanelTile = new MetroFramework.Controls.MetroPanel();
             this.mTileConfig = new MetroFramework.Controls.MetroTile();
             this.mTileLogout = new MetroFramework.Controls.MetroTile();
@@ -94,6 +94,12 @@
             this.mBtnImportUser = new MetroFramework.Controls.MetroButton();
             this.mBtnImportChosePath = new MetroFramework.Controls.MetroButton();
             this.mTabBackupRestore = new MetroFramework.Controls.MetroTabPage();
+            this.mTxtBackupPath = new MetroFramework.Controls.MetroTextBox();
+            this.mBtnBackup = new MetroFramework.Controls.MetroButton();
+            this.mBtnBackupChoosePath = new MetroFramework.Controls.MetroButton();
+            this.mTxtRestorePath = new MetroFramework.Controls.MetroTextBox();
+            this.mBtnRestore = new MetroFramework.Controls.MetroButton();
+            this.mBtnRestoreChoosePath = new MetroFramework.Controls.MetroButton();
             this.mTabConfig = new MetroFramework.Controls.MetroTabPage();
             this.mBtnConfigTestConnection = new MetroFramework.Controls.MetroButton();
             this.mBtnConfigSaveConnectionString = new MetroFramework.Controls.MetroButton();
@@ -102,12 +108,6 @@
             this.mContextMenuListUser = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.toolStripMenuItemEditUser = new System.Windows.Forms.ToolStripMenuItem();
             this.mTileBackupRestore = new MetroFramework.Controls.MetroTile();
-            this.mTxtBackupPath = new MetroFramework.Controls.MetroTextBox();
-            this.mBtnBackup = new MetroFramework.Controls.MetroButton();
-            this.mBtnBackupChoosePath = new MetroFramework.Controls.MetroButton();
-            this.mTxtRestorePath = new MetroFramework.Controls.MetroTextBox();
-            this.mBtnRestore = new MetroFramework.Controls.MetroButton();
-            this.mBtnRestoreChoosePath = new MetroFramework.Controls.MetroButton();
             this.mPanelTile.SuspendLayout();
             this.mTabCtrl.SuspendLayout();
             this.mTabPageListUser.SuspendLayout();
@@ -218,9 +218,9 @@
             this.mTabPageListUser.HorizontalScrollbarBarColor = true;
             this.mTabPageListUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabPageListUser.HorizontalScrollbarSize = 10;
-            this.mTabPageListUser.Location = new System.Drawing.Point(4, 24);
+            this.mTabPageListUser.Location = new System.Drawing.Point(4, 5);
             this.mTabPageListUser.Name = "mTabPageListUser";
-            this.mTabPageListUser.Size = new System.Drawing.Size(1143, 460);
+            this.mTabPageListUser.Size = new System.Drawing.Size(1144, 479);
             this.mTabPageListUser.TabIndex = 0;
             this.mTabPageListUser.Text = "mTabPageListUser";
             this.mTabPageListUser.VerticalScrollbarBarColor = true;
@@ -248,23 +248,23 @@
             this.mGridListUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mGridListUser.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mGridListUser.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.mGridListUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mGridListUser.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mGridListUser.DefaultCellStyle = dataGridViewCellStyle2;
             this.mGridListUser.EnableHeadersVisualStyles = false;
             this.mGridListUser.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.mGridListUser.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -273,14 +273,14 @@
             this.mGridListUser.Name = "mGridListUser";
             this.mGridListUser.ReadOnly = true;
             this.mGridListUser.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListUser.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListUser.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.mGridListUser.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mGridListUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mGridListUser.Size = new System.Drawing.Size(1144, 408);
@@ -315,9 +315,9 @@
             this.mTabPageEditUser.HorizontalScrollbarBarColor = true;
             this.mTabPageEditUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabPageEditUser.HorizontalScrollbarSize = 10;
-            this.mTabPageEditUser.Location = new System.Drawing.Point(4, 24);
+            this.mTabPageEditUser.Location = new System.Drawing.Point(4, 5);
             this.mTabPageEditUser.Name = "mTabPageEditUser";
-            this.mTabPageEditUser.Size = new System.Drawing.Size(1143, 460);
+            this.mTabPageEditUser.Size = new System.Drawing.Size(1144, 479);
             this.mTabPageEditUser.TabIndex = 1;
             this.mTabPageEditUser.Text = "mTabPageEditUser";
             this.mTabPageEditUser.VerticalScrollbarBarColor = true;
@@ -806,9 +806,9 @@
             this.mTabPageAddUser.HorizontalScrollbarBarColor = true;
             this.mTabPageAddUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabPageAddUser.HorizontalScrollbarSize = 10;
-            this.mTabPageAddUser.Location = new System.Drawing.Point(4, 24);
+            this.mTabPageAddUser.Location = new System.Drawing.Point(4, 5);
             this.mTabPageAddUser.Name = "mTabPageAddUser";
-            this.mTabPageAddUser.Size = new System.Drawing.Size(1143, 460);
+            this.mTabPageAddUser.Size = new System.Drawing.Size(1144, 479);
             this.mTabPageAddUser.TabIndex = 2;
             this.mTabPageAddUser.Text = "mTabPageAddUser";
             this.mTabPageAddUser.VerticalScrollbarBarColor = true;
@@ -1136,9 +1136,9 @@
             this.mTabImportExportUser.HorizontalScrollbarBarColor = true;
             this.mTabImportExportUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabImportExportUser.HorizontalScrollbarSize = 10;
-            this.mTabImportExportUser.Location = new System.Drawing.Point(4, 24);
+            this.mTabImportExportUser.Location = new System.Drawing.Point(4, 5);
             this.mTabImportExportUser.Name = "mTabImportExportUser";
-            this.mTabImportExportUser.Size = new System.Drawing.Size(1143, 460);
+            this.mTabImportExportUser.Size = new System.Drawing.Size(1144, 479);
             this.mTabImportExportUser.TabIndex = 3;
             this.mTabImportExportUser.Text = "mTabImportExportUser";
             this.mTabImportExportUser.VerticalScrollbarBarColor = true;
@@ -1273,111 +1273,6 @@
             this.mTabBackupRestore.VerticalScrollbarHighlightOnWheel = false;
             this.mTabBackupRestore.VerticalScrollbarSize = 10;
             // 
-            // mTabConfig
-            // 
-            this.mTabConfig.Controls.Add(this.mBtnConfigTestConnection);
-            this.mTabConfig.Controls.Add(this.mBtnConfigSaveConnectionString);
-            this.mTabConfig.Controls.Add(this.mTxtConfigConnectionString);
-            this.mTabConfig.Controls.Add(this.mLblConnectionString);
-            this.mTabConfig.HorizontalScrollbarBarColor = true;
-            this.mTabConfig.HorizontalScrollbarHighlightOnWheel = false;
-            this.mTabConfig.HorizontalScrollbarSize = 10;
-            this.mTabConfig.Location = new System.Drawing.Point(4, 24);
-            this.mTabConfig.Name = "mTabConfig";
-            this.mTabConfig.Size = new System.Drawing.Size(1143, 460);
-            this.mTabConfig.TabIndex = 4;
-            this.mTabConfig.Text = "mTabConfig";
-            this.mTabConfig.VerticalScrollbarBarColor = true;
-            this.mTabConfig.VerticalScrollbarHighlightOnWheel = false;
-            this.mTabConfig.VerticalScrollbarSize = 10;
-            // 
-            // mBtnConfigTestConnection
-            // 
-            this.mBtnConfigTestConnection.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.mBtnConfigTestConnection.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnConfigTestConnection.Location = new System.Drawing.Point(827, 54);
-            this.mBtnConfigTestConnection.Name = "mBtnConfigTestConnection";
-            this.mBtnConfigTestConnection.Size = new System.Drawing.Size(154, 44);
-            this.mBtnConfigTestConnection.TabIndex = 10;
-            this.mBtnConfigTestConnection.Text = "Kiểm tra kết nối";
-            this.mBtnConfigTestConnection.UseSelectable = true;
-            // 
-            // mBtnConfigSaveConnectionString
-            // 
-            this.mBtnConfigSaveConnectionString.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.mBtnConfigSaveConnectionString.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnConfigSaveConnectionString.Location = new System.Drawing.Point(987, 54);
-            this.mBtnConfigSaveConnectionString.Name = "mBtnConfigSaveConnectionString";
-            this.mBtnConfigSaveConnectionString.Size = new System.Drawing.Size(154, 44);
-            this.mBtnConfigSaveConnectionString.TabIndex = 10;
-            this.mBtnConfigSaveConnectionString.Text = "Lưu cấu hình";
-            this.mBtnConfigSaveConnectionString.UseSelectable = true;
-            // 
-            // mTxtConfigConnectionString
-            // 
-            // 
-            // 
-            // 
-            this.mTxtConfigConnectionString.CustomButton.Image = null;
-            this.mTxtConfigConnectionString.CustomButton.Location = new System.Drawing.Point(934, 1);
-            this.mTxtConfigConnectionString.CustomButton.Name = "";
-            this.mTxtConfigConnectionString.CustomButton.Size = new System.Drawing.Size(31, 31);
-            this.mTxtConfigConnectionString.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.mTxtConfigConnectionString.CustomButton.TabIndex = 1;
-            this.mTxtConfigConnectionString.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.mTxtConfigConnectionString.CustomButton.UseSelectable = true;
-            this.mTxtConfigConnectionString.CustomButton.Visible = false;
-            this.mTxtConfigConnectionString.FontSize = MetroFramework.MetroTextBoxSize.Tall;
-            this.mTxtConfigConnectionString.Lines = new string[0];
-            this.mTxtConfigConnectionString.Location = new System.Drawing.Point(177, 15);
-            this.mTxtConfigConnectionString.MaxLength = 32767;
-            this.mTxtConfigConnectionString.Name = "mTxtConfigConnectionString";
-            this.mTxtConfigConnectionString.PasswordChar = '\0';
-            this.mTxtConfigConnectionString.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.mTxtConfigConnectionString.SelectedText = "";
-            this.mTxtConfigConnectionString.SelectionLength = 0;
-            this.mTxtConfigConnectionString.SelectionStart = 0;
-            this.mTxtConfigConnectionString.ShortcutsEnabled = true;
-            this.mTxtConfigConnectionString.Size = new System.Drawing.Size(966, 33);
-            this.mTxtConfigConnectionString.TabIndex = 3;
-            this.mTxtConfigConnectionString.UseSelectable = true;
-            this.mTxtConfigConnectionString.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.mTxtConfigConnectionString.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // mLblConnectionString
-            // 
-            this.mLblConnectionString.AutoSize = true;
-            this.mLblConnectionString.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.mLblConnectionString.Location = new System.Drawing.Point(5, 15);
-            this.mLblConnectionString.Name = "mLblConnectionString";
-            this.mLblConnectionString.Size = new System.Drawing.Size(166, 25);
-            this.mLblConnectionString.TabIndex = 2;
-            this.mLblConnectionString.Text = "Cổng kết nối dữ liệu";
-            // 
-            // mContextMenuListUser
-            // 
-            this.mContextMenuListUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemEditUser});
-            this.mContextMenuListUser.Name = "mContextMenuListUser";
-            this.mContextMenuListUser.Size = new System.Drawing.Size(193, 26);
-            // 
-            // toolStripMenuItemEditUser
-            // 
-            this.toolStripMenuItemEditUser.Name = "toolStripMenuItemEditUser";
-            this.toolStripMenuItemEditUser.Size = new System.Drawing.Size(192, 22);
-            this.toolStripMenuItemEditUser.Text = "Chỉnh sửa người dùng";
-            // 
-            // mTileBackupRestore
-            // 
-            this.mTileBackupRestore.ActiveControl = null;
-            this.mTileBackupRestore.Location = new System.Drawing.Point(593, 60);
-            this.mTileBackupRestore.Name = "mTileBackupRestore";
-            this.mTileBackupRestore.Size = new System.Drawing.Size(143, 84);
-            this.mTileBackupRestore.TabIndex = 5;
-            this.mTileBackupRestore.Text = "Sao lưu / phục hồi";
-            this.mTileBackupRestore.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.mTileBackupRestore.UseSelectable = true;
-            // 
             // mTxtBackupPath
             // 
             // 
@@ -1486,7 +1381,112 @@
             this.mBtnRestoreChoosePath.Text = "Chọn tệp phục hồi";
             this.mBtnRestoreChoosePath.UseSelectable = true;
             // 
-            // FrmAdmin
+            // mTabConfig
+            // 
+            this.mTabConfig.Controls.Add(this.mBtnConfigTestConnection);
+            this.mTabConfig.Controls.Add(this.mBtnConfigSaveConnectionString);
+            this.mTabConfig.Controls.Add(this.mTxtConfigConnectionString);
+            this.mTabConfig.Controls.Add(this.mLblConnectionString);
+            this.mTabConfig.HorizontalScrollbarBarColor = true;
+            this.mTabConfig.HorizontalScrollbarHighlightOnWheel = false;
+            this.mTabConfig.HorizontalScrollbarSize = 10;
+            this.mTabConfig.Location = new System.Drawing.Point(4, 5);
+            this.mTabConfig.Name = "mTabConfig";
+            this.mTabConfig.Size = new System.Drawing.Size(1144, 479);
+            this.mTabConfig.TabIndex = 4;
+            this.mTabConfig.Text = "mTabConfig";
+            this.mTabConfig.VerticalScrollbarBarColor = true;
+            this.mTabConfig.VerticalScrollbarHighlightOnWheel = false;
+            this.mTabConfig.VerticalScrollbarSize = 10;
+            // 
+            // mBtnConfigTestConnection
+            // 
+            this.mBtnConfigTestConnection.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.mBtnConfigTestConnection.FontWeight = MetroFramework.MetroButtonWeight.Light;
+            this.mBtnConfigTestConnection.Location = new System.Drawing.Point(827, 54);
+            this.mBtnConfigTestConnection.Name = "mBtnConfigTestConnection";
+            this.mBtnConfigTestConnection.Size = new System.Drawing.Size(154, 44);
+            this.mBtnConfigTestConnection.TabIndex = 10;
+            this.mBtnConfigTestConnection.Text = "Kiểm tra kết nối";
+            this.mBtnConfigTestConnection.UseSelectable = true;
+            // 
+            // mBtnConfigSaveConnectionString
+            // 
+            this.mBtnConfigSaveConnectionString.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.mBtnConfigSaveConnectionString.FontWeight = MetroFramework.MetroButtonWeight.Light;
+            this.mBtnConfigSaveConnectionString.Location = new System.Drawing.Point(987, 54);
+            this.mBtnConfigSaveConnectionString.Name = "mBtnConfigSaveConnectionString";
+            this.mBtnConfigSaveConnectionString.Size = new System.Drawing.Size(154, 44);
+            this.mBtnConfigSaveConnectionString.TabIndex = 10;
+            this.mBtnConfigSaveConnectionString.Text = "Lưu cấu hình";
+            this.mBtnConfigSaveConnectionString.UseSelectable = true;
+            // 
+            // mTxtConfigConnectionString
+            // 
+            // 
+            // 
+            // 
+            this.mTxtConfigConnectionString.CustomButton.Image = null;
+            this.mTxtConfigConnectionString.CustomButton.Location = new System.Drawing.Point(934, 1);
+            this.mTxtConfigConnectionString.CustomButton.Name = "";
+            this.mTxtConfigConnectionString.CustomButton.Size = new System.Drawing.Size(31, 31);
+            this.mTxtConfigConnectionString.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mTxtConfigConnectionString.CustomButton.TabIndex = 1;
+            this.mTxtConfigConnectionString.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mTxtConfigConnectionString.CustomButton.UseSelectable = true;
+            this.mTxtConfigConnectionString.CustomButton.Visible = false;
+            this.mTxtConfigConnectionString.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.mTxtConfigConnectionString.Lines = new string[0];
+            this.mTxtConfigConnectionString.Location = new System.Drawing.Point(177, 15);
+            this.mTxtConfigConnectionString.MaxLength = 32767;
+            this.mTxtConfigConnectionString.Name = "mTxtConfigConnectionString";
+            this.mTxtConfigConnectionString.PasswordChar = '\0';
+            this.mTxtConfigConnectionString.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mTxtConfigConnectionString.SelectedText = "";
+            this.mTxtConfigConnectionString.SelectionLength = 0;
+            this.mTxtConfigConnectionString.SelectionStart = 0;
+            this.mTxtConfigConnectionString.ShortcutsEnabled = true;
+            this.mTxtConfigConnectionString.Size = new System.Drawing.Size(966, 33);
+            this.mTxtConfigConnectionString.TabIndex = 3;
+            this.mTxtConfigConnectionString.UseSelectable = true;
+            this.mTxtConfigConnectionString.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mTxtConfigConnectionString.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // mLblConnectionString
+            // 
+            this.mLblConnectionString.AutoSize = true;
+            this.mLblConnectionString.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.mLblConnectionString.Location = new System.Drawing.Point(5, 15);
+            this.mLblConnectionString.Name = "mLblConnectionString";
+            this.mLblConnectionString.Size = new System.Drawing.Size(166, 25);
+            this.mLblConnectionString.TabIndex = 2;
+            this.mLblConnectionString.Text = "Cổng kết nối dữ liệu";
+            // 
+            // mContextMenuListUser
+            // 
+            this.mContextMenuListUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemEditUser});
+            this.mContextMenuListUser.Name = "mContextMenuListUser";
+            this.mContextMenuListUser.Size = new System.Drawing.Size(193, 26);
+            // 
+            // toolStripMenuItemEditUser
+            // 
+            this.toolStripMenuItemEditUser.Name = "toolStripMenuItemEditUser";
+            this.toolStripMenuItemEditUser.Size = new System.Drawing.Size(192, 22);
+            this.toolStripMenuItemEditUser.Text = "Chỉnh sửa người dùng";
+            // 
+            // mTileBackupRestore
+            // 
+            this.mTileBackupRestore.ActiveControl = null;
+            this.mTileBackupRestore.Location = new System.Drawing.Point(593, 60);
+            this.mTileBackupRestore.Name = "mTileBackupRestore";
+            this.mTileBackupRestore.Size = new System.Drawing.Size(143, 84);
+            this.mTileBackupRestore.TabIndex = 5;
+            this.mTileBackupRestore.Text = "Sao lưu / phục hồi";
+            this.mTileBackupRestore.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.mTileBackupRestore.UseSelectable = true;
+            // 
+            // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1495,7 +1495,7 @@
             this.Controls.Add(this.mTabCtrl);
             this.Controls.Add(this.mPanelTile);
             this.MaximizeBox = false;
-            this.Name = "FrmAdmin";
+            this.Name = "frmAdmin";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Text = "Quản trị viên";
