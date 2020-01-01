@@ -39,10 +39,10 @@ namespace DoAnLTUDQL1.Presenters
             using (var context = new QLThiTracNghiemDataContext())
             {
                 // temp to test
-                var tempUser = context.Teachers.FirstOrDefault(u => u.Username == "hxvinh");
-                view.User = tempUser;
-                view.Message = "Success:Teacher";
-                return;
+                //var tempUser = context.Teachers.FirstOrDefault(u => u.Username == "hxvinh");
+                //view.User = tempUser;
+                //view.Message = "Success:Teacher";
+                //return;
                 //
 
                 var user = context.Users.FirstOrDefault(u => u.Username == view.Username);

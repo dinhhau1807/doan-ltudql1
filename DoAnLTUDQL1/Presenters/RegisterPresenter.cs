@@ -54,7 +54,7 @@ namespace DoAnLTUDQL1.Presenters
                 };
 
                 // Add user to student table
-                if (view.RoleTypeId == 1)
+                if (view.RoleTypeId == 2)
                 {
                     long studentId;
                     if (context.Students.Count() == 0)
@@ -79,7 +79,7 @@ namespace DoAnLTUDQL1.Presenters
                 }
 
                 // Add user to teacher table
-                if (view.RoleTypeId == 2)
+                if (view.RoleTypeId == 1)
                 {
                     long teacherId;
                     if (context.Teachers.Count() == 0)

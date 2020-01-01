@@ -28,66 +28,66 @@ namespace DoAnLTUDQL1
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
-	#region Extensibility Method Definitions
-	partial void OnCreated();
-	partial void InsertAnswer(Answer instance);
-	partial void UpdateAnswer(Answer instance);
-	partial void DeleteAnswer(Answer instance);
-	partial void InsertUser(User instance);
-	partial void UpdateUser(User instance);
-	partial void DeleteUser(User instance);
-	partial void InsertAnswerDistribute(AnswerDistribute instance);
-	partial void UpdateAnswerDistribute(AnswerDistribute instance);
-	partial void DeleteAnswerDistribute(AnswerDistribute instance);
-	partial void InsertClassroom(Classroom instance);
-	partial void UpdateClassroom(Classroom instance);
-	partial void DeleteClassroom(Classroom instance);
-	partial void InsertExam(Exam instance);
-	partial void UpdateExam(Exam instance);
-	partial void DeleteExam(Exam instance);
-	partial void InsertExamCode(ExamCode instance);
-	partial void UpdateExamCode(ExamCode instance);
-	partial void DeleteExamCode(ExamCode instance);
-	partial void InsertExamCode_Question(ExamCode_Question instance);
-	partial void UpdateExamCode_Question(ExamCode_Question instance);
-	partial void DeleteExamCode_Question(ExamCode_Question instance);
-	partial void InsertExamDetail(ExamDetail instance);
-	partial void UpdateExamDetail(ExamDetail instance);
-	partial void DeleteExamDetail(ExamDetail instance);
-	partial void InsertExamResult(ExamResult instance);
-	partial void UpdateExamResult(ExamResult instance);
-	partial void DeleteExamResult(ExamResult instance);
-	partial void InsertExamTake(ExamTake instance);
-	partial void UpdateExamTake(ExamTake instance);
-	partial void DeleteExamTake(ExamTake instance);
-	partial void InsertGrade(Grade instance);
-	partial void UpdateGrade(Grade instance);
-	partial void DeleteGrade(Grade instance);
-	partial void InsertQuestion(Question instance);
-	partial void UpdateQuestion(Question instance);
-	partial void DeleteQuestion(Question instance);
-	partial void InsertQuestionDistribute(QuestionDistribute instance);
-	partial void UpdateQuestionDistribute(QuestionDistribute instance);
-	partial void DeleteQuestionDistribute(QuestionDistribute instance);
-	partial void InsertRoleType(RoleType instance);
-	partial void UpdateRoleType(RoleType instance);
-	partial void DeleteRoleType(RoleType instance);
-	partial void InsertStudent(Student instance);
-	partial void UpdateStudent(Student instance);
-	partial void DeleteStudent(Student instance);
-	partial void InsertSubject(Subject instance);
-	partial void UpdateSubject(Subject instance);
-	partial void DeleteSubject(Subject instance);
-	partial void InsertTeach(Teach instance);
-	partial void UpdateTeach(Teach instance);
-	partial void DeleteTeach(Teach instance);
-	partial void InsertTeacher(Teacher instance);
-	partial void UpdateTeacher(Teacher instance);
-	partial void DeleteTeacher(Teacher instance);
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnCreated();
+    partial void InsertAnswer(Answer instance);
+    partial void UpdateAnswer(Answer instance);
+    partial void DeleteAnswer(Answer instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertAnswerDistribute(AnswerDistribute instance);
+    partial void UpdateAnswerDistribute(AnswerDistribute instance);
+    partial void DeleteAnswerDistribute(AnswerDistribute instance);
+    partial void InsertClassroom(Classroom instance);
+    partial void UpdateClassroom(Classroom instance);
+    partial void DeleteClassroom(Classroom instance);
+    partial void InsertExam(Exam instance);
+    partial void UpdateExam(Exam instance);
+    partial void DeleteExam(Exam instance);
+    partial void InsertExamCode(ExamCode instance);
+    partial void UpdateExamCode(ExamCode instance);
+    partial void DeleteExamCode(ExamCode instance);
+    partial void InsertExamCode_Question(ExamCode_Question instance);
+    partial void UpdateExamCode_Question(ExamCode_Question instance);
+    partial void DeleteExamCode_Question(ExamCode_Question instance);
+    partial void InsertExamDetail(ExamDetail instance);
+    partial void UpdateExamDetail(ExamDetail instance);
+    partial void DeleteExamDetail(ExamDetail instance);
+    partial void InsertExamResult(ExamResult instance);
+    partial void UpdateExamResult(ExamResult instance);
+    partial void DeleteExamResult(ExamResult instance);
+    partial void InsertExamTake(ExamTake instance);
+    partial void UpdateExamTake(ExamTake instance);
+    partial void DeleteExamTake(ExamTake instance);
+    partial void InsertGrade(Grade instance);
+    partial void UpdateGrade(Grade instance);
+    partial void DeleteGrade(Grade instance);
+    partial void InsertQuestion(Question instance);
+    partial void UpdateQuestion(Question instance);
+    partial void DeleteQuestion(Question instance);
+    partial void InsertQuestionDistribute(QuestionDistribute instance);
+    partial void UpdateQuestionDistribute(QuestionDistribute instance);
+    partial void DeleteQuestionDistribute(QuestionDistribute instance);
+    partial void InsertRoleType(RoleType instance);
+    partial void UpdateRoleType(RoleType instance);
+    partial void DeleteRoleType(RoleType instance);
+    partial void InsertStudent(Student instance);
+    partial void UpdateStudent(Student instance);
+    partial void DeleteStudent(Student instance);
+    partial void InsertSubject(Subject instance);
+    partial void UpdateSubject(Subject instance);
+    partial void DeleteSubject(Subject instance);
+    partial void InsertTeach(Teach instance);
+    partial void UpdateTeach(Teach instance);
+    partial void DeleteTeach(Teach instance);
+    partial void InsertTeacher(Teacher instance);
+    partial void UpdateTeacher(Teacher instance);
+    partial void DeleteTeacher(Teacher instance);
+    #endregion
 		
 		public QLThiTracNghiemDataContext() : 
-				base(global::DoAnLTUDQL1.Properties.Settings.Default.QLThiTracNghiemConnectionString, mappingSource)
+				base(global::DoAnLTUDQL1.Properties.Settings.Default.QLThiTracNghiemConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -277,19 +277,19 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Question> _Question;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnAnswerIdChanging(int value);
-	partial void OnAnswerIdChanged();
-	partial void OnQuestionIdChanging(int value);
-	partial void OnQuestionIdChanged();
-	partial void OnContentChanging(string value);
-	partial void OnContentChanged();
-	partial void OnIsCorrectChanging(System.Nullable<bool> value);
-	partial void OnIsCorrectChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAnswerIdChanging(int value);
+    partial void OnAnswerIdChanged();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnIsCorrectChanging(System.Nullable<bool> value);
+    partial void OnIsCorrectChanged();
+    #endregion
 		
 		public Answer()
 		{
@@ -468,31 +468,31 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<RoleType> _RoleType;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnUsernameChanging(string value);
-	partial void OnUsernameChanged();
-	partial void OnPasswordChanging(string value);
-	partial void OnPasswordChanged();
-	partial void OnFirstNameChanging(string value);
-	partial void OnFirstNameChanged();
-	partial void OnLastNameChanging(string value);
-	partial void OnLastNameChanged();
-	partial void OnDobChanging(System.Nullable<System.DateTime> value);
-	partial void OnDobChanged();
-	partial void OnPhoneChanging(string value);
-	partial void OnPhoneChanged();
-	partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-	partial void OnCreatedDateChanged();
-	partial void OnStatusChanging(System.Nullable<bool> value);
-	partial void OnStatusChanged();
-	partial void OnLastLoginDateChanging(System.Nullable<System.DateTime> value);
-	partial void OnLastLoginDateChanged();
-	partial void OnRoleTypeIdChanging(System.Nullable<int> value);
-	partial void OnRoleTypeIdChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnLastNameChanging(string value);
+    partial void OnLastNameChanged();
+    partial void OnDobChanging(System.Nullable<System.DateTime> value);
+    partial void OnDobChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnStatusChanging(System.Nullable<bool> value);
+    partial void OnStatusChanged();
+    partial void OnLastLoginDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastLoginDateChanged();
+    partial void OnRoleTypeIdChanging(System.Nullable<int> value);
+    partial void OnRoleTypeIdChanged();
+    #endregion
 		
 		public User()
 		{
@@ -827,19 +827,19 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<QuestionDistribute> _QuestionDistribute;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnAnswerDistributeIdChanging(int value);
-	partial void OnAnswerDistributeIdChanged();
-	partial void OnQuestionDistributeIdChanging(int value);
-	partial void OnQuestionDistributeIdChanged();
-	partial void OnContentChanging(string value);
-	partial void OnContentChanged();
-	partial void OnIsCorrectChanging(System.Nullable<bool> value);
-	partial void OnIsCorrectChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAnswerDistributeIdChanging(int value);
+    partial void OnAnswerDistributeIdChanged();
+    partial void OnQuestionDistributeIdChanging(int value);
+    partial void OnQuestionDistributeIdChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnIsCorrectChanging(System.Nullable<bool> value);
+    partial void OnIsCorrectChanged();
+    #endregion
 		
 		public AnswerDistribute()
 		{
@@ -1006,19 +1006,19 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Grade> _Grade;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnClassroomIdChanging(string value);
-	partial void OnClassroomIdChanged();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	partial void OnClassNameChanging(string value);
-	partial void OnClassNameChanged();
-	partial void OnYearChanging(System.Nullable<int> value);
-	partial void OnYearChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnClassroomIdChanging(string value);
+    partial void OnClassroomIdChanged();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    partial void OnClassNameChanging(string value);
+    partial void OnClassNameChanged();
+    partial void OnYearChanging(System.Nullable<int> value);
+    partial void OnYearChanged();
+    #endregion
 		
 		public Classroom()
 		{
@@ -1231,17 +1231,17 @@ namespace DoAnLTUDQL1
 		
 		private EntitySet<ExamDetail> _ExamDetails;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnExamIdChanging(string value);
-	partial void OnExamIdChanged();
-	partial void OnExamNameChanging(string value);
-	partial void OnExamNameChanged();
-	partial void OnIsPacticeExamChanging(System.Nullable<bool> value);
-	partial void OnIsPacticeExamChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamIdChanging(string value);
+    partial void OnExamIdChanged();
+    partial void OnExamNameChanging(string value);
+    partial void OnExamNameChanged();
+    partial void OnIsPacticeExamChanging(System.Nullable<bool> value);
+    partial void OnIsPacticeExamChanged();
+    #endregion
 		
 		public Exam()
 		{
@@ -1375,21 +1375,21 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Subject> _Subject;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnExamCodeIdChanging(string value);
-	partial void OnExamCodeIdChanged();
-	partial void OnNumberOfQuestionsChanging(System.Nullable<int> value);
-	partial void OnNumberOfQuestionsChanged();
-	partial void OnSubjectIdChanging(string value);
-	partial void OnSubjectIdChanged();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	partial void OnIsPracticeExamChanging(System.Nullable<bool> value);
-	partial void OnIsPracticeExamChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamCodeIdChanging(string value);
+    partial void OnExamCodeIdChanged();
+    partial void OnNumberOfQuestionsChanging(System.Nullable<int> value);
+    partial void OnNumberOfQuestionsChanged();
+    partial void OnSubjectIdChanging(string value);
+    partial void OnSubjectIdChanged();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    partial void OnIsPracticeExamChanging(System.Nullable<bool> value);
+    partial void OnIsPracticeExamChanged();
+    #endregion
 		
 		public ExamCode()
 		{
@@ -1602,15 +1602,15 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Question> _Question;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnExamCodeIdChanging(string value);
-	partial void OnExamCodeIdChanged();
-	partial void OnQuestionIdChanging(int value);
-	partial void OnQuestionIdChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamCodeIdChanging(string value);
+    partial void OnExamCodeIdChanged();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    #endregion
 		
 		public ExamCode_Question()
 		{
@@ -1780,23 +1780,23 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Subject> _Subject;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnExamDetailIdChanging(string value);
-	partial void OnExamDetailIdChanged();
-	partial void OnExamIdChanging(string value);
-	partial void OnExamIdChanged();
-	partial void OnStartTimeChanging(System.Nullable<System.DateTime> value);
-	partial void OnStartTimeChanged();
-	partial void OnDurationChanging(System.Nullable<int> value);
-	partial void OnDurationChanged();
-	partial void OnSubjectIdChanging(string value);
-	partial void OnSubjectIdChanged();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamDetailIdChanging(string value);
+    partial void OnExamDetailIdChanged();
+    partial void OnExamIdChanging(string value);
+    partial void OnExamIdChanged();
+    partial void OnStartTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartTimeChanged();
+    partial void OnDurationChanging(System.Nullable<int> value);
+    partial void OnDurationChanged();
+    partial void OnSubjectIdChanging(string value);
+    partial void OnSubjectIdChanged();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    #endregion
 		
 		public ExamDetail()
 		{
@@ -2074,23 +2074,23 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<ExamTake> _ExamTake;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnExamDetailIdChanging(string value);
-	partial void OnExamDetailIdChanged();
-	partial void OnStudentIdChanging(string value);
-	partial void OnStudentIdChanged();
-	partial void OnNumberOfQuestionsAnsweredChanging(System.Nullable<int> value);
-	partial void OnNumberOfQuestionsAnsweredChanged();
-	partial void OnNumberOfCorrectAnswersChanging(System.Nullable<int> value);
-	partial void OnNumberOfCorrectAnswersChanged();
-	partial void OnMarkChanging(System.Nullable<double> value);
-	partial void OnMarkChanged();
-	partial void OnExamCodeIdChanging(string value);
-	partial void OnExamCodeIdChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamDetailIdChanging(string value);
+    partial void OnExamDetailIdChanged();
+    partial void OnStudentIdChanging(string value);
+    partial void OnStudentIdChanged();
+    partial void OnNumberOfQuestionsAnsweredChanging(System.Nullable<int> value);
+    partial void OnNumberOfQuestionsAnsweredChanged();
+    partial void OnNumberOfCorrectAnswersChanging(System.Nullable<int> value);
+    partial void OnNumberOfCorrectAnswersChanged();
+    partial void OnMarkChanging(System.Nullable<double> value);
+    partial void OnMarkChanged();
+    partial void OnExamCodeIdChanging(string value);
+    partial void OnExamCodeIdChanged();
+    #endregion
 		
 		public ExamResult()
 		{
@@ -2305,21 +2305,21 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Student> _Student;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnExamDetailIdChanging(string value);
-	partial void OnExamDetailIdChanged();
-	partial void OnStudentIdChanging(string value);
-	partial void OnStudentIdChanged();
-	partial void OnStartTimeChanging(System.Nullable<System.DateTime> value);
-	partial void OnStartTimeChanged();
-	partial void OnEndTimeChanging(System.Nullable<System.DateTime> value);
-	partial void OnEndTimeChanged();
-	partial void OnExamCodeIdChanging(string value);
-	partial void OnExamCodeIdChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnExamDetailIdChanging(string value);
+    partial void OnExamDetailIdChanged();
+    partial void OnStudentIdChanging(string value);
+    partial void OnStudentIdChanged();
+    partial void OnStartTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnStartTimeChanged();
+    partial void OnEndTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnEndTimeChanged();
+    partial void OnExamCodeIdChanging(string value);
+    partial void OnExamCodeIdChanged();
+    #endregion
 		
 		public ExamTake()
 		{
@@ -2569,15 +2569,15 @@ namespace DoAnLTUDQL1
 		
 		private EntitySet<Subject> _Subjects;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	partial void OnGradeNameChanging(string value);
-	partial void OnGradeNameChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    partial void OnGradeNameChanging(string value);
+    partial void OnGradeNameChanged();
+    #endregion
 		
 		public Grade()
 		{
@@ -2723,25 +2723,25 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Subject> _Subject;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnQuestionIdChanging(int value);
-	partial void OnQuestionIdChanged();
-	partial void OnContentChanging(string value);
-	partial void OnContentChanged();
-	partial void OnHintChanging(string value);
-	partial void OnHintChanged();
-	partial void OnSubjectIdChanging(string value);
-	partial void OnSubjectIdChanged();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	partial void OnDifficultLevelChanging(System.Nullable<int> value);
-	partial void OnDifficultLevelChanged();
-	partial void OnIsDistributedChanging(System.Nullable<bool> value);
-	partial void OnIsDistributedChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnHintChanging(string value);
+    partial void OnHintChanged();
+    partial void OnSubjectIdChanging(string value);
+    partial void OnSubjectIdChanged();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    partial void OnDifficultLevelChanging(System.Nullable<int> value);
+    partial void OnDifficultLevelChanged();
+    partial void OnIsDistributedChanging(System.Nullable<bool> value);
+    partial void OnIsDistributedChanged();
+    #endregion
 		
 		public Question()
 		{
@@ -3034,27 +3034,27 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Subject> _Subject;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnQuestionDistributeIdChanging(int value);
-	partial void OnQuestionDistributeIdChanged();
-	partial void OnStudentIdChanging(string value);
-	partial void OnStudentIdChanged();
-	partial void OnContentChanging(string value);
-	partial void OnContentChanged();
-	partial void OnHintChanging(string value);
-	partial void OnHintChanged();
-	partial void OnSubjectIdChanging(string value);
-	partial void OnSubjectIdChanged();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	partial void OnDifficultLevelChanging(int value);
-	partial void OnDifficultLevelChanged();
-	partial void OnIsApprovedChanging(System.Nullable<bool> value);
-	partial void OnIsApprovedChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuestionDistributeIdChanging(int value);
+    partial void OnQuestionDistributeIdChanged();
+    partial void OnStudentIdChanging(string value);
+    partial void OnStudentIdChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnHintChanging(string value);
+    partial void OnHintChanged();
+    partial void OnSubjectIdChanging(string value);
+    partial void OnSubjectIdChanged();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    partial void OnDifficultLevelChanging(int value);
+    partial void OnDifficultLevelChanged();
+    partial void OnIsApprovedChanging(System.Nullable<bool> value);
+    partial void OnIsApprovedChanged();
+    #endregion
 		
 		public QuestionDistribute()
 		{
@@ -3364,15 +3364,15 @@ namespace DoAnLTUDQL1
 		
 		private EntitySet<User> _Users;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnRoleTypeIdChanging(int value);
-	partial void OnRoleTypeIdChanged();
-	partial void OnRoleNameChanging(string value);
-	partial void OnRoleNameChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRoleTypeIdChanging(int value);
+    partial void OnRoleTypeIdChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    #endregion
 		
 		public RoleType()
 		{
@@ -3486,17 +3486,17 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<User> _User;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnStudentIdChanging(string value);
-	partial void OnStudentIdChanged();
-	partial void OnUsernameChanging(string value);
-	partial void OnUsernameChanged();
-	partial void OnClassroomIdChanging(string value);
-	partial void OnClassroomIdChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStudentIdChanging(string value);
+    partial void OnStudentIdChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnClassroomIdChanging(string value);
+    partial void OnClassroomIdChanged();
+    #endregion
 		
 		public Student()
 		{
@@ -3738,17 +3738,17 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Grade> _Grade;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnSubjectIdChanging(string value);
-	partial void OnSubjectIdChanged();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	partial void OnSubjectNameChanging(string value);
-	partial void OnSubjectNameChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSubjectIdChanging(string value);
+    partial void OnSubjectIdChanged();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    partial void OnSubjectNameChanging(string value);
+    partial void OnSubjectNameChanged();
+    #endregion
 		
 		public Subject()
 		{
@@ -4025,19 +4025,19 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<Teacher> _Teacher;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnTeacherIdChanging(string value);
-	partial void OnTeacherIdChanged();
-	partial void OnClassroomIdChanging(string value);
-	partial void OnClassroomIdChanged();
-	partial void OnSubjectIdChanging(string value);
-	partial void OnSubjectIdChanged();
-	partial void OnGradeIdChanging(int value);
-	partial void OnGradeIdChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTeacherIdChanging(string value);
+    partial void OnTeacherIdChanged();
+    partial void OnClassroomIdChanging(string value);
+    partial void OnClassroomIdChanged();
+    partial void OnSubjectIdChanging(string value);
+    partial void OnSubjectIdChanged();
+    partial void OnGradeIdChanging(int value);
+    partial void OnGradeIdChanged();
+    #endregion
 		
 		public Teach()
 		{
@@ -4282,15 +4282,15 @@ namespace DoAnLTUDQL1
 		
 		private EntityRef<User> _User;
 		
-	#region Extensibility Method Definitions
-	partial void OnLoaded();
-	partial void OnValidate(System.Data.Linq.ChangeAction action);
-	partial void OnCreated();
-	partial void OnTeacherIdChanging(string value);
-	partial void OnTeacherIdChanged();
-	partial void OnUsernameChanging(string value);
-	partial void OnUsernameChanged();
-	#endregion
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTeacherIdChanging(string value);
+    partial void OnTeacherIdChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    #endregion
 		
 		public Teacher()
 		{
