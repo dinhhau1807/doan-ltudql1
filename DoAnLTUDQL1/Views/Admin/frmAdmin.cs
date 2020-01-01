@@ -31,6 +31,15 @@ namespace DoAnLTUDQL1.Views.Admin
         {
             Admin = admin;
             InitializeComponent();
+
+            // Hide header tabControl
+            mTabCtrl.Appearance = TabAppearance.FlatButtons;
+            mTabCtrl.ItemSize = new Size(0, 1);
+            mTabCtrl.SizeMode = TabSizeMode.Fixed;
+            foreach (MetroTabPage tabPage in mTabCtrl.TabPages)
+            {
+                tabPage.Text = "";
+            }
         }
 
         #region Events
@@ -417,11 +426,11 @@ namespace DoAnLTUDQL1.Views.Admin
             {
                 this.Hide();
 
-                Thread tRegister = new Thread(_ =>
+                Thread tLogin = new Thread(_ =>
                 {
                     Application.Run(new frmLogin());
                 });
-                tRegister.Start();
+                tLogin.Start();
 
                 this.Close();
             }

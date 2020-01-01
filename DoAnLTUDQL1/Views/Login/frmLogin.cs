@@ -167,11 +167,11 @@ namespace DoAnLTUDQL1.Views.Login
 
                     // Open form Config
                     this.Hide();
-                    Thread tRegister = new Thread(_ =>
+                    Thread tConfig = new Thread(_ =>
                     {
                         Application.Run(new frmConfig());
                     });
-                    tRegister.Start();
+                    tConfig.Start();
                     this.Close();
                 }
             }
@@ -193,17 +193,19 @@ namespace DoAnLTUDQL1.Views.Login
                 return;
             }
 
-            //Login?.Invoke(this, null);
-            User user;
-            using (var context = new QLThiTracNghiemDataContext())
-            {
-                user = context.Users.Single(s => s.Username == "ldlinh");
-            }
-            //frmAdmin frm = new frmAdmin(user);
-            //frm.ShowDialog();
+            Login?.Invoke(this, null);
 
-            frmStudent frm = new frmStudent(user);
-            frm.ShowDialog();
+            // TEMP TO TEST
+            //User user;
+            //using (var context = new QLThiTracNghiemDataContext())
+            //{
+            //    user = context.Users.Single(s => s.Username == "ldlinh");
+            //}
+            ////frmAdmin frm = new frmAdmin(user);
+            ////frm.ShowDialog();
+
+            //frmStudent frm = new frmStudent(user);
+            //frm.ShowDialog();
         }
         public event EventHandler Login;
         public event EventHandler CheckConnection;

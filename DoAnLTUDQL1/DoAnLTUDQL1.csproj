@@ -174,8 +174,16 @@
     <Compile Include="Presenters\ExamPresenter.cs" />
     <Compile Include="Presenters\AdminPresenter.cs" />
     <Compile Include="Presenters\ConfigPresenter.cs" />
+    <Compile Include="Presenters\TeacherEditAnswerPresenter.cs" />
+    <Compile Include="Presenters\TeacherEditExamCodeQuestionPresenter.cs" />
+    <Compile Include="Presenters\TeacherExamCodePresenter.cs" />
+    <Compile Include="Presenters\TeacherExamPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\TeacherPracticeExamPresenter.cs" />
+    <Compile Include="Presenters\TeacherQuestionPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
+    <Compile Include="Presenters\TeacherPresenter.cs" />
+    <Compile Include="Presenters\TeacherStudentPresenter.cs" />
     <Compile Include="Presenters\StudentPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -227,6 +235,11 @@
       <DependentUpon>ucAnswers.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\DetailQuestionExamCodeViewModel.cs" />
+    <Compile Include="ViewModels\ExamCodeListViewModel.cs" />
+    <Compile Include="ViewModels\ExamListViewModel.cs" />
+    <Compile Include="ViewModels\PracticeExamListViewModel.cs" />
+    <Compile Include="ViewModels\QuestionListViewModel.cs" />
     <Compile Include="Views\Admin\frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +268,42 @@
     <Compile Include="Views\Register\frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherEditAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherEditAnswer.Designer.cs">
+      <DependentUpon>frmTeacherEditAnswer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherEditExamCodeQuestions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherEditExamCodeQuestions.Designer.cs">
+      <DependentUpon>frmTeacherEditExamCodeQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExam.Designer.cs">
+      <DependentUpon>frmTeacherExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExamCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExamCode.Designer.cs">
+      <DependentUpon>frmTeacherExamCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherPracticeExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherPracticeExam.Designer.cs">
+      <DependentUpon>frmTeacherPracticeExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherQuestion.Designer.cs">
+      <DependentUpon>frmTeacherQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\StudentView\frmStudent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,6 +317,19 @@
     <Compile Include="Views\TeacherView\frmTeacher.Designer.cs">
       <DependentUpon>frmTeacher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherStudent.Designer.cs">
+      <DependentUpon>frmTeacherStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\ITeacherEditAnswerView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherEditExamCodeQuestionsView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherExamCodeView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherExamView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherPracticeExamView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherQuestionView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherStudentView.cs" />
     <Compile Include="Views\TeacherView\ITeacherView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -302,6 +364,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Register\frmRegister.resx">
       <DependentUpon>frmRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherEditAnswer.resx">
+      <DependentUpon>frmTeacherEditAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherEditExamCodeQuestions.resx">
+      <DependentUpon>frmTeacherEditExamCodeQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherExam.resx">
+      <DependentUpon>frmTeacherExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherExamCode.resx">
+      <DependentUpon>frmTeacherExamCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherPracticeExam.resx">
+      <DependentUpon>frmTeacherPracticeExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherQuestion.resx">
+      <DependentUpon>frmTeacherQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacher.resx">
+      <DependentUpon>frmTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherStudent.resx">
+      <DependentUpon>frmTeacherStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\StudentView\frmStudent.resx">
       <DependentUpon>frmStudent.cs</DependentUpon>

@@ -256,7 +256,6 @@ namespace DoAnLTUDQL1.Presenters
 				SubjectId = question.SubjectId,
 				GradeId = question.GradeId,
 				DifficultLevel = question.DifficultLevel,
-				IsMultiSelect = question.IsMultiSelect,
 				Answers = answerList
 			};
 			view.AnswerList = context.Answers.Where(w => w.QuestionId == question.QuestionId).ToList();

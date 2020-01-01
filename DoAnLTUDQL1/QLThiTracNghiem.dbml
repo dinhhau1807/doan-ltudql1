@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLThiTracNghiem" Class="QLThiTracNghiemDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=TUANANH\SQLEXPRESS;Initial Catalog=QLThiTracNghiem;Integrated Security=True" SettingsObjectName="DoAnLTUDQL1.Properties.Settings" SettingsPropertyName="QLThiTracNghiemConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=HMASTER-PC;Initial Catalog=QLThiTracNghiem;Integrated Security=True" SettingsObjectName="DoAnLTUDQL1.Properties.Settings" SettingsPropertyName="QLThiTracNghiemConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Answer" Member="Answers">
     <Type Name="Answer">
       <Column Name="AnswerId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -31,7 +31,7 @@
       <Column Name="AnswerDistributeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="QuestionDistributeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="IsCorrect" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="IsCorrect" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="QuestionDistribute_AnswerDistribute" Member="QuestionDistribute" ThisKey="QuestionDistributeId" OtherKey="QuestionDistributeId" Type="QuestionDistribute" IsForeignKey="true" />
     </Type>
   </Table>
@@ -58,8 +58,8 @@
     <Type Name="ExamCode">
       <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NumberOfQuestions" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="GradeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IsPracticeExam" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="ExamCode_ExamCode_Question" Member="ExamCode_Questions" ThisKey="ExamCodeId" OtherKey="ExamCodeId" Type="ExamCode_Question" />
       <Association Name="Subject_ExamCode" Member="Subject" ThisKey="SubjectId,GradeId" OtherKey="SubjectId,GradeId" Type="Subject" IsForeignKey="true" />
@@ -76,11 +76,11 @@
   <Table Name="dbo.ExamDetail" Member="ExamDetails">
     <Type Name="ExamDetail">
       <Column Name="ExamDetailId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ExamId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ExamId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Duration" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="GradeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="ExamDetail_ExamTake" Member="ExamTakes" ThisKey="ExamDetailId" OtherKey="ExamDetailId" Type="ExamTake" />
       <Association Name="Exam_ExamDetail" Member="Exam" ThisKey="ExamId" OtherKey="ExamId" Type="Exam" IsForeignKey="true" />
       <Association Name="Subject_ExamDetail" Member="Subject" ThisKey="SubjectId,GradeId" OtherKey="SubjectId,GradeId" Type="Subject" IsForeignKey="true" />
@@ -95,7 +95,6 @@
       <Column Name="Mark" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="ExamTake_ExamResult" Member="ExamTake" ThisKey="ExamDetailId,StudentId" OtherKey="ExamDetailId,StudentId" Type="ExamTake" IsForeignKey="true" />
-      <Association Name="Student_ExamResult" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ExamTake" Member="ExamTakes">
@@ -104,7 +103,7 @@
       <Column Name="StudentId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ExamCodeId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="ExamTake_ExamResult" Member="ExamResult" ThisKey="ExamDetailId,StudentId" OtherKey="ExamDetailId,StudentId" Type="ExamResult" Cardinality="One" />
       <Association Name="ExamDetail_ExamTake" Member="ExamDetail" ThisKey="ExamDetailId" OtherKey="ExamDetailId" Type="ExamDetail" IsForeignKey="true" />
       <Association Name="Student_ExamTake" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
@@ -123,10 +122,10 @@
       <Column Name="QuestionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Hint" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="GradeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DifficultLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsMultiSelect" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsDistributed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Question_Answer" Member="Answers" ThisKey="QuestionId" OtherKey="QuestionId" Type="Answer" />
       <Association Name="Question_ExamCode_Question" Member="ExamCode_Questions" ThisKey="QuestionId" OtherKey="QuestionId" Type="ExamCode_Question" />
       <Association Name="Subject_Question" Member="Subject" ThisKey="SubjectId,GradeId" OtherKey="SubjectId,GradeId" Type="Subject" IsForeignKey="true" />
@@ -138,10 +137,9 @@
       <Column Name="StudentId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Hint" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="GradeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DifficultLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsMultiSelect" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SubjectId" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="GradeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DifficultLevel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IsApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="QuestionDistribute_AnswerDistribute" Member="AnswerDistributes" ThisKey="QuestionDistributeId" OtherKey="QuestionDistributeId" Type="AnswerDistribute" />
       <Association Name="Student_QuestionDistribute" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
@@ -160,7 +158,6 @@
       <Column Name="StudentId" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ClassroomId" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Association Name="Student_ExamResult" Member="ExamResults" ThisKey="StudentId" OtherKey="StudentId" Type="ExamResult" />
       <Association Name="Student_ExamTake" Member="ExamTakes" ThisKey="StudentId" OtherKey="StudentId" Type="ExamTake" />
       <Association Name="Student_QuestionDistribute" Member="QuestionDistributes" ThisKey="StudentId" OtherKey="StudentId" Type="QuestionDistribute" />
       <Association Name="Classroom_Student" Member="Classroom" ThisKey="ClassroomId" OtherKey="ClassroomId" Type="Classroom" IsForeignKey="true" />
