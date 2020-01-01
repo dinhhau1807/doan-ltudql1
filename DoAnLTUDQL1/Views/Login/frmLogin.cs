@@ -125,10 +125,16 @@ namespace DoAnLTUDQL1.Views.Login
                 
                 if (value == "Success:Student")
                 {
-                    Student student = (Student)User;
+                    User student = (User)User;
 
                     //Open form Student
-                    MessageBox.Show(student.StudentId);
+                    this.Hide();
+                    Thread tRegister = new Thread(_ =>
+                    {
+                        Application.Run(new frmStudent(student));
+                    });
+                    tRegister.Start();
+                    this.Close();
                 }
 
                 if (value == "Success:Teacher")

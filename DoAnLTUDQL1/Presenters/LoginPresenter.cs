@@ -65,8 +65,7 @@ namespace DoAnLTUDQL1.Presenters
 
                     if (role == "học sinh")
                     {
-                        var student = context.Students.FirstOrDefault(s => s.Username == user.Username);
-                        view.User = student;
+                        view.User = user;
                         view.Message = "Success:Student";
                         return;
                     }
