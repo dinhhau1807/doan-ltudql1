@@ -36,6 +36,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             bsListExamCode = new BindingSource();
             bsListExamCode.DataSource = ExamCodes;
             mGridListExamCode.DataSource = bsListExamCode;
+            SetHeaderMGridListExamCode();
 
             // Set data bindings
             SetDataBinding();
@@ -354,6 +355,35 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
 
         #region Utilities
+        private void SetHeaderMGridListExamCode()
+        {
+            // Show header for mGridListExamCode
+            mGridListExamCode.AutoGenerateColumns = false;
+
+            mGridListExamCode.Columns[0].HeaderText = "Mã đề";
+            mGridListExamCode.Columns[0].DataPropertyName = "ExamCodeId";
+
+            mGridListExamCode.Columns[1].HeaderText = "Số câu hỏi";
+            mGridListExamCode.Columns[1].DataPropertyName = "NumberOfQuestions";
+
+            mGridListExamCode.Columns[2].HeaderText = "Mã môn học";
+            mGridListExamCode.Columns[2].DataPropertyName = "SubjectId";
+
+            mGridListExamCode.Columns[3].HeaderText = "Khối lớp";
+            mGridListExamCode.Columns[3].DataPropertyName = "GradeId";
+
+            mGridListExamCode.Columns[4].HeaderText = "Tên môn học";
+            mGridListExamCode.Columns[4].DataPropertyName = "SubjectName";
+
+            mGridListExamCode.Columns[5].HeaderText = "Đề thi thử";
+            mGridListExamCode.Columns[5].DataPropertyName = "IsPracticeExam";
+
+            foreach (DataGridViewColumn col in mGridListExamCode.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
         private void SetDataBinding()
         {
             mTxtEditExamCodeId.DataBindings.Add("Text", bsListExamCode, "ExamCodeId", true, DataSourceUpdateMode.OnPropertyChanged);

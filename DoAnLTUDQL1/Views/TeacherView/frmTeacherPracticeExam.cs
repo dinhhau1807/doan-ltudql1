@@ -34,6 +34,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             bsListPracticeExam = new BindingSource();
             bsListPracticeExam.DataSource = PracticeExams;
             mGridListPracticeExam.DataSource = bsListPracticeExam;
+            SetHeaderMGridListPracticeExam();
 
             // Set data bindings
             SetDataBinding();
@@ -260,6 +261,40 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
 
         #region Utilities
+        private void SetHeaderMGridListPracticeExam()
+        {
+            // Show header for mGridListPracticeExam
+            mGridListPracticeExam.AutoGenerateColumns = false;
+
+            mGridListPracticeExam.Columns[0].HeaderText = "Mã kỳ thi";
+            mGridListPracticeExam.Columns[0].DataPropertyName = "ExamId";
+
+            mGridListPracticeExam.Columns[1].HeaderText = "Tên kỳ thi";
+            mGridListPracticeExam.Columns[1].DataPropertyName = "ExamName";
+
+            mGridListPracticeExam.Columns[2].Visible = false;
+
+            mGridListPracticeExam.Columns[3].HeaderText = "Ngày thi";
+            mGridListPracticeExam.Columns[3].DataPropertyName = "StartTime";
+
+            mGridListPracticeExam.Columns[4].HeaderText = "Thời gian thi";
+            mGridListPracticeExam.Columns[4].DataPropertyName = "Duration";
+
+            mGridListPracticeExam.Columns[5].HeaderText = "Mã môn học";
+            mGridListPracticeExam.Columns[5].DataPropertyName = "SubjectId";
+
+            mGridListPracticeExam.Columns[6].HeaderText = "Khối lớp";
+            mGridListPracticeExam.Columns[6].DataPropertyName = "GradeId";
+
+            mGridListPracticeExam.Columns[7].HeaderText = "Tên môn học";
+            mGridListPracticeExam.Columns[7].DataPropertyName = "SubjectName";
+
+            foreach (DataGridViewColumn col in mGridListPracticeExam.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
         private void SetDataBinding()
         {
             mTxtEditPracticeExamId.DataBindings.Add("Text", bsListPracticeExam, "ExamId", true, DataSourceUpdateMode.OnPropertyChanged);

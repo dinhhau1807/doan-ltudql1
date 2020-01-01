@@ -34,6 +34,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             bsListAnswer.DataSource = Answers;
             mGridListAnswer.DataSource = bsListAnswer;
 
+            SetHeaderMGridListAnswer();
             SetDataBinding();
 
             mTxtAddAnswer.Text = "";
@@ -158,6 +159,31 @@ namespace DoAnLTUDQL1.Views.TeacherView
         #endregion
 
         #region Ultilities
+        private void SetHeaderMGridListAnswer()
+        {
+            // Show header for mGridListAnswer
+            mGridListAnswer.AutoGenerateColumns = false;
+
+            mGridListAnswer.Columns[0].HeaderText = "Mã câu trả lời";
+            mGridListAnswer.Columns[0].DataPropertyName = "AnswerId";
+
+            mGridListAnswer.Columns[1].HeaderText = "Mã câu hỏi";
+            mGridListAnswer.Columns[1].DataPropertyName = "QuestionId";
+
+            mGridListAnswer.Columns[2].HeaderText = "Nội dung";
+            mGridListAnswer.Columns[2].DataPropertyName = "Content";
+
+            mGridListAnswer.Columns[3].HeaderText = "Câu trả lời đúng";
+            mGridListAnswer.Columns[3].DataPropertyName = "IsCorrect";
+
+            mGridListAnswer.Columns[4].Visible = false;
+
+            foreach (DataGridViewColumn col in mGridListAnswer.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
         private void SetDataBinding()
         {
             mTxtEditAnswerQuestionId.DataBindings.Add("Text", bsListAnswer, "QuestionId");
