@@ -29,6 +29,9 @@ namespace DoAnLTUDQL1.Views.Login
             InitializeComponent();
 
             Load += FrmLogin_Load;
+
+            mTxtUsername.Text = "hxvinh";
+            mTxtPassword.Text = "123";
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)

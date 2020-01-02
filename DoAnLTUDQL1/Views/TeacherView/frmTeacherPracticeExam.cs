@@ -1,4 +1,5 @@
 ﻿using DoAnLTUDQL1.Presenters;
+using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
     {
         TeacherPracticeExamPresenter presenter;
         BindingSource bsListPracticeExam;
-
+        List<BaseValidator> AddValidatorList;
+        List<BaseValidator> EditValidatorList;
         public frmTeacherPracticeExam(Teacher teacher, User user)
         {
             CurrentUser = teacher;
@@ -76,6 +78,11 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 mTxtAddPracticeExamSubjectId.Text = subject.SubjectId.ToString();
                 mTxtAddPracticeExamGradeId.Text = subject.GradeId.ToString();
             }
+
+            EditValidatorList = new List<BaseValidator>();
+            AddValidatorList = new List<BaseValidator>();
+            RequireValidatingControls();
+            RegexValidatingControls();
         }
 
 
@@ -102,6 +109,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (mCbbAddPracticeExamSubject.SelectedItem != null)
             {
+                if (!AddValidatorList.All(a => a.IsValid))
+                {
+                    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
+                    InvalidValidatingControl.ControlToValidate.Focus();
+
+                    return;
+                }
+
                 var timeStart = dateTimeAddPracticeTimeStart.Value.TimeOfDay;
                 var startTime = DateTime.Parse(mDateTimeAddPracticeDateStart.Value.ToShortDateString()).Add(timeStart);
 
@@ -146,6 +161,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListPracticeExam.Count > 0)
             {
+                if (!EditValidatorList.All(a => a.IsValid))
+                {
+                    var InvalidValidatingControl = EditValidatorList.First(f => !f.IsValid);
+                    InvalidValidatingControl.ControlToValidate.Focus();
+
+                    return;
+                }
+
                 var practiceExam = (PracticeExamListViewModel)mGridListPracticeExam.SelectedRows[0].DataBoundItem;
                 SaveEditPracticeExam?.Invoke(practiceExam, null);
             }
@@ -261,6 +284,51 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
 
         #region Utilities
+        void RequireValidatingControls()
+        {
+            RequiedInputValidator rqEditExamName, rqEditDuration,
+                rqAddExamName, rqAddDuration;
+
+            rqEditExamName = new RequiedInputValidator();
+            rqEditDuration = new RequiedInputValidator();
+            rqAddExamName = new RequiedInputValidator();
+            rqAddDuration = new RequiedInputValidator();
+
+            rqEditExamName.ControlToValidate = mTxtEditPracticeExamName;
+            rqEditDuration.ControlToValidate = mTxtEditPracticeDuration;
+            rqAddExamName.ControlToValidate = mTxtAddPracticeExamName;
+            rqAddDuration.ControlToValidate = mTxtAddPracticeDuration;
+
+            EditValidatorList.Add(rqEditExamName);
+            EditValidatorList.Add(rqEditDuration);
+
+            AddValidatorList.Add(rqAddExamName);
+            AddValidatorList.Add(rqAddDuration);
+        }
+
+        void RegexValidatingControls()
+        {
+            RegexValidator rgEditDuration, rgAddDuration;
+
+            string errorMessageNumber = "Thời gian làm bài phải lớn hơn 0";
+
+            rgEditDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            rgEditDuration.ErrorMessage = errorMessageNumber;
+            rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            rgAddDuration.ErrorMessage = errorMessageNumber;
+
+            rgEditDuration.ControlToValidate = mTxtEditPracticeDuration;
+            rgAddDuration.ControlToValidate = mTxtAddPracticeDuration;
+
+            EditValidatorList.Add(rgEditDuration);
+
+            AddValidatorList.Add(rgAddDuration);
+
+            foreach (var item in AddValidatorList)
+            {
+                item.IsValid = false;
+            }
+        }
         private void SetHeaderMGridListPracticeExam()
         {
             // Show header for mGridListPracticeExam

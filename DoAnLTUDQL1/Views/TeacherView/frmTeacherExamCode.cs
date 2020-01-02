@@ -1,4 +1,5 @@
 ﻿using DoAnLTUDQL1.Presenters;
+using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
     {
         TeacherExamCodePresenter presenter;
         BindingSource bsListExamCode;
-
+        RequiedInputValidator rqAddNumberOfQuestions, rqEditNumberOfQuestions;
+        RegexValidator rgAddNumberOfQuestions, rgEditNumberOfQuestions;
 
         public frmTeacherExamCode(Teacher teacher, User user)
         {
@@ -81,6 +83,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 mTxtAddExamCodeSubjectId.Text = subject.SubjectId.ToString();
                 mTxtAddExamCodeGradeId.Text = subject.GradeId.ToString();
             }
+
+            RequireValidatingControls();
+            RegexValidatingControls();
         }
 
 
@@ -112,8 +117,18 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
         private void MBtnAddExamCode_Click(object sender, EventArgs e)
         {
-            if (mCbbAddExamCodeSubject.SelectedItem != null && !string.IsNullOrWhiteSpace(mTxtAddExamCodeNumberOfQuestions.Text))
+            if (mCbbAddExamCodeSubject.SelectedItem != null)
             {
+                if (!rqAddNumberOfQuestions.IsValid || !rgAddNumberOfQuestions.IsValid)
+                {
+                    if (!rqAddNumberOfQuestions.IsValid)
+                        rqAddNumberOfQuestions.ControlToValidate.Focus();
+                    else
+                        rgAddNumberOfQuestions.ControlToValidate.Focus();
+
+                    return;
+                }
+
                 var examCode = new ExamCodeListViewModel
                 {
                     NumberOfQuestions = int.Parse(mTxtAddExamCodeNumberOfQuestions.Text),
@@ -163,6 +178,16 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListExamCode.Count > 0)
             {
+                if (!rqEditNumberOfQuestions.IsValid || !rgEditNumberOfQuestions.IsValid)
+                {
+                    if (!rqEditNumberOfQuestions.IsValid)
+                        rqEditNumberOfQuestions.ControlToValidate.Focus();
+                    else
+                        rgEditNumberOfQuestions.ControlToValidate.Focus();
+
+                    return;
+                }
+
                 var examCode = (ExamCodeListViewModel)mGridListExamCode.SelectedRows[0].DataBoundItem;
                 if (examCode.NumberOfQuestions == EditExamCodeQuestionIds.Count())
                 {
@@ -355,6 +380,33 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
 
         #region Utilities
+        void RequireValidatingControls()
+        {
+            rqAddNumberOfQuestions = new RequiedInputValidator();
+            rqEditNumberOfQuestions = new RequiedInputValidator();
+
+            rqAddNumberOfQuestions.ControlToValidate = mTxtAddExamCodeNumberOfQuestions;
+            rqEditNumberOfQuestions.ControlToValidate = mTxtEditExamCodeNumberOfQuestions;
+
+            rqAddNumberOfQuestions.IsValid = false;
+            rqEditNumberOfQuestions.IsValid = false;
+        }
+
+        void RegexValidatingControls()
+        {
+            string errorMessageNumberOfQuestions = "Số lượng câu hỏi phải lớn hơn 0";
+
+            rgAddNumberOfQuestions = new RegexValidator(RegexPattern.GreaterThanZero);
+            rgAddNumberOfQuestions.ErrorMessage = errorMessageNumberOfQuestions;
+            rgEditNumberOfQuestions = new RegexValidator(RegexPattern.GreaterThanZero);
+            rgEditNumberOfQuestions.ErrorMessage = errorMessageNumberOfQuestions;
+
+            rgAddNumberOfQuestions.ControlToValidate = mTxtAddExamCodeNumberOfQuestions;
+            rgEditNumberOfQuestions.ControlToValidate = mTxtEditExamCodeNumberOfQuestions;
+
+            rgAddNumberOfQuestions.IsValid = false;
+            rgEditNumberOfQuestions.IsValid = false;
+        }
         private void SetHeaderMGridListExamCode()
         {
             // Show header for mGridListExamCode
