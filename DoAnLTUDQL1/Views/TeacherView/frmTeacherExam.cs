@@ -1,4 +1,5 @@
 ﻿using DoAnLTUDQL1.Presenters;
+using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
     {
         TeacherExamPresenter presenter;
         BindingSource bsListExam;
-
+        List<BaseValidator> AddValidatorList;
+        List<BaseValidator> EditValidatorList;
         public frmTeacherExam(Teacher teacher, User user)
         {
             CurrentUser = teacher;
@@ -78,6 +80,11 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 mTxtAddExamSubjectId.Text = subject.SubjectId.ToString();
                 mTxtAddExamGradeId.Text = subject.GradeId.ToString();
             }
+
+            EditValidatorList = new List<BaseValidator>();
+            AddValidatorList = new List<BaseValidator>();
+            RequireValidatingControls();
+            RegexValidatingControls();
         }
 
 
@@ -104,6 +111,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (mCbbAddExamSubject.SelectedItem != null)
             {
+                if (!AddValidatorList.All(a => a.IsValid))
+                {
+                    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
+                    InvalidValidatingControl.ControlToValidate.Focus();
+
+                    return;
+                }
+
                 var timeStart = dateTimeAddTimeStart.Value.TimeOfDay;
                 var startTime = DateTime.Parse(mDateTimeAddDateStart.Value.ToShortDateString()).Add(timeStart);
 
@@ -148,6 +163,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListExam.Count > 0)
             {
+                if (!EditValidatorList.All(a => a.IsValid))
+                {
+                    var InvalidValidatingControl = EditValidatorList.First(f => !f.IsValid);
+                    InvalidValidatingControl.ControlToValidate.Focus();
+
+                    return;
+                }
+
                 var exam = (ExamListViewModel)mGridListExam.SelectedRows[0].DataBoundItem;
                 SaveEditExam?.Invoke(exam, null);
             }
@@ -263,6 +286,51 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
 
         #region Utilities
+        void RequireValidatingControls()
+        {
+            RequiedInputValidator rqEditExamName, rqEditDuration,
+                rqAddExamName, rqAddDuration;
+
+            rqEditExamName = new RequiedInputValidator();
+            rqEditDuration = new RequiedInputValidator();
+            rqAddExamName = new RequiedInputValidator();
+            rqAddDuration = new RequiedInputValidator();
+
+            rqEditExamName.ControlToValidate = mTxtEditExamName;
+            rqEditDuration.ControlToValidate = mTxtEditDuration;
+            rqAddExamName.ControlToValidate = mTxtAddExamName;
+            rqAddDuration.ControlToValidate = mTxtAddDuration;
+
+            EditValidatorList.Add(rqEditExamName);
+            EditValidatorList.Add(rqEditDuration);
+
+            AddValidatorList.Add(rqAddExamName);
+            AddValidatorList.Add(rqAddDuration);
+        }
+
+        void RegexValidatingControls()
+        {
+            RegexValidator rgEditDuration, rgAddDuration;
+
+            string errorMessageNumber = "Thời gian làm bài phải lớn hơn 0";
+
+            rgEditDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            rgEditDuration.ErrorMessage = errorMessageNumber;
+            rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            rgAddDuration.ErrorMessage = errorMessageNumber;
+
+            rgEditDuration.ControlToValidate = mTxtEditDuration;
+            rgAddDuration.ControlToValidate = mTxtAddDuration;
+
+            EditValidatorList.Add(rgEditDuration);
+
+            AddValidatorList.Add(rgAddDuration);
+
+            foreach (var item in AddValidatorList)
+            {
+                item.IsValid = false;
+            }
+        }
         private void SetHeaderMGridListExam()
         {
             // Show header for mGridListExam

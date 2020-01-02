@@ -12,5 +12,6 @@ namespace DoAnLTUDQL1
 		public static string Password { get; } = @"^[a-zA-z0-9]{2,}$";
 		public static string Name { get; } = @"^[a-zA-Z\s]+$";
 		public static string Phone { get; } = @"^[0-9]{10,}$";
+		public static string GreaterThanZero { get; } = @"^[1-9][0-9]*$";
 	}
 }

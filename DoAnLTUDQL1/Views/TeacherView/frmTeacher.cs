@@ -1,4 +1,5 @@
 ﻿using DoAnLTUDQL1.Presenters;
+using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
 using DoAnLTUDQL1.Views.Login;
 using System;
@@ -17,6 +18,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
     public partial class frmTeacher : MetroFramework.Forms.MetroForm, ITeacherView
     {
         TeacherPresenter presenter;
+
+        List<BaseValidator> PasswordValidatorList;
+        List<BaseValidator> ProfileValidatorList;
 
         public frmTeacher(Teacher teacher)
         {
@@ -66,6 +70,11 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
             // Select tab first startup
             mTabCtrl.SelectTab(0);
+
+            PasswordValidatorList = new List<BaseValidator>();
+            ProfileValidatorList = new List<BaseValidator>();
+            RequireValidatingControls();
+            RegexValidatingControls();
         }
 
 
@@ -111,6 +120,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
             }
             else if (mBtnChangeInfo.Text == "Lưu thay đổi")
             {
+                if (!ProfileValidatorList.All(a => a.IsValid))
+                {
+                    var InvalidValidatingControl = ProfileValidatorList.First(f => !f.IsValid);
+                    InvalidValidatingControl.ControlToValidate.Focus();
+
+                    return;
+                }
+
                 CurrentUserInfo.FirstName = mTxtInfoFirstName.Text;
                 CurrentUserInfo.LastName = mTxtInfoLastName.Text;
                 CurrentUserInfo.Phone = mTxtInfoPhone.Text;
@@ -127,6 +144,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
         // Tab change password
         private void MBtnChangePassword_Click(object sender, EventArgs e)
         {
+            if (!PasswordValidatorList.All(a => a.IsValid))
+            {
+                var InvalidValidatingControl = PasswordValidatorList.First(f => !f.IsValid);
+                InvalidValidatingControl.ControlToValidate.Focus();
+
+                return;
+            }
+
             OldPassword = mTxtOldPassword.Text;
             NewPassword = mTxtNewPassword.Text;
             ConfirmNewPassword = mTxtConfirmPassword.Text;
@@ -188,6 +213,64 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
 
         #region Utilities
+        void RequireValidatingControls()
+        {
+            RequiedInputValidator rqOldPassword, rqNewPassword,
+                rqReNewPassword, rqFirstName, rqLastName, rqPhone;
+
+            rqOldPassword = new RequiedInputValidator();
+            rqNewPassword = new RequiedInputValidator();
+            rqReNewPassword = new RequiedInputValidator();
+
+            rqFirstName = new RequiedInputValidator();
+            rqLastName = new RequiedInputValidator();
+            rqPhone = new RequiedInputValidator();
+
+            rqOldPassword.ControlToValidate = mTxtOldPassword;
+            rqNewPassword.ControlToValidate = mTxtNewPassword;
+            rqReNewPassword.ControlToValidate = mTxtConfirmPassword;
+
+            rqFirstName.ControlToValidate = mTxtInfoFirstName;
+            rqLastName.ControlToValidate = mTxtInfoLastName;
+            rqPhone.ControlToValidate = mTxtInfoPhone;
+
+            PasswordValidatorList.Add(rqOldPassword);
+            PasswordValidatorList.Add(rqNewPassword);
+            PasswordValidatorList.Add(rqReNewPassword);
+
+            ProfileValidatorList.Add(rqLastName);
+            ProfileValidatorList.Add(rqFirstName);
+            ProfileValidatorList.Add(rqPhone);
+        }
+
+        void RegexValidatingControls()
+        {
+            RegexValidator rgPassword, rgLastName, rgFirstName, rgPhone;
+
+            string errorMessagePassword = "Chỉ gồm chữ và số, tối thiểu 3 ký tự";
+            string errorMessageName = "Không được nhập số hoặc ký tự đặc biệt";
+            string errorMessagePhone = "Chỉ chứa số và phải chứa từ 10 kí tự trở lên";
+
+            rgPassword = new RegexValidator(RegexPattern.Password);
+            rgPassword.ErrorMessage = errorMessagePassword;
+            rgLastName = new RegexValidator(RegexPattern.Name);
+            rgLastName.ErrorMessage = errorMessageName;
+            rgFirstName = new RegexValidator(RegexPattern.Name);
+            rgFirstName.ErrorMessage = errorMessageName;
+            rgPhone = new RegexValidator(RegexPattern.Phone);
+            rgPhone.ErrorMessage = errorMessagePhone;
+
+            rgPassword.ControlToValidate = mTxtNewPassword;
+            rgLastName.ControlToValidate = mTxtInfoLastName;
+            rgFirstName.ControlToValidate = mTxtInfoFirstName;
+            rgPhone.ControlToValidate = mTxtInfoPhone;
+
+            PasswordValidatorList.Add(rgPassword);
+
+            ProfileValidatorList.Add(rgLastName);
+            ProfileValidatorList.Add(rgFirstName);
+            ProfileValidatorList.Add(rgPhone);
+        }
         private void SetDataBinding()
         {
             // Bindings something
