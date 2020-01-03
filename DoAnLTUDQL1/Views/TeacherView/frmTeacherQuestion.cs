@@ -1,4 +1,5 @@
 ﻿using DoAnLTUDQL1.Presenters;
+using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
         BindingSource bsQuestionList;
         BindingSource bsDetailQuestionExamCodeList;
         BindingSource bsApproveQuestionList;
+        //import, export data
+        RequiedInputValidator rqImportData, rqExportData;
 
         public frmTeacherQuestion(Teacher teacher, User user)
         {
@@ -69,14 +72,15 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 mTxtAddQuestionSubjectId.Text = subject.SubjectId;
                 mTxtAddQuestionGradeId.Text = subject.GradeId.ToString();
             }
-            // --- Import/Export question
-            // DOIT LATER
 
 
             // Set data bindings
             SetHeaderMGridListQuestion();
             SetHeaderMGridApproveQuestion();
             SetDataBinding();
+
+            // Set validations
+            RequiredValidatingControls();
 
 
             // Register events
@@ -93,21 +97,112 @@ namespace DoAnLTUDQL1.Views.TeacherView
             mCbbAddQuestionSubject.SelectedIndexChanged += MCbbAddQuestionSubject_SelectedIndexChanged;
             mBtnAddQuestion.Click += MBtnAddQuestion_Click;
             // --- Import/Export question
-            // DOIT LATER
-
+            mBtnImportChosePath.Click += MBtnImportChosePath_Click;
+            mBtnImportQuestion.Click += MBtnImportQuestion_Click;
+            mBtnExportChosePath.Click += MBtnExportChosePath_Click;
+            mBtnExportQuestion.Click += MBtnExportQuestion_Click;
 
             // Select tab first startup
             mTabQuestion.SelectTab(0);
+            if (bsQuestionList.Count > 0)
+            {
+                EditQuestionId = int.Parse(mTxtDetailQuestionId.Text);
+                LoadDetailQuestionExamCode?.Invoke(this, null);
+                bsDetailQuestionExamCodeList.DataSource = ListDetailQuestionExamCode;
+                SetHeaderMGridDetailQuestionExamCode();
+            }
         }
 
 
-        // Tab question
+        // Import/Export
+        private void MBtnImportChosePath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                Title = "Chọn file danh sách câu hỏi",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "xlsx",
+                Filter = "Excel files (*.xlsx)|*.xlsx",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            DialogResult result = STAShowDialog(openFileDialog);
+            if (result == DialogResult.OK)
+            {
+                mTxtImportPath.Text = openFileDialog.FileName;
+                mTxtImportPath.Focus();
+            }
+        }
+
+        private void MBtnImportQuestion_Click(object sender, EventArgs e)
+        {
+            if (!rqImportData.IsValid)
+            {
+                rqImportData.ControlToValidate.Focus();
+
+                return;
+            }
+
+            try
+            {
+                string path = mTxtImportPath.Text;
+                ImportQuestion?.Invoke(path, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi nhập dữ liệu: " + ex.Message);
+            }
+        }
+
+        private void MBtnExportQuestion_Click(object sender, EventArgs e)
+        {
+            if (!rqExportData.IsValid)
+            {
+                rqExportData.ControlToValidate.Focus();
+
+                return;
+            }
+
+            try
+            {
+                string path = mTxtExportPath.Text;
+                ExportQuestion?.Invoke(path, null);
+                mTxtExportPath.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi khi xuất dữ liệu: " + ex.Message);
+            }
+        }
+
+        private void MBtnExportChosePath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+
+            DialogResult result = STAShowDialog(folderBrowserDialog);
+            if (result == DialogResult.OK)
+            {
+                mTxtExportPath.Text = folderBrowserDialog.SelectedPath;
+                mTxtExportPath.Focus();
+            }
+        }
+
+        // Load question
         private void MBtnReloadListQuestion_Click(object sender, EventArgs e)
         {
             ReloadListQuestion?.Invoke(this, null);
             bsQuestionList.DataSource = ListQuestion;
         }
 
+        // Edit question
         private void MBtnSaveEditQuestion_Click(object sender, EventArgs e)
         {
             if (bsQuestionList.Count > 0)
@@ -127,6 +222,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             }
         }
 
+        // Detail question 
         private void MTxtDetailQuestionId_TextChanged(object sender, EventArgs e)
         {
             if (bsQuestionList.Count > 0)
@@ -138,6 +234,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             }
         }
 
+        // Approve question
         private void MBtnApproveQuestion_Click(object sender, EventArgs e)
         {
             if (mGridApproveQuestion.Rows.Count > 0)
@@ -149,6 +246,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             }
         }
 
+        // Add question 
         private void MCbbAddQuestionSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mCbbAddQuestionSubject.SelectedItem != null)
@@ -188,6 +286,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler ApproveQuestion;
         public event EventHandler LoadApproveQuestion;
         public event EventHandler AddQuestion;
+        public event EventHandler ImportQuestion;
+        public event EventHandler ExportQuestion;
 
         // Get user information
         public Teacher CurrentUser { get; set; }
@@ -253,11 +353,62 @@ namespace DoAnLTUDQL1.Views.TeacherView
             }
         }
         // --- Import/Export question
-        // DOIT LATER
+        public string ImportQuestionMessage
+        {
+            set
+            {
+                mTxtImportPath.ResetText();
 
+                if (value.Contains("Succeed"))
+                {
+                    MessageBox.Show("Đã thêm câu hỏi vào!");
+                }
+
+                if (value.Contains("File not exists"))
+                {
+                    MessageBox.Show("File này không tồn tại!");
+                }
+
+                if (value.Contains("Failed"))
+                {
+                    MessageBox.Show("Nhập file thất bại!");
+                }
+            }
+        }
+        public string ExportQuestionMessage
+        {
+            set
+            {
+                mTxtExportPath.ResetText();
+
+                if (value.Contains("Succeed"))
+                {
+                    MessageBox.Show("Đã xuất danh sách câu hỏi!");
+                }
+
+                if (value.Contains("Failed"))
+                {
+                    MessageBox.Show("Xuất file thất bại!");
+                }
+            }
+        }
         #endregion
 
         #region Utilities
+        void RequiredValidatingControls()
+        {
+            #region import, export data
+            rqImportData = new RequiedInputValidator();
+            rqExportData = new RequiedInputValidator();
+
+            rqImportData.ControlToValidate = mTxtImportPath;
+            rqExportData.ControlToValidate = mTxtExportPath;
+
+            rqImportData.IsValid = false;
+            rqExportData.IsValid = false;
+            #endregion
+        }
+
         private void SetHeaderMGridListQuestion()
         {
             // Show header for mGridListQuestion
@@ -366,11 +517,55 @@ namespace DoAnLTUDQL1.Views.TeacherView
             mToggleEditQuestionIsDistributed.DataBindings.Add("Checked", bsQuestionList, "IsDistributed");
 
             // Tab Question - DetailQuestionExamCode
+            mTxtDetailQuestionContent.DataBindings.Add("Text", bsQuestionList, "Content");
             mTxtDetailQuestionId.DataBindings.Add("Text", bsQuestionList, "QuestionId");
             mTxtDetailQuestionSubjectId.DataBindings.Add("Text", bsQuestionList, "SubjectId");
             mTxtDetailQuestionSubjectName.DataBindings.Add("Text", bsQuestionList, "SubjectName");
             mTxtDetailQuestionGradeId.DataBindings.Add("Text", bsQuestionList, "GradeId");
         }
+
+        private DialogResult STAShowDialog(FileDialog dialog)
+        {
+            DialogState state = new DialogState
+            {
+                fileDialog = dialog
+            };
+            System.Threading.Thread t = new System.Threading.Thread(state.ThreadProcShowFileDialog);
+            t.SetApartmentState(System.Threading.ApartmentState.STA);
+            t.Start();
+            t.Join();
+            return state.result;
+        }
+
+        private DialogResult STAShowDialog(FolderBrowserDialog dialog)
+        {
+            DialogState state = new DialogState
+            {
+                folderDialog = dialog
+            };
+            System.Threading.Thread t = new System.Threading.Thread(state.ThreadProcShowFolderDialog);
+            t.SetApartmentState(System.Threading.ApartmentState.STA);
+            t.Start();
+            t.Join();
+            return state.result;
+        }
         #endregion
+    }
+
+    public class DialogState
+    {
+        public DialogResult result;
+        public FileDialog fileDialog;
+        public FolderBrowserDialog folderDialog;
+
+        public void ThreadProcShowFileDialog()
+        {
+            result = fileDialog.ShowDialog();
+        }
+
+        public void ThreadProcShowFolderDialog()
+        {
+            result = folderDialog.ShowDialog();
+        }
     }
 }

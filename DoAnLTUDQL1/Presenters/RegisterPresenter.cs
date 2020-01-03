@@ -106,7 +106,7 @@ namespace DoAnLTUDQL1.Presenters
                 context.SubmitChanges(ConflictMode.FailOnFirstConflict);
             }
 
-            view.Message = "Success";
+            view.Message = "Succeed";
         }
     }
 }

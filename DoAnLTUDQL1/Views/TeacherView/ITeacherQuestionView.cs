@@ -31,7 +31,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
         Question Question { get; set; }
         string AddQuestionMessage { set; }
         // --- Import/Export question
-        // DOIT LATER
+        string ImportQuestionMessage { set; }
+        string ExportQuestionMessage { set; }
 
         // Events
         // Tab question
@@ -47,6 +48,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         // --- Add question
         event EventHandler AddQuestion;
         // --- Import/Export question
-        // DOIT LATER
+        event EventHandler ImportQuestion;
+        event EventHandler ExportQuestion;
     }
 }

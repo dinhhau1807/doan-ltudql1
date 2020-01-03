@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mTabQuestion = new MetroFramework.Controls.MetroTabControl();
             this.mTabListQuestion = new MetroFramework.Controls.MetroTabPage();
             this.mBtnReloadListQuestion = new MetroFramework.Controls.MetroButton();
@@ -90,13 +90,14 @@
             this.mGridApproveQuestion = new MetroFramework.Controls.MetroGrid();
             this.mTitleApproveQuestion = new MetroFramework.Controls.MetroTile();
             this.mTabImportExportQuestion = new MetroFramework.Controls.MetroTabPage();
+            this.mTileImportExportQuestion = new MetroFramework.Controls.MetroTile();
             this.mTxtExportPath = new MetroFramework.Controls.MetroTextBox();
             this.mBtnExportQuestion = new MetroFramework.Controls.MetroButton();
             this.mBtnExportChosePath = new MetroFramework.Controls.MetroButton();
             this.mTxtImportPath = new MetroFramework.Controls.MetroTextBox();
             this.mBtnImportQuestion = new MetroFramework.Controls.MetroButton();
             this.mBtnImportChosePath = new MetroFramework.Controls.MetroButton();
-            this.mTileImportExportQuestion = new MetroFramework.Controls.MetroTile();
+            this.mTxtDetailQuestionContent = new MetroFramework.Controls.MetroTextBox();
             this.mTabQuestion.SuspendLayout();
             this.mTabListQuestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mGridListQuestion)).BeginInit();
@@ -121,7 +122,7 @@
             this.mTabQuestion.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.mTabQuestion.Location = new System.Drawing.Point(20, 60);
             this.mTabQuestion.Name = "mTabQuestion";
-            this.mTabQuestion.SelectedIndex = 5;
+            this.mTabQuestion.SelectedIndex = 3;
             this.mTabQuestion.Size = new System.Drawing.Size(1151, 578);
             this.mTabQuestion.TabIndex = 3;
             this.mTabQuestion.UseSelectable = true;
@@ -165,23 +166,23 @@
             this.mGridListQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mGridListQuestion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mGridListQuestion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListQuestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListQuestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.mGridListQuestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mGridListQuestion.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mGridListQuestion.DefaultCellStyle = dataGridViewCellStyle14;
             this.mGridListQuestion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mGridListQuestion.EnableHeadersVisualStyles = false;
             this.mGridListQuestion.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -191,14 +192,14 @@
             this.mGridListQuestion.Name = "mGridListQuestion";
             this.mGridListQuestion.ReadOnly = true;
             this.mGridListQuestion.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListQuestion.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListQuestion.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.mGridListQuestion.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mGridListQuestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mGridListQuestion.Size = new System.Drawing.Size(1143, 487);
@@ -739,6 +740,7 @@
             // 
             // mTabDetailQuestion
             // 
+            this.mTabDetailQuestion.Controls.Add(this.mTxtDetailQuestionContent);
             this.mTabDetailQuestion.Controls.Add(this.mGridDetailQuestionExamCode);
             this.mTabDetailQuestion.Controls.Add(this.mTxtDetailQuestionGradeId);
             this.mTabDetailQuestion.Controls.Add(this.mTxtDetailQuestionSubjectName);
@@ -772,23 +774,23 @@
             this.mGridDetailQuestionExamCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mGridDetailQuestionExamCode.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mGridDetailQuestionExamCode.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridDetailQuestionExamCode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridDetailQuestionExamCode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.mGridDetailQuestionExamCode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mGridDetailQuestionExamCode.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mGridDetailQuestionExamCode.DefaultCellStyle = dataGridViewCellStyle11;
             this.mGridDetailQuestionExamCode.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mGridDetailQuestionExamCode.EnableHeadersVisualStyles = false;
             this.mGridDetailQuestionExamCode.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -797,14 +799,14 @@
             this.mGridDetailQuestionExamCode.Name = "mGridDetailQuestionExamCode";
             this.mGridDetailQuestionExamCode.ReadOnly = true;
             this.mGridDetailQuestionExamCode.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridDetailQuestionExamCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridDetailQuestionExamCode.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.mGridDetailQuestionExamCode.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mGridDetailQuestionExamCode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mGridDetailQuestionExamCode.Size = new System.Drawing.Size(1143, 325);
@@ -988,7 +990,7 @@
             this.mTitleDetailQuestion.ActiveControl = null;
             this.mTitleDetailQuestion.Location = new System.Drawing.Point(0, 3);
             this.mTitleDetailQuestion.Name = "mTitleDetailQuestion";
-            this.mTitleDetailQuestion.Size = new System.Drawing.Size(1136, 40);
+            this.mTitleDetailQuestion.Size = new System.Drawing.Size(1143, 40);
             this.mTitleDetailQuestion.TabIndex = 4;
             this.mTitleDetailQuestion.Text = "Thông tin chi tiết ";
             this.mTitleDetailQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1033,23 +1035,23 @@
             this.mGridApproveQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mGridApproveQuestion.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mGridApproveQuestion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridApproveQuestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridApproveQuestion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.mGridApproveQuestion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mGridApproveQuestion.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mGridApproveQuestion.DefaultCellStyle = dataGridViewCellStyle17;
             this.mGridApproveQuestion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mGridApproveQuestion.EnableHeadersVisualStyles = false;
             this.mGridApproveQuestion.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -1058,14 +1060,14 @@
             this.mGridApproveQuestion.Name = "mGridApproveQuestion";
             this.mGridApproveQuestion.ReadOnly = true;
             this.mGridApproveQuestion.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridApproveQuestion.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridApproveQuestion.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.mGridApproveQuestion.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mGridApproveQuestion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mGridApproveQuestion.Size = new System.Drawing.Size(1143, 487);
@@ -1104,13 +1106,25 @@
             this.mTabImportExportQuestion.VerticalScrollbarHighlightOnWheel = false;
             this.mTabImportExportQuestion.VerticalScrollbarSize = 10;
             // 
+            // mTileImportExportQuestion
+            // 
+            this.mTileImportExportQuestion.ActiveControl = null;
+            this.mTileImportExportQuestion.Location = new System.Drawing.Point(1, 3);
+            this.mTileImportExportQuestion.Name = "mTileImportExportQuestion";
+            this.mTileImportExportQuestion.Size = new System.Drawing.Size(1143, 40);
+            this.mTileImportExportQuestion.TabIndex = 13;
+            this.mTileImportExportQuestion.Text = "Nhập / Xuất danh sách câu hỏi";
+            this.mTileImportExportQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mTileImportExportQuestion.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.mTileImportExportQuestion.UseSelectable = true;
+            // 
             // mTxtExportPath
             // 
             // 
             // 
             // 
             this.mTxtExportPath.CustomButton.Image = null;
-            this.mTxtExportPath.CustomButton.Location = new System.Drawing.Point(933, 1);
+            this.mTxtExportPath.CustomButton.Location = new System.Drawing.Point(905, 1);
             this.mTxtExportPath.CustomButton.Name = "";
             this.mTxtExportPath.CustomButton.Size = new System.Drawing.Size(31, 31);
             this.mTxtExportPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -1130,7 +1144,7 @@
             this.mTxtExportPath.SelectionLength = 0;
             this.mTxtExportPath.SelectionStart = 0;
             this.mTxtExportPath.ShortcutsEnabled = true;
-            this.mTxtExportPath.Size = new System.Drawing.Size(965, 33);
+            this.mTxtExportPath.Size = new System.Drawing.Size(937, 33);
             this.mTxtExportPath.TabIndex = 10;
             this.mTxtExportPath.UseSelectable = true;
             this.mTxtExportPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1142,7 +1156,7 @@
             this.mBtnExportQuestion.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.mBtnExportQuestion.Location = new System.Drawing.Point(909, 199);
             this.mBtnExportQuestion.Name = "mBtnExportQuestion";
-            this.mBtnExportQuestion.Size = new System.Drawing.Size(231, 41);
+            this.mBtnExportQuestion.Size = new System.Drawing.Size(203, 41);
             this.mBtnExportQuestion.TabIndex = 12;
             this.mBtnExportQuestion.Text = "Xuất dữ liệu";
             this.mBtnExportQuestion.UseSelectable = true;
@@ -1151,9 +1165,9 @@
             // 
             this.mBtnExportChosePath.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mBtnExportChosePath.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnExportChosePath.Location = new System.Drawing.Point(4, 160);
+            this.mBtnExportChosePath.Location = new System.Drawing.Point(32, 160);
             this.mBtnExportChosePath.Name = "mBtnExportChosePath";
-            this.mBtnExportChosePath.Size = new System.Drawing.Size(165, 33);
+            this.mBtnExportChosePath.Size = new System.Drawing.Size(137, 33);
             this.mBtnExportChosePath.TabIndex = 11;
             this.mBtnExportChosePath.Text = "Chọn vị trí xuất";
             this.mBtnExportChosePath.UseSelectable = true;
@@ -1164,7 +1178,7 @@
             // 
             // 
             this.mTxtImportPath.CustomButton.Image = null;
-            this.mTxtImportPath.CustomButton.Location = new System.Drawing.Point(933, 1);
+            this.mTxtImportPath.CustomButton.Location = new System.Drawing.Point(905, 1);
             this.mTxtImportPath.CustomButton.Name = "";
             this.mTxtImportPath.CustomButton.Size = new System.Drawing.Size(31, 31);
             this.mTxtImportPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -1184,7 +1198,7 @@
             this.mTxtImportPath.SelectionLength = 0;
             this.mTxtImportPath.SelectionStart = 0;
             this.mTxtImportPath.ShortcutsEnabled = true;
-            this.mTxtImportPath.Size = new System.Drawing.Size(965, 33);
+            this.mTxtImportPath.Size = new System.Drawing.Size(937, 33);
             this.mTxtImportPath.TabIndex = 7;
             this.mTxtImportPath.UseSelectable = true;
             this.mTxtImportPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1196,7 +1210,7 @@
             this.mBtnImportQuestion.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.mBtnImportQuestion.Location = new System.Drawing.Point(909, 101);
             this.mBtnImportQuestion.Name = "mBtnImportQuestion";
-            this.mBtnImportQuestion.Size = new System.Drawing.Size(231, 41);
+            this.mBtnImportQuestion.Size = new System.Drawing.Size(203, 41);
             this.mBtnImportQuestion.TabIndex = 9;
             this.mBtnImportQuestion.Text = "Nhập dữ liệu";
             this.mBtnImportQuestion.UseSelectable = true;
@@ -1205,24 +1219,45 @@
             // 
             this.mBtnImportChosePath.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mBtnImportChosePath.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnImportChosePath.Location = new System.Drawing.Point(4, 62);
+            this.mBtnImportChosePath.Location = new System.Drawing.Point(32, 62);
             this.mBtnImportChosePath.Name = "mBtnImportChosePath";
-            this.mBtnImportChosePath.Size = new System.Drawing.Size(165, 33);
+            this.mBtnImportChosePath.Size = new System.Drawing.Size(137, 33);
             this.mBtnImportChosePath.TabIndex = 8;
             this.mBtnImportChosePath.Text = "Chọn tệp nhập";
             this.mBtnImportChosePath.UseSelectable = true;
             // 
-            // mTileImportExportQuestion
+            // mTxtDetailQuestionContent
             // 
-            this.mTileImportExportQuestion.ActiveControl = null;
-            this.mTileImportExportQuestion.Location = new System.Drawing.Point(1, 3);
-            this.mTileImportExportQuestion.Name = "mTileImportExportQuestion";
-            this.mTileImportExportQuestion.Size = new System.Drawing.Size(1143, 40);
-            this.mTileImportExportQuestion.TabIndex = 13;
-            this.mTileImportExportQuestion.Text = "Nhập / Xuất danh sách câu hỏi";
-            this.mTileImportExportQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mTileImportExportQuestion.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.mTileImportExportQuestion.UseSelectable = true;
+            // 
+            // 
+            // 
+            this.mTxtDetailQuestionContent.CustomButton.Image = null;
+            this.mTxtDetailQuestionContent.CustomButton.Location = new System.Drawing.Point(469, 2);
+            this.mTxtDetailQuestionContent.CustomButton.Name = "";
+            this.mTxtDetailQuestionContent.CustomButton.Size = new System.Drawing.Size(113, 113);
+            this.mTxtDetailQuestionContent.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mTxtDetailQuestionContent.CustomButton.TabIndex = 1;
+            this.mTxtDetailQuestionContent.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mTxtDetailQuestionContent.CustomButton.UseSelectable = true;
+            this.mTxtDetailQuestionContent.CustomButton.Visible = false;
+            this.mTxtDetailQuestionContent.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.mTxtDetailQuestionContent.Lines = new string[0];
+            this.mTxtDetailQuestionContent.Location = new System.Drawing.Point(558, 54);
+            this.mTxtDetailQuestionContent.MaxLength = 32767;
+            this.mTxtDetailQuestionContent.Multiline = true;
+            this.mTxtDetailQuestionContent.Name = "mTxtDetailQuestionContent";
+            this.mTxtDetailQuestionContent.PasswordChar = '\0';
+            this.mTxtDetailQuestionContent.ReadOnly = true;
+            this.mTxtDetailQuestionContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.mTxtDetailQuestionContent.SelectedText = "";
+            this.mTxtDetailQuestionContent.SelectionLength = 0;
+            this.mTxtDetailQuestionContent.SelectionStart = 0;
+            this.mTxtDetailQuestionContent.ShortcutsEnabled = true;
+            this.mTxtDetailQuestionContent.Size = new System.Drawing.Size(585, 118);
+            this.mTxtDetailQuestionContent.TabIndex = 18;
+            this.mTxtDetailQuestionContent.UseSelectable = true;
+            this.mTxtDetailQuestionContent.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mTxtDetailQuestionContent.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // frmTeacherQuestion
             // 
@@ -1313,5 +1348,6 @@
         private MetroFramework.Controls.MetroButton mBtnImportQuestion;
         private MetroFramework.Controls.MetroButton mBtnImportChosePath;
         private MetroFramework.Controls.MetroTile mTileImportExportQuestion;
+        private MetroFramework.Controls.MetroTextBox mTxtDetailQuestionContent;
     }
 }

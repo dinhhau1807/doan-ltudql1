@@ -126,6 +126,8 @@
       <Column Name="GradeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DifficultLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsDistributed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NumberOfCorrectAnswers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumberOfWrongAnswers" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Question_Answer" Member="Answers" ThisKey="QuestionId" OtherKey="QuestionId" Type="Answer" />
       <Association Name="Question_ExamCode_Question" Member="ExamCode_Questions" ThisKey="QuestionId" OtherKey="QuestionId" Type="ExamCode_Question" />
       <Association Name="Subject_Question" Member="Subject" ThisKey="SubjectId,GradeId" OtherKey="SubjectId,GradeId" Type="Subject" IsForeignKey="true" />

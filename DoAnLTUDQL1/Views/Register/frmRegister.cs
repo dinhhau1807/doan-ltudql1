@@ -166,7 +166,7 @@ namespace DoAnLTUDQL1.Views.Register
             set
             {
                 _message = value;
-                if (value == "Success")
+                if (value == "Succeed")
                 {
                     var result = MessageBox.Show("Đã đăng kí thành công!");
                     if (result == DialogResult.OK)
