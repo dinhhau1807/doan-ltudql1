@@ -3,9 +3,12 @@ using DoAnLTUDQL1.Views.TeacherView;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace DoAnLTUDQL1.Presenters
 {
@@ -40,7 +43,218 @@ namespace DoAnLTUDQL1.Presenters
             // --- Add question
             view.AddQuestion += AddQuestion;
             // --- Import/Export question
-            // DOIT LATER
+            view.ImportQuestion += ImportQuestion;
+            view.ExportQuestion += ExportQuestion;
+        }
+
+        private void ImportQuestion(object sender, EventArgs e)
+        {
+            var path = (string)sender;
+            if (File.Exists(path))
+            {
+                using (var context = new QLThiTracNghiemDataContext())
+                {
+                    IList<Question> questionsImport = new List<Question>();
+
+                    //Create COM Objects. Create a COM object for everything that is referenced
+                    Excel.Application xlApp = new Excel.Application();
+                    Excel.Workbooks xlWorkbooks = xlApp.Workbooks;
+                    Excel.Workbook xlWorkbook = xlWorkbooks.Open(path);
+                    Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                    Excel.Range xlRange = xlWorksheet.UsedRange;
+
+                    string message = "Succeed";
+                    try
+                    {
+                        int rowCount = xlRange.Rows.Count;
+                        int colCount = xlRange.Columns.Count;
+
+                        //iterate over the rows and columns and print to the console as it appears in the file
+                        //excel is not zero based!!
+                        for (int i = 2; i <= rowCount; i++)
+                        {
+                            string questionContent = xlRange.Cells[i, 1].Value2.ToString();
+
+                            if (context.Questions.Any(q => q.Content == questionContent))
+                            {
+                                continue;
+                            }
+
+                            var subjectId = xlRange.Cells[i, 2].Value2.ToString();
+                            var gradeId = (int)xlRange.Cells[i, 3].Value2;
+                            if (!view.Subjects.Any(s => s.SubjectId == subjectId && s.GradeId == gradeId))
+                            {
+                                continue;
+                            }
+
+                            var question = new Question
+                            {
+                                // Id Identity
+                                Content = xlRange.Cells[i, 1].Value2.ToString(),
+                                SubjectId = subjectId,
+                                GradeId = gradeId,
+                                DifficultLevel = (int)xlRange.Cells[i, 4].Value2,
+                                IsDistributed = false,
+                            };
+
+                            context.Questions.InsertOnSubmit(question);
+                            context.SubmitChanges();
+
+                            IList<Answer> answers = new List<Answer>();
+                            var currentAnswerId = context.Answers.Select(a => a.AnswerId).Max();
+                            var nextAnswerId = currentAnswerId + 1;
+                            for (int j = 0; j < (colCount - 4) / 2; j++)
+                            {
+                                var col = 5 + j * 2;
+
+                                if (xlRange.Cells[i, col].Value2 == null)
+                                {
+                                    break;
+                                }
+
+                                var answer = new Answer
+                                {
+                                    AnswerId = nextAnswerId++,
+                                    QuestionId = question.QuestionId,
+                                    Content = xlRange.Cells[i, col++].Value2.ToString(),
+                                    IsCorrect = (bool)xlRange.Cells[i, col++].Value2
+                                };
+
+                                answers.Add(answer);
+                            }
+
+                            context.Answers.InsertAllOnSubmit(answers);
+                            context.SubmitChanges();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
+                        message = "Failed";
+                    }
+                    finally
+                    {
+                        //cleanup
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+
+                        //release com objects to fully kill excel process from running in the background
+                        Marshal.ReleaseComObject(xlRange);
+                        Marshal.ReleaseComObject(xlWorksheet);
+
+                        //close and release
+                        xlWorkbook.Close(0);
+                        Marshal.ReleaseComObject(xlWorkbook);
+                        Marshal.ReleaseComObject(xlWorkbooks);
+
+                        //quit and release
+                        xlApp.Quit();
+                        Marshal.ReleaseComObject(xlApp);
+
+                        view.ImportQuestionMessage = message;
+                    }
+                }
+            }
+            else
+            {
+                view.ImportQuestionMessage = "File not exists";
+            }
+        }
+
+        private void ExportQuestion(object sender, EventArgs e)
+        {
+            var path = (string)sender;
+            try
+            {
+                IList<Question> exportQuestions = new List<Question>();
+                IList<Answer> exportAnswers = new List<Answer>();
+
+                using (var context = new QLThiTracNghiemDataContext())
+                {
+                    exportQuestions = context.Questions.ToList();
+                    exportAnswers = context.Answers.ToList();
+                }
+
+                //Create COM Objects. Create a COM object for everything that is referenced
+                Excel.Application xlApp = new Excel.Application();
+                Excel.Workbooks xlWorkbooks = xlApp.Workbooks;
+                Excel.Workbook xlWorkbook = xlWorkbooks.Add("");
+                Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                Excel.Range xlRange = xlWorksheet.UsedRange;
+
+                string message = "Succeed";
+                try
+                {
+                    // Write header
+                    xlRange.Cells[1, 1].Value2 = "Mã câu hỏi";
+                    xlRange.Cells[1, 2].Value2 = "Nội dung";
+                    xlRange.Cells[1, 3].Value2 = "Mã môn học";
+                    xlRange.Cells[1, 4].Value2 = "Khối lớp";
+                    xlRange.Cells[1, 5].Value2 = "Độ khó";
+                    xlRange.Cells[1, 6].Value2 = "Câu hỏi được đóng góp";
+                    xlRange.Cells[1, 7].Value2 = "Câu trả lời";
+
+                    int rowCount = exportQuestions.Count + 1;
+
+                    //iterate over the rows and columns
+                    //excel is not zero based!!
+                    for (int i = 2; i <= rowCount; i++)
+                    {
+                        xlRange.Cells[i, 1].Value2 = exportQuestions[i - 2].QuestionId;
+                        xlRange.Cells[i, 2].Value2 = exportQuestions[i - 2].Content;
+                        xlRange.Cells[i, 3].Value2 = exportQuestions[i - 2].SubjectId;
+                        xlRange.Cells[i, 4].Value2 = exportQuestions[i - 2].GradeId;
+                        xlRange.Cells[i, 5].Value2 = exportQuestions[i - 2].DifficultLevel;
+                        xlRange.Cells[i, 6].Value2 = exportQuestions[i - 2].IsDistributed;
+
+                        // Write answer
+                        var answers = exportAnswers.Where(a => a.QuestionId == exportQuestions[i - 2].QuestionId);
+                        int j = 7;
+                        foreach (var answer in answers)
+                        {
+                            xlRange.Cells[i, j++].Value2 = answer.AnswerId;
+                            xlRange.Cells[i, j++].Value2 = answer.Content;
+                            xlRange.Cells[i, j++].Value2 = answer.IsCorrect;
+                        }
+                    }
+
+                    xlWorkbook.SaveAs(path + (path.EndsWith(@"\") ? "" : @"\") + "export_question_" + DateTime.Now.ToString("dd.MM.yyyy") + ".xlsx",
+                                      Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false,
+                                      Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.ToString());
+                    message = "Failed";
+                }
+                finally
+                {
+                    //cleanup
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
+                    //release com objects to fully kill excel process from running in the background
+                    Marshal.ReleaseComObject(xlRange);
+                    Marshal.ReleaseComObject(xlWorksheet);
+
+                    //close and release
+                    xlWorkbook.Close(0);
+                    Marshal.ReleaseComObject(xlWorkbook);
+                    Marshal.ReleaseComObject(xlWorkbooks);
+
+                    //quit and release
+                    xlApp.Quit();
+                    Marshal.ReleaseComObject(xlApp);
+
+                    view.ExportQuestionMessage = message;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                view.ExportQuestionMessage = "Failed";
+            }
         }
 
         private void AddQuestion(object sender, EventArgs e)
@@ -49,6 +263,7 @@ namespace DoAnLTUDQL1.Presenters
             {
                 using (var context = new QLThiTracNghiemDataContext())
                 {
+                    // Id Indentity
                     context.Questions.InsertOnSubmit(view.Question);
                     context.SubmitChanges();
                 }

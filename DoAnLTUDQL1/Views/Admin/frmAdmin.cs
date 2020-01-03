@@ -122,9 +122,9 @@ namespace DoAnLTUDQL1.Views.Admin
 
         private void MBtnEditSave_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(mTxtEditNewPassword.Text))
+            if (!string.IsNullOrEmpty(mTxtEditNewPassword.Text))
             {
-                if(!mTxtEditNewPassword.Text.Equals(mTxtEditConfirmPassword.Text))
+                if (!mTxtEditNewPassword.Text.Equals(mTxtEditConfirmPassword.Text))
                 {
                     MessageBox.Show("Nhập lại mật khẩu không chính xác!");
                     return;
@@ -249,7 +249,7 @@ namespace DoAnLTUDQL1.Views.Admin
 
         private void MBtnImportUser_Click(object sender, EventArgs e)
         {
-            if(!rqImportData.IsValid)
+            if (!rqImportData.IsValid)
             {
                 rqImportData.ControlToValidate.Focus();
 
@@ -299,9 +299,9 @@ namespace DoAnLTUDQL1.Views.Admin
                 MessageBox.Show("Có lỗi khi xuất dữ liệu: " + ex.Message);
             }
 
-		}
+        }
 
-		private void MBtnRestore_Click(object sender, EventArgs e)
+        private void MBtnRestore_Click(object sender, EventArgs e)
         {
             if (!rqRestoreData.IsValid)
             {
@@ -349,7 +349,7 @@ namespace DoAnLTUDQL1.Views.Admin
         }
 
         private void MBtnBackup_Click(object sender, EventArgs e)
-        {           
+        {
             if (!rqBackupData.IsValid)
             {
                 rqBackupData.ControlToValidate.Focus();
@@ -457,7 +457,7 @@ namespace DoAnLTUDQL1.Views.Admin
             set
             {
                 _users = value;
-                if(_users != null)
+                if (_users != null)
                 {
                     // Set data for mGridListUser
                     bs.DataSource = Users;
@@ -481,7 +481,7 @@ namespace DoAnLTUDQL1.Views.Admin
             {
                 _addMessage = value;
 
-                if (value.Contains("Success"))
+                if (value.Contains("Succeed"))
                 {
                     mBtnAddCancel.PerformClick();
                 }
@@ -499,7 +499,7 @@ namespace DoAnLTUDQL1.Views.Admin
                 _importMessage = value;
                 mTxtImportPath.ResetText();
 
-                if (value.Contains("Success"))
+                if (value.Contains("Succeed"))
                 {
                     MessageBox.Show("Đã thêm người dùng vào!");
                 }
@@ -507,6 +507,11 @@ namespace DoAnLTUDQL1.Views.Admin
                 if (value.Contains("File not exists"))
                 {
                     MessageBox.Show("File này không tồn tại!");
+                }
+
+                if (value.Contains("Failed"))
+                {
+                    MessageBox.Show("Nhập file thất bại!");
                 }
             }
         }
@@ -520,7 +525,7 @@ namespace DoAnLTUDQL1.Views.Admin
                 _exportMessage = value;
                 mTxtExportPath.ResetText();
 
-                if (value.Contains("Success"))
+                if (value.Contains("Succeed"))
                 {
                     MessageBox.Show("Đã xuất danh sách người dùng!");
                 }
@@ -688,7 +693,7 @@ namespace DoAnLTUDQL1.Views.Admin
             string errorMessageName = "Không được nhập số hoặc ký tự đặc biệt";
             string errorMessagePassword = "Chỉ gồm chữ và số, tối thiểu 3 ký tự";
             string errorMessageUserName = "Chỉ gồm chữ và số, tối thiểu 3 kí tự";
-            string errorMessagePhone = "Chỉ chứa số và phải chứa từ 10 kí tự trở lên";            
+            string errorMessagePhone = "Chỉ chứa số và phải chứa từ 10 kí tự trở lên";
 
             rgEditFirstName = new RegexValidator(RegexPattern.Name);
             rgEditFirstName.ErrorMessage = errorMessageName;
@@ -728,7 +733,7 @@ namespace DoAnLTUDQL1.Views.Admin
             AddUserValidatorList.Add(rgAddLastName);
             AddUserValidatorList.Add(rgAddPhone);
         }
-		private void SetHeaderDataGridView()
+        private void SetHeaderDataGridView()
         {
             mGridListUser.AutoGenerateColumns = false;
 

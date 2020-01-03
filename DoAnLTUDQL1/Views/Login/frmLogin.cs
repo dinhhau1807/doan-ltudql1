@@ -30,6 +30,7 @@ namespace DoAnLTUDQL1.Views.Login
 
             Load += FrmLogin_Load;
 
+            // TEMP TO TEST
             mTxtUsername.Text = "hxvinh";
             mTxtPassword.Text = "123";
         }
@@ -112,7 +113,7 @@ namespace DoAnLTUDQL1.Views.Login
 
                 // TODO: Open form Student or Teacher or Admin
 
-                if (value == "Success:Admin")
+                if (value == "Succeed:Admin")
                 {
                     User admin = (User)User;
 
@@ -126,7 +127,7 @@ namespace DoAnLTUDQL1.Views.Login
                     this.Close();
                 }
                 
-                if (value == "Success:Student")
+                if (value == "Succeed:Student")
                 {
                     User student = (User)User;
 
@@ -140,7 +141,7 @@ namespace DoAnLTUDQL1.Views.Login
                     this.Close();
                 }
 
-                if (value == "Success:Teacher")
+                if (value == "Succeed:Teacher")
                 {
                     Teacher teacher = (Teacher)User;
 
@@ -154,12 +155,12 @@ namespace DoAnLTUDQL1.Views.Login
                     this.Close();
                 }
 
-                if (!value.Contains("Success") && value == "User not exists")
+                if (!value.Contains("Succeed") && value == "User not exists")
                 {
                     MessageBox.Show("Tài khoản này không tồn tại!");
                 }
 
-                if (!value.Contains("Success") && value == "Password failed")
+                if (!value.Contains("Succeed") && value == "Password failed")
                 {
                     MessageBox.Show("Mật khẩu nhập không đúng!");
                 }
@@ -203,18 +204,6 @@ namespace DoAnLTUDQL1.Views.Login
             }
 
             Login?.Invoke(this, null);
-
-            // TEMP TO TEST
-            //User user;
-            //using (var context = new QLThiTracNghiemDataContext())
-            //{
-            //    user = context.Users.Single(s => s.Username == "ldlinh");
-            //}
-            ////frmAdmin frm = new frmAdmin(user);
-            ////frm.ShowDialog();
-
-            //frmStudent frm = new frmStudent(user);
-            //frm.ShowDialog();
         }
         public event EventHandler Login;
         public event EventHandler CheckConnection;

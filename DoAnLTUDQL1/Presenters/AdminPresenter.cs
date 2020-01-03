@@ -120,7 +120,7 @@ namespace DoAnLTUDQL1.Presenters
                 context.SubmitChanges();
             }
 
-            view.AddMessage = "Success add user";
+            view.AddMessage = "Succeed add user";
         }
 
         private void ImportUser(object sender, EventArgs e)
@@ -138,6 +138,7 @@ namespace DoAnLTUDQL1.Presenters
                     Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                     Excel.Range xlRange = xlWorksheet.UsedRange;
 
+                    string message = "Succeed";
                     try
                     {
                         int rowCount = xlRange.Rows.Count;
@@ -169,10 +170,19 @@ namespace DoAnLTUDQL1.Presenters
 
                             userImports.Add(user);
                         }
+
+                        foreach (var user in userImports)
+                        {
+                            AddUserToClassifiedTable(user, context);
+                        }
+
+                        context.Users.InsertAllOnSubmit(userImports);
+                        context.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
                     }
                     catch (Exception ex)
                     {
                         Debug.WriteLine(ex.ToString());
+                        message = "Failed";
                     }
                     finally
                     {
@@ -192,19 +202,11 @@ namespace DoAnLTUDQL1.Presenters
                         //quit and release
                         xlApp.Quit();
                         Marshal.ReleaseComObject(xlApp);
-                    }
 
-                    foreach (var user in userImports)
-                    {
-                        AddUserToClassifiedTable(user, context);
+                        view.Path = "";
+                        view.ImportMessage = message;
                     }
-
-                    context.Users.InsertAllOnSubmit(userImports);
-                    context.SubmitChanges(System.Data.Linq.ConflictMode.FailOnFirstConflict);
                 }
-
-                view.Path = "";
-                view.ImportMessage = "Success";
             }
             else
             {
@@ -230,6 +232,7 @@ namespace DoAnLTUDQL1.Presenters
                 Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
                 Excel.Range xlRange = xlWorksheet.UsedRange;
 
+                string message = "Succeed";
                 try
                 {
                     Excel.Range range;
@@ -268,13 +271,14 @@ namespace DoAnLTUDQL1.Presenters
                         xlRange.Cells[i, 9].Value2 = exportUsers[i - 2].RoleTypeId;
                     }
 
-                    xlWorkbook.SaveAs(view.Path + @"\export_" + DateTime.Now.ToString("dd.MM.yyyy") + ".xlsx",
+                    xlWorkbook.SaveAs(view.Path + (view.Path.EndsWith(@"\") ? "" : @"\") + "export_" + DateTime.Now.ToString("dd.MM.yyyy") + ".xlsx",
                                       Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false,
                                       Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex.ToString());
+                    message = "Failed";
                 }
                 finally
                 {
@@ -294,10 +298,10 @@ namespace DoAnLTUDQL1.Presenters
                     //quit and release
                     xlApp.Quit();
                     Marshal.ReleaseComObject(xlApp);
-                }
 
-                view.Path = "";
-                view.ExportMessage = "Success";
+                    view.Path = "";
+                    view.ExportMessage = message;
+                }
             }
             catch (Exception ex)
             {
@@ -454,7 +458,7 @@ namespace DoAnLTUDQL1.Presenters
                     Action = BackupActionType.Database,
                     Database = sqlHelper.DatabaseName
                 };
-                BackupDeviceItem destination = new BackupDeviceItem(view.Path + @"\backup_" + DateTime.Now.ToString("dd.MM.yyyy") + ".bak", DeviceType.File);
+                BackupDeviceItem destination = new BackupDeviceItem(view.Path + (view.Path.EndsWith(@"\") ? "" : @"\") + "backup_" + DateTime.Now.ToString("dd.MM.yyyy") + ".bak", DeviceType.File);
                 dbBackup.Devices.Add(destination);
                 dbBackup.SqlBackup(dbServer);
                 serverConnection.Disconnect();

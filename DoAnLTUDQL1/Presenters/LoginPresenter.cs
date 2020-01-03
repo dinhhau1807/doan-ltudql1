@@ -38,13 +38,6 @@ namespace DoAnLTUDQL1.Presenters
         {
             using (var context = new QLThiTracNghiemDataContext())
             {
-                // temp to test
-                //var tempUser = context.Teachers.FirstOrDefault(u => u.Username == "hxvinh");
-                //view.User = tempUser;
-                //view.Message = "Success:Teacher";
-                //return;
-                //
-
                 var user = context.Users.FirstOrDefault(u => u.Username == view.Username);
 
                 if (user != null && Common.VerifyPassword(view.Password, user.Password))
@@ -59,14 +52,14 @@ namespace DoAnLTUDQL1.Presenters
                     if (role == "admin")
                     {
                         view.User = user;
-                        view.Message = "Success:Admin";
+                        view.Message = "Succeed:Admin";
                         return;
                     }
 
                     if (role == "học sinh")
                     {
                         view.User = user;
-                        view.Message = "Success:Student";
+                        view.Message = "Succeed:Student";
                         return;
                     }
 
@@ -74,7 +67,7 @@ namespace DoAnLTUDQL1.Presenters
                     {
                         var teacher = context.Teachers.FirstOrDefault(t => t.Username == user.Username);
                         view.User = teacher;
-                        view.Message = "Success:Teacher";
+                        view.Message = "Succeed:Teacher";
                         return;
                     }
                 }

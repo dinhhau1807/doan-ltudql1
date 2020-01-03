@@ -113,6 +113,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         // Tab change info
         private void MBtnChangeInfo_Click(object sender, EventArgs e)
         {
+
             if (mBtnChangeInfo.Text == "Thay đổi thông tin cá nhân")
             {
                 EnableChangeInfo(true);
@@ -137,6 +138,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
                 EnableChangeInfo(false);
                 mBtnChangeInfo.Text = "Thay đổi thông tin cá nhân";
+                this.ResetText();
+                this.Text = $"{CurrentUser.TeacherId} - {CurrentUserInfo.LastName} {CurrentUserInfo.FirstName}";
             }
         }
 
