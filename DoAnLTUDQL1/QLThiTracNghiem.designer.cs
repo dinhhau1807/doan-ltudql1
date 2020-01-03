@@ -2717,6 +2717,10 @@ namespace DoAnLTUDQL1
 		
 		private System.Nullable<bool> _IsDistributed;
 		
+		private System.Nullable<int> _NumberOfCorrectAnswers;
+		
+		private System.Nullable<int> _NumberOfWrongAnswers;
+		
 		private EntitySet<Answer> _Answers;
 		
 		private EntitySet<ExamCode_Question> _ExamCode_Questions;
@@ -2741,6 +2745,10 @@ namespace DoAnLTUDQL1
     partial void OnDifficultLevelChanged();
     partial void OnIsDistributedChanging(System.Nullable<bool> value);
     partial void OnIsDistributedChanged();
+    partial void OnNumberOfCorrectAnswersChanging(System.Nullable<int> value);
+    partial void OnNumberOfCorrectAnswersChanged();
+    partial void OnNumberOfWrongAnswersChanging(System.Nullable<int> value);
+    partial void OnNumberOfWrongAnswersChanged();
     #endregion
 		
 		public Question()
@@ -2895,6 +2903,46 @@ namespace DoAnLTUDQL1
 					this._IsDistributed = value;
 					this.SendPropertyChanged("IsDistributed");
 					this.OnIsDistributedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfCorrectAnswers", DbType="Int")]
+		public System.Nullable<int> NumberOfCorrectAnswers
+		{
+			get
+			{
+				return this._NumberOfCorrectAnswers;
+			}
+			set
+			{
+				if ((this._NumberOfCorrectAnswers != value))
+				{
+					this.OnNumberOfCorrectAnswersChanging(value);
+					this.SendPropertyChanging();
+					this._NumberOfCorrectAnswers = value;
+					this.SendPropertyChanged("NumberOfCorrectAnswers");
+					this.OnNumberOfCorrectAnswersChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfWrongAnswers", DbType="Int")]
+		public System.Nullable<int> NumberOfWrongAnswers
+		{
+			get
+			{
+				return this._NumberOfWrongAnswers;
+			}
+			set
+			{
+				if ((this._NumberOfWrongAnswers != value))
+				{
+					this.OnNumberOfWrongAnswersChanging(value);
+					this.SendPropertyChanging();
+					this._NumberOfWrongAnswers = value;
+					this.SendPropertyChanged("NumberOfWrongAnswers");
+					this.OnNumberOfWrongAnswersChanged();
 				}
 			}
 		}
