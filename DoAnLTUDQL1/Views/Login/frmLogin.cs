@@ -158,11 +158,15 @@ namespace DoAnLTUDQL1.Views.Login
                 if (!value.Contains("Succeed") && value == "User not exists")
                 {
                     MessageBox.Show("Tài khoản này không tồn tại!");
+                    mTxtPassword.Text = "";
+                    mTxtUsername.Focus();
                 }
 
                 if (!value.Contains("Succeed") && value == "Password failed")
                 {
                     MessageBox.Show("Mật khẩu nhập không đúng!");
+                    mTxtPassword.Text = "";
+                    mTxtPassword.Focus();
                 }
             }
         }

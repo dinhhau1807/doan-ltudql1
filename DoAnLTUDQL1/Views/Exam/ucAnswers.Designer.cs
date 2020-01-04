@@ -32,11 +32,12 @@
 			// 
 			// ucAnswers
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "ucAnswers";
-			this.Size = new System.Drawing.Size(332, 25);
+			this.Size = new System.Drawing.Size(279, 20);
 			this.ResumeLayout(false);
 
 		}
