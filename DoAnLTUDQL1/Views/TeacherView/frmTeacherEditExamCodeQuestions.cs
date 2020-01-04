@@ -28,6 +28,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             FormClosing += FrmEditExamCodeQuestions_FormClosing;
         }
 
+
         #region Events
         private void FrmEditExamCodeQuestions_Load(object sender, EventArgs e)
         {
@@ -39,8 +40,13 @@ namespace DoAnLTUDQL1.Views.TeacherView
             bsListQuestionsAdded = new BindingSource();
             bsListQuestionsAdded.DataSource = QuestionsAdded;
 
+            // Set data source
             mGridListQuestions.DataSource = bsListQuestions;
             mGridListQuestionsAdded.DataSource = bsListQuestionsAdded;
+
+            // Set header
+            SetHeaderMGridListQuestions();
+            SetHeaderMGridListQuestionsAdded();
 
             // Register events
             mBtnAddQuestion.Click += MBtnAddQuestion_Click;
@@ -118,7 +124,78 @@ namespace DoAnLTUDQL1.Views.TeacherView
         }
         #endregion
 
+
         #region Ultilities
+        private void SetHeaderMGridListQuestions()
+        {
+            // Show header for mGridListQuestion
+            mGridListQuestions.AutoGenerateColumns = false;
+
+            mGridListQuestions.Columns[0].HeaderText = "Mã câu hỏi";
+            mGridListQuestions.Columns[0].DataPropertyName = "QuestionId";
+
+            mGridListQuestions.Columns[1].HeaderText = "Nội dung";
+            mGridListQuestions.Columns[1].DataPropertyName = "Content";
+
+            mGridListQuestions.Columns[2].Visible = false;
+
+            mGridListQuestions.Columns[3].HeaderText = "Mã môn học";
+            mGridListQuestions.Columns[3].DataPropertyName = "SubjectId";
+
+            mGridListQuestions.Columns[4].HeaderText = "Khối lớp";
+            mGridListQuestions.Columns[4].DataPropertyName = "GradeId";
+
+            mGridListQuestions.Columns[5].HeaderText = "Độ khó";
+            mGridListQuestions.Columns[5].DataPropertyName = "DifficultLevel";
+
+            mGridListQuestions.Columns[6].HeaderText = "Câu hỏi được đóng góp";
+            mGridListQuestions.Columns[6].DataPropertyName = "IsDistributed";
+
+            mGridListQuestions.Columns[7].Visible = false;
+            mGridListQuestions.Columns[8].Visible = false;
+            mGridListQuestions.Columns[9].Visible = false;
+
+            foreach (DataGridViewColumn col in mGridListQuestions.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
+        private void SetHeaderMGridListQuestionsAdded()
+        {
+            // Show header for mGridListQuestion
+            mGridListQuestionsAdded.AutoGenerateColumns = false;
+
+            mGridListQuestionsAdded.Columns[0].HeaderText = "Mã câu hỏi";
+            mGridListQuestionsAdded.Columns[0].DataPropertyName = "QuestionId";
+
+            mGridListQuestionsAdded.Columns[1].HeaderText = "Nội dung";
+            mGridListQuestionsAdded.Columns[1].DataPropertyName = "Content";
+
+            mGridListQuestionsAdded.Columns[2].Visible = false;
+
+            mGridListQuestionsAdded.Columns[3].HeaderText = "Mã môn học";
+            mGridListQuestionsAdded.Columns[3].DataPropertyName = "SubjectId";
+
+            mGridListQuestionsAdded.Columns[4].HeaderText = "Khối lớp";
+            mGridListQuestionsAdded.Columns[4].DataPropertyName = "GradeId";
+
+            mGridListQuestionsAdded.Columns[5].HeaderText = "Độ khó";
+            mGridListQuestionsAdded.Columns[5].DataPropertyName = "DifficultLevel";
+
+            mGridListQuestionsAdded.Columns[6].HeaderText = "Câu hỏi được đóng góp";
+            mGridListQuestionsAdded.Columns[6].DataPropertyName = "IsDistributed";
+
+            mGridListQuestionsAdded.Columns[7].Visible = false;
+            mGridListQuestionsAdded.Columns[8].Visible = false;
+            mGridListQuestionsAdded.Columns[9].Visible = false;
+
+            foreach (DataGridViewColumn col in mGridListQuestionsAdded.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
         private void ReloadList()
         {
             bsListQuestions.CurrencyManager.Refresh();
