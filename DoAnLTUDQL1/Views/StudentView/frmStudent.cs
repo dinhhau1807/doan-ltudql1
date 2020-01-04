@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using System.Threading;
+using DoAnLTUDQL1.Views.Login;
 
 namespace DoAnLTUDQL1.Views.StudentView
 {
@@ -277,6 +279,7 @@ namespace DoAnLTUDQL1.Views.StudentView
 			presenter = new StudentPresenter(this, user);
 
 			this.Text = CurrentUser != null ? CurrentUser.Username : "";
+			LastLoginDate = CurrentUser.LastLoginDate;
 			this.Load += FrmStudentMainPage_Load;
 		}
 
@@ -298,7 +301,19 @@ namespace DoAnLTUDQL1.Views.StudentView
 
 		private void mbtnLogout_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			DialogResult result = MessageBox.Show("Bạn có thật sự muốn thoát chương trình?", "Đăng xuất", MessageBoxButtons.YesNo);
+			if (result == DialogResult.Yes)
+			{
+				this.Hide();
+
+				Thread tLogin = new Thread(_ =>
+				{
+					Application.Run(new frmLogin());
+				});
+				tLogin.Start();
+
+				this.Close();
+			}
 		}
 
 		private void mbtnChangePassword_Click(object sender, EventArgs e)
@@ -328,14 +343,7 @@ namespace DoAnLTUDQL1.Views.StudentView
 
 		private void frmStudent_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if(MessageBox.Show("Bạn có đồng ý đăng xuất ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
-			{
-				CurrentUser = Logout?.Invoke();
-			}
-			else
-			{
-				e.Cancel = true;
-			}
+			
 		}
 
 		private void mbtnChangeProfile_Click(object sender, EventArgs e)

@@ -41,7 +41,7 @@ namespace DoAnLTUDQL1.Views.Exam
 			isShowKey = false;
 			isTurnInTheExam = false;
 
-			this.Width = 1211;
+			this.Width = 1230;
 			this.Load += FrmExam_Load;
 			this.FormClosing += FrmExam_FormClosing;
 		}

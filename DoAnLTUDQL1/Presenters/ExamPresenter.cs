@@ -193,7 +193,16 @@ namespace DoAnLTUDQL1.Presenters
 					if (incorrectAnswers.Count() == 0)
 					{
 						correct++;
+						updateQuestionAnswers(true, question.QuestionId);
 					}
+					else
+					{
+						updateQuestionAnswers(false, question.QuestionId);
+					}
+				}
+				else
+				{
+					updateQuestionAnswers(false, question.QuestionId);
 				}
 			}
 
@@ -275,6 +284,31 @@ namespace DoAnLTUDQL1.Presenters
 								}).FirstOrDefault();
 
 			view.ExamDetail = context.ExamDetails.SingleOrDefault(s => s.ExamDetailId == examDetailId);
+		}
+
+		//true: increment NumberOfCorrectAnswers
+		//false: increment NumberOfWrongAnswers
+		void updateQuestionAnswers(bool type, int questionId)
+		{
+			try
+			{
+				var question = context.Questions.SingleOrDefault(s => s.QuestionId == questionId);
+
+				if (type)
+				{
+					question.NumberOfCorrectAnswers++;
+				}
+				else
+				{
+					question.NumberOfWrongAnswers++;
+				}
+
+				context.SubmitChanges();
+			}
+			catch (Exception e)
+			{
+				throw e;				
+			}
 		}
 	}
 }
