@@ -19,6 +19,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         BindingSource bsListExam;
         List<BaseValidator> AddValidatorList;
         List<BaseValidator> EditValidatorList;
+
         public frmTeacherExam(Teacher teacher, User user)
         {
             CurrentUser = teacher;
@@ -43,16 +44,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Set data bindings
             SetDataBinding();
 
-            // Load combobox Subject edit ExamCode
-            mCbbEditExamSubject.DisplayMember = "SubjectName";
-            mCbbEditExamSubject.ValueMember = "SubjectId";
-            mCbbEditExamSubject.DataSource = Subjects;
-
-            // Load combobox Subject add ExamCode 
-            mCbbAddExamSubject.DisplayMember = "SubjectName";
-            mCbbAddExamSubject.ValueMember = "SubjectId";
-            mCbbAddExamSubject.DataSource = Subjects;
-
             // Register events
             // Load
             mBtnReloadListExam.Click += MBtnReloadListExam_Click;
@@ -60,25 +51,17 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Delete
             mBtnDeleteExam.Click += MBtnDeleteExam_Click;
             // Edit
-            mCbbEditExamSubject.SelectedIndexChanged += MCbbEditExamSubject_SelectedIndexChanged;
-            mTxtEditDuration.KeyPress += MTxtEditDuration_KeyPress;
             mBtnSaveEditExam.Click += MBtnSaveEditExam_Click;
+            mBtnEditExamDetail.Click += MBtnEditExamDetail_Click;
             // Add
-            mCbbAddExamSubject.SelectedIndexChanged += MCbbAddExamSubject_SelectedIndexChanged;
-            mTxtAddDuration.KeyPress += MTxtAddDuration_KeyPress;
             mBtnAddExam.Click += MBtnAddExam_Click;
+            mBtnAddExamDetail.Click += MBtnAddExamDetail_Click;
 
             // Startup
             mTabExam.SelectTab(0);
             if (bsListExam.Count > 0)
             {
                 mGridListExam.Rows[0].Selected = true;
-            }
-            if (mCbbAddExamSubject.Items.Count > 0)
-            {
-                var subject = mCbbAddExamSubject.SelectedItem as Subject;
-                mTxtAddExamSubjectId.Text = subject.SubjectId.ToString();
-                mTxtAddExamGradeId.Text = subject.GradeId.ToString();
             }
 
             EditValidatorList = new List<BaseValidator>();
@@ -89,76 +72,46 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
 
         // Add exam
-        private void MCbbAddExamSubject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (mCbbAddExamSubject.SelectedItem != null)
-            {
-                var subject = mCbbAddExamSubject.SelectedItem as Subject;
-                mTxtAddExamSubjectId.Text = subject.SubjectId.ToString();
-                mTxtAddExamGradeId.Text = subject.GradeId.ToString();
-            }
-        }
-
-        private void MTxtAddDuration_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void MBtnAddExam_Click(object sender, EventArgs e)
         {
-            if (mCbbAddExamSubject.SelectedItem != null)
+            //if (!AddValidatorList.All(a => a.IsValid))
+            //{
+            //    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
+            //    InvalidValidatingControl.ControlToValidate.Focus();
+
+            //    return;
+            //}
+
+            var examAdded = new DoAnLTUDQL1.Exam
             {
-                if (!AddValidatorList.All(a => a.IsValid))
-                {
-                    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
-                    InvalidValidatingControl.ControlToValidate.Focus();
+                ExamId = "",
+                ExamName = mTxtAddExamName.Text,
+                IsPacticeExam = false
+            };
 
-                    return;
-                }
-
-                var timeStart = dateTimeAddTimeStart.Value.TimeOfDay;
-                var startTime = DateTime.Parse(mDateTimeAddDateStart.Value.ToShortDateString()).Add(timeStart);
-
-                var examAdded = new ExamListViewModel
-                {
-                    ExamName = mTxtAddExamName.Text,
-                    StartTime = startTime,
-                    Duration = int.Parse(mTxtAddDuration.Text),
-                    SubjectId = mTxtAddExamSubjectId.Text,
-                    GradeId = int.Parse(mTxtAddExamGradeId.Text)
-                };
-
-                AddExam?.Invoke(examAdded, null);
-            }
-            else
+            if (ExamDetailsAdded == null)
             {
-                MessageBox.Show("Chưa đủ dữ liệu!");
+                ExamDetailsAdded = new List<ExamDetail>();
             }
+            AddExam?.Invoke(examAdded, null);
+        }
+
+        private void MBtnAddExamDetail_Click(object sender, EventArgs e)
+        {
+            var exam = new DoAnLTUDQL1.Exam()
+            {
+                ExamId = "",
+                ExamName = mTxtAddExamName.Text,
+                IsPacticeExam = false
+            };
+
+            ExamDetailsAdded = new List<ExamDetail>();
+            var frmTeacherExamDetail = new frmTeacherExamDetail(exam, Subjects, ExamDetailsAdded);
+            frmTeacherExamDetail.ShowDialog();
         }
 
 
         // Edit exam
-        private void MTxtEditDuration_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void MCbbEditExamSubject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (mCbbEditExamSubject.SelectedItem != null)
-            {
-                var subject = mCbbEditExamSubject.SelectedItem as Subject;
-                mTxtEditExamSubjectId.Text = subject.SubjectId.ToString();
-                mTxtEditExamGradeId.Text = subject.GradeId.ToString();
-            }
-        }
-
         private void MBtnSaveEditExam_Click(object sender, EventArgs e)
         {
             if (bsListExam.Count > 0)
@@ -171,8 +124,24 @@ namespace DoAnLTUDQL1.Views.TeacherView
                     return;
                 }
 
-                var exam = (ExamListViewModel)mGridListExam.SelectedRows[0].DataBoundItem;
+                var exam = (DoAnLTUDQL1.Exam)bsListExam.CurrencyManager.Current;
                 SaveEditExam?.Invoke(exam, null);
+            }
+        }
+
+        private void MBtnEditExamDetail_Click(object sender, EventArgs e)
+        {
+            if (bsListExam.Count > 0 && Subjects.Count > 0)
+            {
+                var exam = new DoAnLTUDQL1.Exam()
+                {
+                    ExamId = mTxtEditExamId.Text,
+                    ExamName = mTxtEditExamName.Text,
+                    IsPacticeExam = false
+                };
+
+                var frmTeacherExamDetail = new frmTeacherExamDetail(exam, Subjects, ExamDetailsEdited);
+                frmTeacherExamDetail.ShowDialog();
             }
         }
 
@@ -199,6 +168,30 @@ namespace DoAnLTUDQL1.Views.TeacherView
             {
                 mBtnReloadListExam.PerformClick();
             }
+
+            if (mTabExam.SelectedTab == mTabExamDetail || mTabExam.SelectedTab == mTabEditExam)
+            {
+                var exam = (DoAnLTUDQL1.Exam)bsListExam.CurrencyManager.Current;
+                ReloadListExamDetail(exam.ExamId, null);
+                mGridListExamDetail.DataSource = ExamDetails;
+
+                // For edited
+                ExamDetailsEdited = ExamDetails.Select(ed => new ExamDetail
+                {
+                    ExamDetailId = ed.ExamDetailId,
+                    ExamId = ed.ExamId,
+                    StartTime = ed.StartTime,
+                    Duration = ed.Duration,
+                    SubjectId = ed.SubjectId,
+                    GradeId = ed.GradeId
+                }).ToList();
+                if (ExamDetailsEdited == null)
+                {
+                    ExamDetailsEdited = new List<ExamDetail>();
+                }
+
+                SetHeaderMGridListExamDetail();
+            }
         }
         #endregion
 
@@ -210,13 +203,15 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler DeleteExam;
         public event EventHandler SaveEditExam;
         public event EventHandler AddExam;
+        public event EventHandler ReloadListExamDetail;
 
         // User information
         public Teacher CurrentUser { get; set; }
         public User CurrentUserInfo { get; set; }
 
         // Reload list exam
-        public IList<ExamListViewModel> Exams { get; set; }
+        public IList<DoAnLTUDQL1.Exam> Exams { get; set; }
+        public IList<ExamListViewModel> ExamDetails { get; set; }
 
         // Delete exam
         public string DeleteExamMessage
@@ -225,11 +220,11 @@ namespace DoAnLTUDQL1.Views.TeacherView
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã xoá kỳ thi!");
+                    MessageBox.Show("Đã xoá kỳ thi và toàn bộ môn thi có trong kỳ thi!");
                 }
                 else if (value == "Used")
                 {
-                    MessageBox.Show("Kỳ thi đã được sử dụng nên không thể xoá!");
+                    MessageBox.Show("Kỳ thi đã có môn thi được sử dụng nên không thể xoá!");
                 }
                 else
                 {
@@ -241,17 +236,18 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
         // Edit exam
         public IList<Subject> Subjects { get; set; }
+        public IList<ExamDetail> ExamDetailsEdited { get; set; }
         public string SaveEditExamMessage
         {
             set
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã sửa kỳ thi!");
+                    MessageBox.Show("Đã sửa kỳ thi và cập nhật danh sách môn thi!");
                 }
                 else if (value == "Used")
                 {
-                    MessageBox.Show("Kỳ thi đã được sử dụng nên không thể sửa!");
+                    MessageBox.Show("Đã cập nhật lại danh sách môn thi, kỳ thi có môn thi được sử dụng nên không thể sửa tên!");
                 }
                 else
                 {
@@ -261,19 +257,18 @@ namespace DoAnLTUDQL1.Views.TeacherView
         }
 
         // Add exam
+        public IList<ExamDetail> ExamDetailsAdded { get; set; }
         public string AddExamMessage
         {
             set
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã tạo kỳ thi!");
+                    MessageBox.Show("Đã tạo kỳ thi và các môn thi!");
 
                     // Refresh form
                     mTxtAddExamName.ResetText();
-                    mDateTimeAddDateStart.ResetText();
-                    dateTimeAddTimeStart.ResetText();
-                    mTxtAddDuration.ResetText();
+                    ExamDetailsAdded = null;
                 }
                 else
                 {
@@ -297,9 +292,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
             rqAddDuration = new RequiedInputValidator();
 
             rqEditExamName.ControlToValidate = mTxtEditExamName;
-            rqEditDuration.ControlToValidate = mTxtEditDuration;
+            //rqEditDuration.ControlToValidate = mTxtEditDuration;
             rqAddExamName.ControlToValidate = mTxtAddExamName;
-            rqAddDuration.ControlToValidate = mTxtAddDuration;
+            //rqAddDuration.ControlToValidate = mTxtAddDuration;
 
             EditValidatorList.Add(rqEditExamName);
             EditValidatorList.Add(rqEditDuration);
@@ -319,8 +314,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
             rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
             rgAddDuration.ErrorMessage = errorMessageNumber;
 
-            rgEditDuration.ControlToValidate = mTxtEditDuration;
-            rgAddDuration.ControlToValidate = mTxtAddDuration;
+            //rgEditDuration.ControlToValidate = mTxtEditDuration;
+            //rgAddDuration.ControlToValidate = mTxtAddDuration;
 
             EditValidatorList.Add(rgEditDuration);
 
@@ -331,6 +326,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 item.IsValid = false;
             }
         }
+
         private void SetHeaderMGridListExam()
         {
             // Show header for mGridListExam
@@ -344,22 +340,41 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
             mGridListExam.Columns[2].Visible = false;
 
-            mGridListExam.Columns[3].HeaderText = "Ngày thi";
-            mGridListExam.Columns[3].DataPropertyName = "StartTime";
-
-            mGridListExam.Columns[4].HeaderText = "Thời gian thi";
-            mGridListExam.Columns[4].DataPropertyName = "Duration";
-
-            mGridListExam.Columns[5].HeaderText = "Mã môn học";
-            mGridListExam.Columns[5].DataPropertyName = "SubjectId";
-
-            mGridListExam.Columns[6].HeaderText = "Khối lớp";
-            mGridListExam.Columns[6].DataPropertyName = "GradeId";
-
-            mGridListExam.Columns[7].HeaderText = "Tên môn học";
-            mGridListExam.Columns[7].DataPropertyName = "SubjectName";
-
             foreach (DataGridViewColumn col in mGridListExam.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
+        private void SetHeaderMGridListExamDetail()
+        {
+            // Show header for mGridListExam
+            mGridListExamDetail.AutoGenerateColumns = false;
+
+            mGridListExamDetail.Columns[0].HeaderText = "Mã kỳ thi";
+            mGridListExamDetail.Columns[0].DataPropertyName = "ExamId";
+
+            mGridListExamDetail.Columns[1].HeaderText = "Tên kỳ thi";
+            mGridListExamDetail.Columns[1].DataPropertyName = "ExamName";
+
+            mGridListExamDetail.Columns[2].Visible = false;
+
+            mGridListExamDetail.Columns[3].HeaderText = "Ngày thi";
+            mGridListExamDetail.Columns[3].DataPropertyName = "StartTime";
+
+            mGridListExamDetail.Columns[4].HeaderText = "Thời gian thi";
+            mGridListExamDetail.Columns[4].DataPropertyName = "Duration";
+
+            mGridListExamDetail.Columns[5].HeaderText = "Mã môn học";
+            mGridListExamDetail.Columns[5].DataPropertyName = "SubjectId";
+
+            mGridListExamDetail.Columns[6].HeaderText = "Khối lớp";
+            mGridListExamDetail.Columns[6].DataPropertyName = "GradeId";
+
+            mGridListExamDetail.Columns[7].HeaderText = "Tên môn học";
+            mGridListExamDetail.Columns[7].DataPropertyName = "SubjectName";
+
+            foreach (DataGridViewColumn col in mGridListExamDetail.Columns)
             {
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
@@ -369,12 +384,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             mTxtEditExamId.DataBindings.Add("Text", bsListExam, "ExamId", true, DataSourceUpdateMode.OnPropertyChanged);
             mTxtEditExamName.DataBindings.Add("Text", bsListExam, "ExamName", true, DataSourceUpdateMode.OnPropertyChanged);
-            mDateTimeEditDateStart.DataBindings.Add("Value", bsListExam, "StartTime", true, DataSourceUpdateMode.OnPropertyChanged);
-            dateTimeEditTimeStart.DataBindings.Add("Value", bsListExam, "StartTime", true, DataSourceUpdateMode.OnPropertyChanged);
-            mTxtEditDuration.DataBindings.Add("Text", bsListExam, "Duration", true, DataSourceUpdateMode.OnPropertyChanged);
-            mCbbEditExamSubject.DataBindings.Add("SelectedValue", bsListExam, "SubjectId", true, DataSourceUpdateMode.OnPropertyChanged);
-            mTxtEditExamSubjectId.DataBindings.Add("Text", bsListExam, "SubjectId", true, DataSourceUpdateMode.OnPropertyChanged);
-            mTxtEditExamGradeId.DataBindings.Add("Text", bsListExam, "GradeId", true, DataSourceUpdateMode.OnPropertyChanged);
         }
         #endregion
     }

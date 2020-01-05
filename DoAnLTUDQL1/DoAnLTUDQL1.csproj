@@ -177,6 +177,7 @@
     <Compile Include="Presenters\TeacherEditAnswerPresenter.cs" />
     <Compile Include="Presenters\TeacherEditExamCodeQuestionPresenter.cs" />
     <Compile Include="Presenters\TeacherExamCodePresenter.cs" />
+    <Compile Include="Presenters\TeacherExamDetailPresenter.cs" />
     <Compile Include="Presenters\TeacherExamPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\TeacherPracticeExamPresenter.cs" />
@@ -292,6 +293,12 @@
     <Compile Include="Views\TeacherView\frmTeacherExamCode.Designer.cs">
       <DependentUpon>frmTeacherExamCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExamDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExamDetail.Designer.cs">
+      <DependentUpon>frmTeacherExamDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TeacherView\frmTeacherPracticeExam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +333,7 @@
     <Compile Include="Views\TeacherView\ITeacherEditAnswerView.cs" />
     <Compile Include="Views\TeacherView\ITeacherEditExamCodeQuestionsView.cs" />
     <Compile Include="Views\TeacherView\ITeacherExamCodeView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherExamDetailView.cs" />
     <Compile Include="Views\TeacherView\ITeacherExamView.cs" />
     <Compile Include="Views\TeacherView\ITeacherPracticeExamView.cs" />
     <Compile Include="Views\TeacherView\ITeacherQuestionView.cs" />
@@ -376,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmTeacherExamCode.resx">
       <DependentUpon>frmTeacherExamCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherExamDetail.resx">
+      <DependentUpon>frmTeacherExamDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmTeacherPracticeExam.resx">
       <DependentUpon>frmTeacherPracticeExam.cs</DependentUpon>

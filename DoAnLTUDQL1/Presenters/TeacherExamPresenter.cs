@@ -27,9 +27,9 @@ namespace DoAnLTUDQL1.Presenters
             // Get list subject
             GetListSubject();
 
-
             // Events
             view.ReloadListExam += ReloadListExam;
+            view.ReloadListExamDetail += ReloadListExamDetail;
             view.DeleteExam += DeleteExam;
             view.SaveEditExam += SaveEditExam;
             view.AddExam += AddExam;
@@ -39,7 +39,7 @@ namespace DoAnLTUDQL1.Presenters
         {
             try
             {
-                var examAdded = sender as ExamListViewModel;
+                var examAdded = sender as DoAnLTUDQL1.Exam;
 
                 using (var context = new QLThiTracNghiemDataContext())
                 {
@@ -48,32 +48,20 @@ namespace DoAnLTUDQL1.Presenters
                     var examId = examIds.Select(id => int.Parse(id)).Max() + 1;
                     examAdded.ExamId = $"CT{examId:D6}";
 
-                    // Get examDetailId
-                    var examDetailIds = context.ExamDetails.Select(ed => ed.ExamDetailId.Substring(2)).ToList();
-                    var examDetailId = examDetailIds.Select(id => int.Parse(id)).Max() + 1;
-                    examAdded.ExamDetailId = $"KT{examDetailId:D6}";
-
-                    var exam = new Exam
-                    {
-                        ExamId = examAdded.ExamId,
-                        ExamName = examAdded.ExamName,
-                        IsPacticeExam = false
-                    };
-
-                    var examDetail = new ExamDetail
-                    {
-                        ExamDetailId = examAdded.ExamDetailId,
-                        ExamId = examAdded.ExamId,
-                        StartTime = examAdded.StartTime,
-                        Duration = examAdded.Duration,
-                        SubjectId = examAdded.SubjectId,
-                        GradeId = examAdded.GradeId
-                    };
-
-                    context.Exams.InsertOnSubmit(exam);
-                    context.ExamDetails.InsertOnSubmit(examDetail);
-
+                    context.Exams.InsertOnSubmit(examAdded);
                     context.SubmitChanges();
+
+                    foreach (var examDetail in view.ExamDetailsAdded)
+                    {
+                        // Get examDetailId
+                        var examDetailIds = context.ExamDetails.Select(ed => ed.ExamDetailId.Substring(2)).ToList();
+                        var examDetailId = examDetailIds.Select(id => int.Parse(id)).Max() + 1;
+                        examDetail.ExamDetailId = $"KT{examDetailId:D6}";
+                        examDetail.ExamId = examAdded.ExamId;
+
+                        context.ExamDetails.InsertOnSubmit(examDetail);
+                        context.SubmitChanges();
+                    }
                 }
 
                 view.AddExamMessage = "Succeed";
@@ -89,32 +77,74 @@ namespace DoAnLTUDQL1.Presenters
         {
             try
             {
-                var examEdited = sender as ExamListViewModel;
+                var examEdited = sender as DoAnLTUDQL1.Exam;
 
-                bool check = false;
+                bool checkUsed = false;
 
                 using (var context = new QLThiTracNghiemDataContext())
                 {
-                    var countUsed = context.ExamTakes.Where(et => et.ExamDetailId == examEdited.ExamDetailId).Count();
+                    var examDb = context.Exams.Single(ex => ex.ExamId == examEdited.ExamId);
+                    var examDetailsDb = context.ExamDetails.Where(ed => ed.ExamId == examDb.ExamId);
 
-                    if (countUsed <= 0)
+                    // Check used
+                    foreach (var examDetailDb in examDetailsDb)
                     {
-                        var exam = context.Exams.First(ex => ex.ExamId == examEdited.ExamId);
-                        var examDetail = context.ExamDetails.First(ed => ed.ExamDetailId == examEdited.ExamDetailId);
+                        if (context.ExamTakes.Any(et => et.ExamDetailId == examDetailDb.ExamDetailId))
+                        {
+                            checkUsed = true;
+                            break;
+                        }
+                    }
 
-                        exam.ExamName = examEdited.ExamName;
 
-                        examDetail.StartTime = examEdited.StartTime;
-                        examDetail.Duration = examEdited.Duration;
-                        examDetail.SubjectId = examEdited.SubjectId;
-                        examDetail.GradeId = examEdited.GradeId;
-
+                    // Update name if not used
+                    if (!checkUsed)
+                    {
+                        examDb.ExamName = examEdited.ExamName;
                         context.SubmitChanges();
-                        check = true;
+                    }
+
+
+                    // Delete
+                    foreach (var examDetailDb in examDetailsDb)
+                    {
+                        if (view.ExamDetailsEdited.Any(ed => ed.ExamDetailId == examDetailDb.ExamDetailId))
+                        {
+                            // If exists, don't delete
+                            continue;
+                        }
+                        context.ExamDetails.DeleteOnSubmit(examDetailDb);
+                    }
+                    context.SubmitChanges();
+
+
+                    foreach (var examDetail in view.ExamDetailsEdited)
+                    {
+                        // Add
+                        if (string.IsNullOrEmpty(examDetail.ExamDetailId))
+                        {
+                            // Get examDetailId
+                            var examDetailIds = context.ExamDetails.Select(ed => ed.ExamDetailId.Substring(2)).ToList();
+                            var examDetailId = examDetailIds.Select(id => int.Parse(id)).Max() + 1;
+                            examDetail.ExamDetailId = $"KT{examDetailId:D6}";
+
+                            context.ExamDetails.InsertOnSubmit(examDetail);
+                        }
+
+                        // Update
+                        else
+                        {
+                            var examDetailDb = examDetailsDb.Single(ed => ed.ExamDetailId == examDetail.ExamDetailId);
+                            examDetailDb.Duration = examDetail.Duration;
+                            examDetailDb.StartTime = examDetail.StartTime;
+                            examDetailDb.SubjectId = examDetail.SubjectId;
+                            examDetailDb.GradeId = examDetail.GradeId;
+                        }
+                        context.SubmitChanges();
                     }
                 }
 
-                if (check)
+                if (!checkUsed)
                 {
                     view.SaveEditExamMessage = "Succeed";
                 }
@@ -182,17 +212,40 @@ namespace DoAnLTUDQL1.Presenters
                      join s in context.Subjects on new { ed.SubjectId, ed.GradeId } equals new { s.SubjectId, s.GradeId }
                      join t in context.Teaches on new { s.SubjectId, s.GradeId } equals new { t.SubjectId, t.GradeId }
                      where t.TeacherId == view.CurrentUser.TeacherId && ex.IsPacticeExam.GetValueOrDefault(false) == false
-                     select new ExamListViewModel
-                     {
-                         ExamId = ex.ExamId,
-                         ExamName = ex.ExamName,
-                         ExamDetailId = ed.ExamDetailId,
-                         StartTime = ed.StartTime,
-                         Duration = ed.Duration,
-                         SubjectId = ed.SubjectId,
-                         GradeId = ed.GradeId,
-                         SubjectName = s.SubjectName
-                     }).ToList();
+                     select ex).Distinct().ToList();
+
+                var examNotListed = context.Exams.Where(ex => !context.ExamDetails.Any(ed => ed.ExamId == ex.ExamId) && ex.IsPacticeExam == false).ToList();
+
+                foreach (var exam in examNotListed)
+                {
+                    view.Exams.Add(exam);
+                }
+            }
+        }
+
+        private void ReloadListExamDetail(object sender, EventArgs e)
+        {
+            var examId = sender as string;
+            if (examId != null || !string.IsNullOrEmpty(examId))
+            {
+                using (var context = new QLThiTracNghiemDataContext())
+                {
+                    view.ExamDetails = (from ex in context.Exams
+                                        where ex.ExamId == examId
+                                        join ed in context.ExamDetails on ex.ExamId equals ed.ExamId
+                                        join s in context.Subjects on new { ed.SubjectId, ed.GradeId } equals new { s.SubjectId, s.GradeId }
+                                        select new ExamListViewModel
+                                        {
+                                            ExamId = ex.ExamId,
+                                            ExamName = ex.ExamName,
+                                            ExamDetailId = ed.ExamDetailId,
+                                            StartTime = ed.StartTime,
+                                            Duration = ed.Duration,
+                                            SubjectId = ed.SubjectId,
+                                            GradeId = ed.GradeId,
+                                            SubjectName = s.SubjectName
+                                        }).ToList();
+                }
             }
         }
 

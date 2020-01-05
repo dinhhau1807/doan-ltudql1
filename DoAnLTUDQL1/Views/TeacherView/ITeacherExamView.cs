@@ -14,20 +14,24 @@ namespace DoAnLTUDQL1.Views.TeacherView
         User CurrentUserInfo { get; set; }
 
         // List Exam
-        IList<ExamListViewModel> Exams { get; set; }
+        IList<DoAnLTUDQL1.Exam> Exams { get; set; }
+        IList<ExamListViewModel> ExamDetails { get; set; }
 
         // Delete Exam
         string DeleteExamMessage { set; }
 
         // Edit Exam
         IList<Subject> Subjects { get; set; }
+        IList<ExamDetail> ExamDetailsEdited { get; set; }
         string SaveEditExamMessage { set; }
 
         // Add Exam
+        IList<ExamDetail> ExamDetailsAdded { get; set; }
         string AddExamMessage { set; }
 
         // Events
         event EventHandler ReloadListExam;
+        event EventHandler ReloadListExamDetail;
         event EventHandler DeleteExam;
         event EventHandler SaveEditExam;
         event EventHandler AddExam;
