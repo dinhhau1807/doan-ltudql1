@@ -170,18 +170,29 @@ namespace DoAnLTUDQL1.Presenters
 
                 using (var context = new QLThiTracNghiemDataContext())
                 {
-                    var examDetail = context.ExamDetails.First(ed => ed.ExamId == examId);
-                    var countUsed = context.ExamTakes.Where(et => et.ExamDetailId == examDetail.ExamDetailId).Count();
+                    var examDetail = context.ExamDetails.FirstOrDefault(ed => ed.ExamId == examId);
+                    if (examDetail != null)
+                    {
+                        var examDetailsCount = context.ExamDetails.Where(ed => ed.ExamId == examId);
+                        var countUsed = context.ExamTakes.Where(et => examDetailsCount.Any(ed => ed.ExamDetailId == et.ExamDetailId)).Count();
 
-                    if (countUsed <= 0)
+                        if (countUsed <= 0)
+                        {
+                            var exam = context.Exams.First(ex => ex.ExamId == examId);
+
+                            var examDetails = context.ExamDetails.Where(ed => ed.ExamId == exam.ExamId);
+                            context.ExamDetails.DeleteAllOnSubmit(examDetails);
+                            context.Exams.DeleteOnSubmit(exam);
+                            context.SubmitChanges();
+
+                            check = true;
+                        }
+                    }
+                    else
                     {
                         var exam = context.Exams.First(ex => ex.ExamId == examId);
-
-                        var examDetails = context.ExamDetails.Where(ed => ed.ExamId == exam.ExamId);
-                        context.ExamDetails.DeleteAllOnSubmit(examDetails);
                         context.Exams.DeleteOnSubmit(exam);
                         context.SubmitChanges();
-
                         check = true;
                     }
                 }
