@@ -1,6 +1,7 @@
 ﻿using DoAnLTUDQL1.Presenters;
 using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
     public partial class frmTeacherExam : MetroFramework.Forms.MetroForm, ITeacherExamView
     {
         TeacherExamPresenter presenter;
-        BindingSource bsListExam;
+        BindingSource bsListExam, examRSBS;
+        ReportDataSource examRPDS;
+        const string rpdsName = "ExamRS";
         List<BaseValidator> AddValidatorList;
         List<BaseValidator> EditValidatorList;
 
@@ -26,6 +29,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
             CurrentUserInfo = user;
             InitializeComponent();
             Load += FrmExam_Load;
+            mbtnExamRS.Click += mbtnExamRS_Click;
+        }
+
+        private void mbtnExamRS_Click(object sender, EventArgs e)
+        {
+            ViewResult?.Invoke(sender, e);
         }
 
 
@@ -68,9 +77,42 @@ namespace DoAnLTUDQL1.Views.TeacherView
             AddValidatorList = new List<BaseValidator>();
             RequireValidatingControls();
             RegexValidatingControls();
+
+            //REPORT
+
+            LoadData2ComboBox();
+             rpvExamRS.LocalReport.DataSources.Clear();
+            examRSBS = new BindingSource();
+            examRPDS = new ReportDataSource(rpdsName);
+            examRPDS.Value = examRSBS;
+           
+            rpvExamRS.LocalReport.DataSources.Add(examRPDS);
+            this.rpvExamRS.RefreshReport();
         }
 
+        void LoadData2ComboBox()
+        {
+           
+            using (var qlttn = new QLThiTracNghiemDataContext())
+            {
+                var listTeach = qlttn.Teaches.ToList<Teach>();
+                var listStudent = qlttn.Students.ToList<Student>();
+                var listExamResult = qlttn.ExamResults.ToList<ExamResult>();
+                var listExamDetail = qlttn.ExamDetails.ToList<ExamDetail>();
 
+                var getExamId = from ler in listExamResult
+                                join led in listExamDetail on ler.ExamDetailId equals led.ExamDetailId
+                                join ex in qlttn.Exams on led.ExamId equals ex.ExamId
+                                join ls in listStudent on ler.StudentId equals ls.StudentId
+                                join lt in listTeach on ls.ClassroomId equals lt.ClassroomId
+                                where lt.TeacherId == CurrentUser.TeacherId
+                                select new { IdE = ler.ExamDetailId, NameE = ex.ExamName };
+
+                mcbExamRV.DataSource = getExamId.ToList();
+                mcbExamRV.DisplayMember = "IdE";
+                mcbExamRV.ValueMember = "IdE";
+            }
+        }
         // Add exam
         private void MBtnAddExam_Click(object sender, EventArgs e)
         {
@@ -204,6 +246,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler SaveEditExam;
         public event EventHandler AddExam;
         public event EventHandler ReloadListExamDetail;
+        public event EventHandler ViewResult;
 
         // User information
         public Teacher CurrentUser { get; set; }
@@ -274,6 +317,30 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 {
                     MessageBox.Show("Xảy ra lỗi khi tạo kỳ thi!");
                 }
+            }
+        }
+
+        public string ExamDetailId
+        {
+            get => mcbExamRV.Text;
+        }
+
+        public string ExamDetailIdRP
+        {
+            set
+            {
+                mcbExamRV.Text = value.ToString();
+                var rpParam = new ReportParameter("ExamDetailId", value.ToString());
+                rpvExamRS.LocalReport.SetParameters(rpParam);
+            }
+        }
+        public IList<ExamStatisticViewModel> DataSource 
+        {
+            get => examRSBS.DataSource as IList<ExamStatisticViewModel>;
+            set
+            {
+                examRSBS.DataSource = value;
+                rpvExamRS.RefreshReport();
             }
         }
         #endregion
@@ -382,8 +449,11 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
         private void SetDataBinding()
         {
+            mTxtEditExamId.DataBindings.Clear();
             mTxtEditExamId.DataBindings.Add("Text", bsListExam, "ExamId", true, DataSourceUpdateMode.OnPropertyChanged);
+            mTxtEditExamName.DataBindings.Clear();
             mTxtEditExamName.DataBindings.Add("Text", bsListExam, "ExamName", true, DataSourceUpdateMode.OnPropertyChanged);
+            
         }
         #endregion
     }
