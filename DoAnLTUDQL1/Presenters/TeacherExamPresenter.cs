@@ -177,9 +177,9 @@ namespace DoAnLTUDQL1.Presenters
                     {
                         var exam = context.Exams.First(ex => ex.ExamId == examId);
 
-                        context.ExamDetails.DeleteOnSubmit(examDetail);
+                        var examDetails = context.ExamDetails.Where(ed => ed.ExamId == exam.ExamId);
+                        context.ExamDetails.DeleteAllOnSubmit(examDetails);
                         context.Exams.DeleteOnSubmit(exam);
-
                         context.SubmitChanges();
 
                         check = true;
