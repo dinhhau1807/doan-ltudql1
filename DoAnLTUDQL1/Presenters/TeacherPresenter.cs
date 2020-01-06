@@ -1,5 +1,8 @@
-﻿using System;
+﻿using DoAnLTUDQL1.ViewModels;
+using DoAnLTUDQL1.Views.TeacherView;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,83 +11,67 @@ namespace DoAnLTUDQL1.Presenters
 {
     public class TeacherPresenter
     {
-        User CurrentUser;
+        ITeacherView view;
 
-
-        public TeacherPresenter(User currentUser)
+        public TeacherPresenter(ITeacherView teacherView)
         {
-            this.CurrentUser = currentUser;
+            view = teacherView;
+            Initializer();
         }
 
-        public List<usp_LoadListExamCodeResult> LoadListExamCode(int ExamType = -1)
+        private void Initializer()
         {
-            using (QLThiTracNghiemDataContext context = new QLThiTracNghiemDataContext())
+            // Get user info
+            using (var context = new QLThiTracNghiemDataContext())
             {
-                return context.usp_LoadListExamCode(ExamType).ToList();
+                context.DeferredLoadingEnabled = true;
+                view.CurrentUserInfo = context.Users.First(u => u.Username == view.CurrentUser.Username);
+            }
+
+            // Register events
+            view.ChangePassword += ChangePassword;
+            view.SaveInfo += SaveInfo;
+        }
+
+        private void SaveInfo(object sender, EventArgs e)
+        {
+            using (var context = new QLThiTracNghiemDataContext())
+            {
+                var user = context.Users.First(u => u.Username == view.CurrentUserInfo.Username);
+                user.FirstName = view.CurrentUserInfo.FirstName;
+                user.LastName = view.CurrentUserInfo.LastName;
+                user.Phone = view.CurrentUserInfo.Phone;
+                user.Dob = view.CurrentUserInfo.Dob;
+
+                context.SubmitChanges();
             }
         }
 
-        public List<ExamCode_Question> LoadQuestionByExamCode(string ExamCodeID)
+        private void ChangePassword(object sender, EventArgs e)
         {
-            using (QLThiTracNghiemDataContext context = new QLThiTracNghiemDataContext())
+            if (Common.VerifyPassword(view.OldPassword, view.CurrentUserInfo.Password))
             {
-                context.DeferredLoadingEnabled = false;
-                return context.ExamCode_Questions.Where(i => i.ExamCodeId.Contains(ExamCodeID)).ToList();
-            }
-        }
-        public List<Question> GetListQuestion(string SubjectID, int GradeID)
-        {
-            using (QLThiTracNghiemDataContext context = new QLThiTracNghiemDataContext())
-            {
-                context.DeferredLoadingEnabled = false;
-                var result = context.Questions.Where(i => i.SubjectId == SubjectID && i.GradeId.Value == GradeID);
-                
-                return result.ToList();
-            }
-        }
-        public List<ExamCode_Question> GetListExamQuestionByExamCode(string ExamCodeID)
-        {
-            using (QLThiTracNghiemDataContext context = new QLThiTracNghiemDataContext())
-            {
-                context.DeferredLoadingEnabled = false;
-                var result = context.ExamCode_Questions.Where(i => i.ExamCodeId == ExamCodeID);
-
-                return result.ToList();
-            }
-        }
-
-        public bool InsertExamQuestion(List<int> listQuestionID, string ExamCodeID)
-        {
-            try
-            {
-                using (QLThiTracNghiemDataContext context = new QLThiTracNghiemDataContext())
+                if (view.NewPassword == view.ConfirmNewPassword)
                 {
-                    List<ExamCode_Question> list = new List<ExamCode_Question>();
-                    //Clear old mapping
-                    List<ExamCode_Question> listDel = context.ExamCode_Questions.Where(i => i.ExamCodeId == ExamCodeID).ToList();
-                   
-                    context.DeferredLoadingEnabled = false;
-                    foreach(int item in listQuestionID)
+                    using (var context = new QLThiTracNghiemDataContext())
                     {
-                        ExamCode_Question eq = new ExamCode_Question();
-                        eq.ExamCodeId = ExamCodeID;
-                        eq.QuestionId = item;
-                        list.Add(eq);
+                        var user = context.Users.First(u => u.Username == view.CurrentUserInfo.Username);
+                        user.Password = Common.HashPassword(view.NewPassword);
+
+                        context.SubmitChanges();
                     }
-                    if (listDel.Count > 0) context.ExamCode_Questions.DeleteAllOnSubmit(listDel);
-                    context.ExamCode_Questions.InsertAllOnSubmit(list);
-                    context.SubmitChanges();
-                    return true;
 
+                    view.ChangePasswordMessage = "Succeed";
                 }
-                
+                else
+                {
+                    view.ChangePasswordMessage = "Password confirm not correct";
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return false;
+                view.ChangePasswordMessage = "Password not correct";
             }
-            
         }
-
     }
 }
