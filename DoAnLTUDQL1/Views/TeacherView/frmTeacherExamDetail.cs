@@ -212,8 +212,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListExamDetail.Count > 0)
             {
-                var examDetail = (ExamDetail)bsListExamDetail.CurrencyManager.Current;
-                DeleteExamDetail(examDetail, null);
+                DialogResult result = MessageBox.Show("Bạn có thật sự muốn xoá môn thi?", "Xoá môn thi", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    var examDetail = (ExamDetail)bsListExamDetail.CurrencyManager.Current;
+                    DeleteExamDetail(examDetail, null);
+                }
             }
         }
 
