@@ -300,7 +300,7 @@
     <Compile Include="Views\TeacherView\frmTeacherExam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\TeacherView\frmTeacherExam.Designer.cs">
+    <Compile Include="Views\TeacherView\frmTeacherExam.designer.cs">
       <DependentUpon>frmTeacherExam.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TeacherView\frmTeacherExamCode.cs">

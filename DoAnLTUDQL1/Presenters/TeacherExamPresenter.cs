@@ -2,7 +2,6 @@
 using DoAnLTUDQL1.Views.TeacherView;
 using System;
 using System.Collections.Generic;
-using System.Data.Linq;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -34,7 +33,6 @@ namespace DoAnLTUDQL1.Presenters
             view.DeleteExam += DeleteExam;
             view.SaveEditExam += SaveEditExam;
             view.AddExam += AddExam;
-            
         }
 
         private void AddExam(object sender, EventArgs e)
