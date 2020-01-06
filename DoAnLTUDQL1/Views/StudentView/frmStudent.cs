@@ -151,7 +151,7 @@ namespace DoAnLTUDQL1.Views.StudentView
 			}
 		}
 
-		public event Func<User> Logout;
+		//public event Func<User> Logout;
 		public event Func<User> ChangePassword;
 		public event Func<bool> ChangeUserProfile;
 		public event EventHandler ExamDetailFilter;
@@ -301,19 +301,7 @@ namespace DoAnLTUDQL1.Views.StudentView
 
 		private void mbtnLogout_Click(object sender, EventArgs e)
 		{
-			DialogResult result = MessageBox.Show("Bạn có thật sự muốn thoát chương trình?", "Đăng xuất", MessageBoxButtons.YesNo);
-			if (result == DialogResult.Yes)
-			{
-				this.Hide();
-
-				Thread tLogin = new Thread(_ =>
-				{
-					Application.Run(new frmLogin());
-				});
-				tLogin.Start();
-
-				this.Close();
-			}
+			this.Close();
 		}
 
 		private void mbtnChangePassword_Click(object sender, EventArgs e)
@@ -343,7 +331,19 @@ namespace DoAnLTUDQL1.Views.StudentView
 
 		private void frmStudent_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			
+			DialogResult result = MessageBox.Show("Bạn có thật sự muốn thoát chương trình?", "Đăng xuất", MessageBoxButtons.YesNo);
+			if (result == DialogResult.Yes)
+			{
+				Thread tLogin = new Thread(_ =>
+				{
+					Application.Run(new frmLogin());
+				});
+				tLogin.Start();
+			}
+			else
+			{
+				e.Cancel = true;
+			}
 		}
 
 		private void mbtnChangeProfile_Click(object sender, EventArgs e)

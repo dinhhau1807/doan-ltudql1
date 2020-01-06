@@ -24,7 +24,7 @@ namespace DoAnLTUDQL1.Presenters
 			this.view = studentView;
 			this.CurrentUser = currentUser;
 
-			view.Logout += View_Logout;
+			//view.Logout += View_Logout;
 			view.ChangePassword += View_ChangePassword;
 			view.ChangeUserProfile += View_ChangeUserProfile;
 			view.ExamDetailFilter += View_ExamDetailFilter;
