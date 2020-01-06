@@ -166,19 +166,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         // Tab logout
         private void MBtnLogout_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có thật sự muốn thoát chương trình?", "Đăng xuất", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                this.Hide();
-
-                Thread tLogin = new Thread(_ =>
-                {
-                    Application.Run(new frmLogin());
-                });
-                tLogin.Start();
-
-                this.Close();
-            }
+            this.Close();
         }
         #endregion
 
