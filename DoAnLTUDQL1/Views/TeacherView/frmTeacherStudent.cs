@@ -73,7 +73,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             studentStatisticRPDS.Value = studentStatisticBS;
             rpvStudent.LocalReport.DataSources.Add(studentStatisticRPDS);
             this.rpvStudent.RefreshReport();
-
+            
 
             rpvExam.LocalReport.DataSources.Clear();
             examStatisticBS = new BindingSource();
