@@ -234,6 +234,13 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
                 SetHeaderMGridListExamDetail();
             }
+
+            if (mTabExam.SelectedTab == mTabReport)
+            {
+                var frmTeacherExamReport = new frmTeacherExamReport(CurrentUser, CurrentUserInfo);
+                frmTeacherExamReport.ShowDialog();
+                mTabExam.SelectTab(0);
+            }
         }
         #endregion
 

@@ -191,6 +191,7 @@
     <Compile Include="Presenters\TeacherExamDetailPresenter.cs" />
     <Compile Include="Presenters\TeacherExamPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\TeacherExamReportPresenter.cs" />
     <Compile Include="Presenters\TeacherPracticeExamPresenter.cs" />
     <Compile Include="Presenters\TeacherQuestionPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
@@ -314,6 +315,12 @@
     <Compile Include="Views\TeacherView\frmTeacherExamDetail.Designer.cs">
       <DependentUpon>frmTeacherExamDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExamReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TeacherView\frmTeacherExamReport.Designer.cs">
+      <DependentUpon>frmTeacherExamReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TeacherView\frmTeacherPracticeExam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -349,6 +356,7 @@
     <Compile Include="Views\TeacherView\ITeacherEditExamCodeQuestionsView.cs" />
     <Compile Include="Views\TeacherView\ITeacherExamCodeView.cs" />
     <Compile Include="Views\TeacherView\ITeacherExamDetailView.cs" />
+    <Compile Include="Views\TeacherView\ITeacherExamReportView.cs" />
     <Compile Include="Views\TeacherView\ITeacherExamView.cs" />
     <Compile Include="Views\TeacherView\ITeacherPracticeExamView.cs" />
     <Compile Include="Views\TeacherView\ITeacherQuestionView.cs" />
@@ -406,6 +414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmTeacherExamDetail.resx">
       <DependentUpon>frmTeacherExamDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeacherView\frmTeacherExamReport.resx">
+      <DependentUpon>frmTeacherExamReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TeacherView\frmTeacherPracticeExam.resx">
       <DependentUpon>frmTeacherPracticeExam.cs</DependentUpon>
