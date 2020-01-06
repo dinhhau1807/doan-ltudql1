@@ -53,7 +53,7 @@ namespace DoAnLTUDQL1.Presenters
                                         where t.SubjectId == examDetail.SubjectId && t.GradeId == examDetail.GradeId
                                         select s).ToList();
 
-                        var examCodes = context.ExamCodes.Where(ec => ec.SubjectId == examDetail.SubjectId && ec.GradeId == ec.GradeId && ec.IsPracticeExam == false).First();
+                        var examCodes = context.ExamCodes.Where(ec => ec.SubjectId == examDetail.SubjectId && ec.GradeId == ec.GradeId && ec.IsPracticeExam == true).First();
 
                         foreach (var s in students)
                         {
