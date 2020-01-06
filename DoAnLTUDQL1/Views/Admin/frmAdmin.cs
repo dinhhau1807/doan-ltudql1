@@ -80,12 +80,33 @@ namespace DoAnLTUDQL1.Views.Admin
             mBtnBackup.Click += MBtnBackup_Click;
             mBtnConfigTestConnection.Click += MBtnConfigTestConnection_Click;
             mBtnConfigSaveConnectionString.Click += MBtnConfigSaveConnectionString_Click;
+            FormClosing += FrmAdmin_FormClosing;
 
             EditUserValidatorList = new List<BaseValidator>();
             AddUserValidatorList = new List<BaseValidator>();
 
             RequiredValidatingControls();
             RegexValidatingControls();
+        }
+
+        // Close
+        private void FrmAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có thật sự muốn thoát chương trình?", "Đăng xuất", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                Thread tLogin = new Thread(_ =>
+                {
+                    Application.Run(new frmLogin());
+                });
+                tLogin.Start();
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void MTabCtrl_KeyDown(object sender, KeyEventArgs e)

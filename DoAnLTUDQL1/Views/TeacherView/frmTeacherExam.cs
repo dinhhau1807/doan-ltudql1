@@ -150,8 +150,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListExam.Count > 0)
             {
-                var examId = (string)mGridListExam.SelectedRows[0].Cells[0].Value;
-                DeleteExam?.Invoke(examId, null);
+                DialogResult result = MessageBox.Show("Bạn có thật sự muốn xoá kỳ thi?", "Xoá kỳ thi", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    var examId = (string)mGridListExam.SelectedRows[0].Cells[0].Value;
+                    DeleteExam?.Invoke(examId, null);
+                }
             }
         }
 
