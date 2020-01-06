@@ -56,6 +56,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Add
             mBtnAddPracticeExam.Click += MBtnAddPracticeExam_Click;
             mBtnAddExamDetail.Click += MBtnAddExamDetail_Click;
+            // Update student mark
+            mBtnUpdateStudentMark.Click += MBtnUpdateStudentMark_Click;
 
             // Startup
             mTabPracticeExam.SelectTab(0);
@@ -68,6 +70,17 @@ namespace DoAnLTUDQL1.Views.TeacherView
             AddValidatorList = new List<BaseValidator>();
             RequireValidatingControls();
             RegexValidatingControls();
+        }
+
+
+        // Update student mark
+        private void MBtnUpdateStudentMark_Click(object sender, EventArgs e)
+        {
+            if (mGridListExamDetail.Rows.Count > 0 && mGridListExamDetail.SelectedRows.Count > 0)
+            {
+                var examDetail = (ExamListViewModel)mGridListExamDetail.SelectedRows[0].DataBoundItem;
+                UpdateStudentMark?.Invoke(examDetail, null);
+            }
         }
 
 
@@ -209,6 +222,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler SaveEditPracticeExam;
         public event EventHandler AddPracticeExam;
         public event EventHandler ReloadListExamDetail;
+        public event EventHandler UpdateStudentMark;
 
         // User information
         public Teacher CurrentUser { get; set; }
@@ -278,6 +292,28 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 else
                 {
                     MessageBox.Show("Xảy ra lỗi khi tạo kỳ thi thử!");
+                }
+            }
+        }
+
+        // Update student mark
+        public string UpdateStudentMarkMessage
+        {
+            set
+            {
+                if (value == "Succeed")
+                {
+                    MessageBox.Show("Đã cập nhật điểm thi!");
+                }
+
+                if (value == "NotYet")
+                {
+                    MessageBox.Show("Môn thi chưa đến lúc thi!");
+                }
+
+                if (value == "Failed")
+                {
+                    MessageBox.Show("Xảy ra lỗi khi cập nhật điểm thi!");
                 }
             }
         }

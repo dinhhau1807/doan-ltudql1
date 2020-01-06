@@ -29,11 +29,15 @@ namespace DoAnLTUDQL1.Views.TeacherView
         IList<ExamDetail> ExamDetailsAdded { get; set; }
         string AddPracticeExamMessage { set; }
 
+        // Update mark
+        string UpdateStudentMarkMessage { set; }
+
         // Events
         event EventHandler ReloadListPracticeExam;
         event EventHandler ReloadListExamDetail;
         event EventHandler DeletePracticeExam;
         event EventHandler SaveEditPracticeExam;
         event EventHandler AddPracticeExam;
+        event EventHandler UpdateStudentMark;
     }
 }
