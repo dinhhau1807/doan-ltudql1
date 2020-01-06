@@ -74,13 +74,13 @@ namespace DoAnLTUDQL1.Views.TeacherView
         // Add exam
         private void MBtnAddPracticeExam_Click(object sender, EventArgs e)
         {
-            //if (!AddValidatorList.All(a => a.IsValid))
-            //{
-            //    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
-            //    InvalidValidatingControl.ControlToValidate.Focus();
+            if (!AddValidatorList.All(a => a.IsValid))
+            {
+                var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
+                InvalidValidatingControl.ControlToValidate.Focus();
 
-            //    return;
-            //}
+                return;
+            }
 
             var practiceExamAdded = new DoAnLTUDQL1.Exam
             {

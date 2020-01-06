@@ -31,7 +31,7 @@ namespace DoAnLTUDQL1.Views.StudentView
 		dynamic TheLatestExamDetail { get; set; }
 
 		#region events
-		event Func<User> Logout;
+		//event Func<User> Logout;
 		event Func<User> ChangePassword;
 		event Func<bool> ChangeUserProfile;
 		event EventHandler ExamDetailFilter;
