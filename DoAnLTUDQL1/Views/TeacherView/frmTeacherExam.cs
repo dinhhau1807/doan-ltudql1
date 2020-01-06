@@ -56,6 +56,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Add
             mBtnAddExam.Click += MBtnAddExam_Click;
             mBtnAddExamDetail.Click += MBtnAddExamDetail_Click;
+            // Update student mark
+            mBtnUpdateStudentMark.Click += MBtnUpdateStudentMark_Click;
 
             // Startup
             mTabExam.SelectTab(0);
@@ -71,16 +73,27 @@ namespace DoAnLTUDQL1.Views.TeacherView
         }
 
 
+        // Update student mark
+        private void MBtnUpdateStudentMark_Click(object sender, EventArgs e)
+        {
+            if (mGridListExamDetail.Rows.Count > 0 && mGridListExamDetail.SelectedRows.Count > 0)
+            {
+                var examDetail = (ExamListViewModel)mGridListExamDetail.SelectedRows[0].DataBoundItem;
+                UpdateStudentMark?.Invoke(examDetail, null);
+            }
+        }
+
+
         // Add exam
         private void MBtnAddExam_Click(object sender, EventArgs e)
         {
-            if (!AddValidatorList.All(a => a.IsValid))
-            {
-                var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
-                InvalidValidatingControl.ControlToValidate.Focus();
+            //if (!AddValidatorList.All(a => a.IsValid))
+            //{
+            //    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
+            //    InvalidValidatingControl.ControlToValidate.Focus();
 
-                return;
-            }
+            //    return;
+            //}
 
             var examAdded = new DoAnLTUDQL1.Exam
             {
@@ -175,26 +188,29 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
             if (mTabExam.SelectedTab == mTabExamDetail || mTabExam.SelectedTab == mTabEditExam)
             {
-                var exam = (DoAnLTUDQL1.Exam)bsListExam.CurrencyManager.Current;
-                ReloadListExamDetail(exam.ExamId, null);
-                mGridListExamDetail.DataSource = ExamDetails;
+                if (bsListExam.Count > 0)
+                {
+                    var exam = (DoAnLTUDQL1.Exam)bsListExam.CurrencyManager.Current;
+                    ReloadListExamDetail(exam.ExamId, null);
+                    mGridListExamDetail.DataSource = ExamDetails;
 
-                // For edited
-                ExamDetailsEdited = ExamDetails.Select(ed => new ExamDetail
-                {
-                    ExamDetailId = ed.ExamDetailId,
-                    ExamId = ed.ExamId,
-                    StartTime = ed.StartTime,
-                    Duration = ed.Duration,
-                    SubjectId = ed.SubjectId,
-                    GradeId = ed.GradeId
-                }).ToList();
-                if (ExamDetailsEdited == null)
-                {
-                    ExamDetailsEdited = new List<ExamDetail>();
+                    // For edited
+                    ExamDetailsEdited = ExamDetails.Select(ed => new ExamDetail
+                    {
+                        ExamDetailId = ed.ExamDetailId,
+                        ExamId = ed.ExamId,
+                        StartTime = ed.StartTime,
+                        Duration = ed.Duration,
+                        SubjectId = ed.SubjectId,
+                        GradeId = ed.GradeId
+                    }).ToList();
+                    if (ExamDetailsEdited == null)
+                    {
+                        ExamDetailsEdited = new List<ExamDetail>();
+                    }
+
+                    SetHeaderMGridListExamDetail();
                 }
-
-                SetHeaderMGridListExamDetail();
             }
 
             if (mTabExam.SelectedTab == mTabReport)
@@ -215,6 +231,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler SaveEditExam;
         public event EventHandler AddExam;
         public event EventHandler ReloadListExamDetail;
+        public event EventHandler UpdateStudentMark;
 
         // User information
         public Teacher CurrentUser { get; set; }
@@ -284,6 +301,28 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 else
                 {
                     MessageBox.Show("Xảy ra lỗi khi tạo kỳ thi!");
+                }
+            }
+        }
+
+        // Update student mark
+        public string UpdateStudentMarkMessage
+        {
+            set
+            {
+                if (value == "Succeed")
+                {
+                    MessageBox.Show("Đã cập nhật điểm thi!");
+                }
+
+                if (value == "NotYet")
+                {
+                    MessageBox.Show("Môn thi chưa đến lúc thi!");
+                }
+
+                if (value == "Failed")
+                {
+                    MessageBox.Show("Xảy ra lỗi khi cập nhật điểm thi!");
                 }
             }
         }
