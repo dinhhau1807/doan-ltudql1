@@ -1,7 +1,6 @@
 ﻿using DoAnLTUDQL1.Presenters;
 using DoAnLTUDQL1.Validators;
 using DoAnLTUDQL1.ViewModels;
-using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +17,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
     {
         TeacherExamPresenter presenter;
         BindingSource bsListExam;
-        
         List<BaseValidator> AddValidatorList;
         List<BaseValidator> EditValidatorList;
 
@@ -28,8 +26,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
             CurrentUserInfo = user;
             InitializeComponent();
             Load += FrmExam_Load;
-            
         }
+
+
 
         #region Events
         private void FrmExam_Load(object sender, EventArgs e)
@@ -212,7 +211,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler SaveEditExam;
         public event EventHandler AddExam;
         public event EventHandler ReloadListExamDetail;
-       
 
         // User information
         public Teacher CurrentUser { get; set; }
@@ -285,7 +283,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 }
             }
         }
-
         #endregion
 
 
@@ -389,16 +386,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
-        
+
         private void SetDataBinding()
         {
-            
-            //mTxtEditExamId.DataBindings.Clear();
             mTxtEditExamId.DataBindings.Add("Text", bsListExam, "ExamId", true, DataSourceUpdateMode.OnPropertyChanged);
-            //mTxtEditExamName.DataBindings.Clear();
-            mTxtEditExamName.DataBindings.Add("Text", bsListExam, "ExamName", true, DataSourceUpdateMode.OnPropertyChanged); 
+            mTxtEditExamName.DataBindings.Add("Text", bsListExam, "ExamName", true, DataSourceUpdateMode.OnPropertyChanged);
         }
         #endregion
-
     }
 }
