@@ -71,7 +71,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
             RegexValidatingControls();
         }
 
-        
+
         // Add exam
         private void MBtnAddExam_Click(object sender, EventArgs e)
         {
@@ -389,9 +389,10 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
-
+        
         private void SetDataBinding()
         {
+            
             //mTxtEditExamId.DataBindings.Clear();
             mTxtEditExamId.DataBindings.Add("Text", bsListExam, "ExamId", true, DataSourceUpdateMode.OnPropertyChanged);
             //mTxtEditExamName.DataBindings.Clear();
