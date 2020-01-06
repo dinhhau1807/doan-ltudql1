@@ -29,16 +29,13 @@ namespace DoAnLTUDQL1.Views.TeacherView
         IList<ExamDetail> ExamDetailsAdded { get; set; }
         string AddExamMessage { set; }
 
-        string ExamDetailId { get; }
-        string ExamDetailIdRP { set; }
-        IList<ExamStatisticViewModel> DataSource { get; set; }
-
+        
         // Events
         event EventHandler ReloadListExam;
         event EventHandler ReloadListExamDetail;
         event EventHandler DeleteExam;
         event EventHandler SaveEditExam;
         event EventHandler AddExam;
-        event EventHandler ViewResult;
+        
     }
 }
