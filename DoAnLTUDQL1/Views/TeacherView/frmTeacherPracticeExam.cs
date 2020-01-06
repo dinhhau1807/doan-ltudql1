@@ -151,8 +151,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListPracticeExam.Count > 0)
             {
-                var practiceExamId = (string)mGridListPracticeExam.SelectedRows[0].Cells[0].Value;
-                DeletePracticeExam?.Invoke(practiceExamId, null);
+                DialogResult result = MessageBox.Show("Bạn có thật sự muốn xoá kỳ thi thử?", "Xoá kỳ thi thử", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    var practiceExamId = (string)mGridListPracticeExam.SelectedRows[0].Cells[0].Value;
+                    DeletePracticeExam?.Invoke(practiceExamId, null);
+                }
             }
         }
 

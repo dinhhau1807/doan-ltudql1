@@ -281,8 +281,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListExamCode.Count > 0)
             {
-                var examCodeId = (string)mGridListExamCode.SelectedRows[0].Cells[0].Value;
-                DeleteExamCode?.Invoke(examCodeId, null);
+                DialogResult result = MessageBox.Show("Bạn có thật sự muốn xoá đề thi?", "Xoá đề thi", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    var examCodeId = (string)mGridListExamCode.SelectedRows[0].Cells[0].Value;
+                    DeleteExamCode?.Invoke(examCodeId, null);
+                }
             }
         }
 

@@ -67,6 +67,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
             mBtnChangePassword.Click += MBtnChangePassword_Click;
             mBtnLogout.Click += MBtnLogout_Click;
 
+            // Close
+            FormClosing += FrmTeacher_FormClosing;
 
             // Select tab first startup
             mTabCtrl.SelectTab(0);
@@ -75,6 +77,26 @@ namespace DoAnLTUDQL1.Views.TeacherView
             ProfileValidatorList = new List<BaseValidator>();
             RequireValidatingControls();
             RegexValidatingControls();
+        }
+
+        // Close
+        private void FrmTeacher_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có thật sự muốn thoát chương trình?", "Đăng xuất", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                Thread tLogin = new Thread(_ =>
+                {
+                    Application.Run(new frmLogin());
+                });
+                tLogin.Start();
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
 
