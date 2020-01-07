@@ -1,4 +1,4 @@
-# ĐỒ ÁN LẬP TRÌNH ỨNG DỤNG QUẢN LÝ 1
+# ĐỒ ÁN LẬP TRÌNH ỨNG DỤNG QUẢN LÝ 1 - fit@hcmus
 ## Thông tin môn học
 - Lớp: **CD2017/1**
 - Học kỳ: **1 (2019-2020)**
