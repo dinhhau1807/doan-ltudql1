@@ -337,9 +337,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 rqAddExamName, rqAddDuration;
 
             rqEditExamName = new RequiedInputValidator();
-            rqEditDuration = new RequiedInputValidator();
+            //rqEditDuration = new RequiedInputValidator();
             rqAddExamName = new RequiedInputValidator();
-            rqAddDuration = new RequiedInputValidator();
+            //rqAddDuration = new RequiedInputValidator();
 
             rqEditExamName.ControlToValidate = mTxtEditExamName;
             //rqEditDuration.ControlToValidate = mTxtEditDuration;
@@ -347,34 +347,34 @@ namespace DoAnLTUDQL1.Views.TeacherView
             //rqAddDuration.ControlToValidate = mTxtAddDuration;
 
             EditValidatorList.Add(rqEditExamName);
-            EditValidatorList.Add(rqEditDuration);
+            //EditValidatorList.Add(rqEditDuration);
 
             AddValidatorList.Add(rqAddExamName);
-            AddValidatorList.Add(rqAddDuration);
+            //AddValidatorList.Add(rqAddDuration);
         }
 
         void RegexValidatingControls()
         {
-            RegexValidator rgEditDuration, rgAddDuration;
+            //RegexValidator rgEditDuration, rgAddDuration;
 
-            string errorMessageNumber = "Thời gian làm bài phải lớn hơn 0";
+            //string errorMessageNumber = "Thời gian làm bài phải lớn hơn 0";
 
-            rgEditDuration = new RegexValidator(RegexPattern.GreaterThanZero);
-            rgEditDuration.ErrorMessage = errorMessageNumber;
-            rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
-            rgAddDuration.ErrorMessage = errorMessageNumber;
+            //rgEditDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            //rgEditDuration.ErrorMessage = errorMessageNumber;
+            //rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            //rgAddDuration.ErrorMessage = errorMessageNumber;
 
-            //rgEditDuration.ControlToValidate = mTxtEditDuration;
-            //rgAddDuration.ControlToValidate = mTxtAddDuration;
+            ////rgEditDuration.ControlToValidate = mTxtEditDuration;
+            ////rgAddDuration.ControlToValidate = mTxtAddDuration;
 
-            EditValidatorList.Add(rgEditDuration);
+            //EditValidatorList.Add(rgEditDuration);
 
-            AddValidatorList.Add(rgAddDuration);
+            //AddValidatorList.Add(rgAddDuration);
 
-            foreach (var item in AddValidatorList)
-            {
-                item.IsValid = false;
-            }
+            //foreach (var item in AddValidatorList)
+            //{
+            //    item.IsValid = false;
+            //}
         }
 
         private void SetHeaderMGridListExam()

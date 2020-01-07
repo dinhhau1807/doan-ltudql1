@@ -328,9 +328,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 rqAddExamName, rqAddDuration;
 
             rqEditExamName = new RequiedInputValidator();
-            rqEditDuration = new RequiedInputValidator();
+            //rqEditDuration = new RequiedInputValidator();
             rqAddExamName = new RequiedInputValidator();
-            rqAddDuration = new RequiedInputValidator();
+            //rqAddDuration = new RequiedInputValidator();
 
             rqEditExamName.ControlToValidate = mTxtEditPracticeExamName;
             //rqEditDuration.ControlToValidate = mTxtEditPracticeDuration;
@@ -338,10 +338,10 @@ namespace DoAnLTUDQL1.Views.TeacherView
             //rqAddDuration.ControlToValidate = mTxtAddPracticeDuration;
 
             EditValidatorList.Add(rqEditExamName);
-            EditValidatorList.Add(rqEditDuration);
+            //EditValidatorList.Add(rqEditDuration);
 
             AddValidatorList.Add(rqAddExamName);
-            AddValidatorList.Add(rqAddDuration);
+            //AddValidatorList.Add(rqAddDuration);
         }
 
         void RegexValidatingControls()
