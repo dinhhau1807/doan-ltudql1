@@ -19,6 +19,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         BindingSource bsListPracticeExam;
         List<BaseValidator> AddValidatorList;
         List<BaseValidator> EditValidatorList;
+
         public frmTeacherPracticeExam(Teacher teacher, User user)
         {
             CurrentUser = teacher;
@@ -26,6 +27,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
             InitializeComponent();
             Load += FrmExam_Load;
         }
+
+
 
         #region Events
         private void FrmExam_Load(object sender, EventArgs e)
@@ -41,16 +44,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Set data bindings
             SetDataBinding();
 
-            // Load combobox Subject edit ExamCode
-            mCbbEditPracticeExamSubject.DisplayMember = "SubjectName";
-            mCbbEditPracticeExamSubject.ValueMember = "SubjectId";
-            mCbbEditPracticeExamSubject.DataSource = Subjects;
-
-            // Load combobox Subject add ExamCode 
-            mCbbAddPracticeExamSubject.DisplayMember = "SubjectName";
-            mCbbAddPracticeExamSubject.ValueMember = "SubjectId";
-            mCbbAddPracticeExamSubject.DataSource = Subjects;
-
             // Register events
             // Load
             mBtnReloadListPracticeExam.Click += MBtnReloadListPracticeExam_Click;
@@ -58,25 +51,19 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Delete
             mBtnDeletePracticeExam.Click += MBtnDeletePracticeExam_Click;
             // Edit
-            mCbbEditPracticeExamSubject.SelectedIndexChanged += MCbbEditPracticeExamSubject_SelectedIndexChanged;
-            mTxtEditPracticeDuration.KeyPress += MTxtEditPracticeDuration_KeyPress;
             mBtnSaveEditPracticeExam.Click += MBtnSaveEditPracticeExam_Click;
+            mBtnEditExamDetail.Click += MBtnEditExamDetail_Click;
             // Add
-            mCbbAddPracticeExamSubject.SelectedIndexChanged += MCbbAddPracticeExamSubject_SelectedIndexChanged;
-            mTxtAddPracticeDuration.KeyPress += MTxtAddPracticeDuration_KeyPress;
             mBtnAddPracticeExam.Click += MBtnAddPracticeExam_Click;
+            mBtnAddExamDetail.Click += MBtnAddExamDetail_Click;
+            // Update student mark
+            mBtnUpdateStudentMark.Click += MBtnUpdateStudentMark_Click;
 
             // Startup
             mTabPracticeExam.SelectTab(0);
             if (bsListPracticeExam.Count > 0)
             {
                 mGridListPracticeExam.Rows[0].Selected = true;
-            }
-            if (mCbbAddPracticeExamSubject.Items.Count > 0)
-            {
-                var subject = mCbbAddPracticeExamSubject.SelectedItem as Subject;
-                mTxtAddPracticeExamSubjectId.Text = subject.SubjectId.ToString();
-                mTxtAddPracticeExamGradeId.Text = subject.GradeId.ToString();
             }
 
             EditValidatorList = new List<BaseValidator>();
@@ -86,77 +73,58 @@ namespace DoAnLTUDQL1.Views.TeacherView
         }
 
 
+        // Update student mark
+        private void MBtnUpdateStudentMark_Click(object sender, EventArgs e)
+        {
+            if (mGridListExamDetail.Rows.Count > 0 && mGridListExamDetail.SelectedRows.Count > 0)
+            {
+                var examDetail = (ExamListViewModel)mGridListExamDetail.SelectedRows[0].DataBoundItem;
+                UpdateStudentMark?.Invoke(examDetail, null);
+            }
+        }
+
+
         // Add exam
-        private void MCbbAddPracticeExamSubject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (mCbbAddPracticeExamSubject.SelectedItem != null)
-            {
-                var subject = mCbbAddPracticeExamSubject.SelectedItem as Subject;
-                mTxtAddPracticeExamSubjectId.Text = subject.SubjectId.ToString();
-                mTxtAddPracticeExamGradeId.Text = subject.GradeId.ToString();
-            }
-        }
-
-        private void MTxtAddPracticeDuration_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void MBtnAddPracticeExam_Click(object sender, EventArgs e)
         {
-            if (mCbbAddPracticeExamSubject.SelectedItem != null)
+            if (!AddValidatorList.All(a => a.IsValid))
             {
-                if (!AddValidatorList.All(a => a.IsValid))
-                {
-                    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
-                    InvalidValidatingControl.ControlToValidate.Focus();
+                var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
+                InvalidValidatingControl.ControlToValidate.Focus();
 
-                    return;
-                }
-
-                var timeStart = dateTimeAddPracticeTimeStart.Value.TimeOfDay;
-                var startTime = DateTime.Parse(mDateTimeAddPracticeDateStart.Value.ToShortDateString()).Add(timeStart);
-
-                var practiceExamAdded = new PracticeExamListViewModel
-                {
-                    ExamName = mTxtAddPracticeExamName.Text,
-                    StartTime = startTime,
-                    Duration = int.Parse(mTxtAddPracticeDuration.Text),
-                    SubjectId = mTxtAddPracticeExamSubjectId.Text,
-                    GradeId = int.Parse(mTxtAddPracticeExamGradeId.Text)
-                };
-
-                AddPracticeExam?.Invoke(practiceExamAdded, null);
+                return;
             }
-            else
+
+            var practiceExamAdded = new DoAnLTUDQL1.Exam
             {
-                MessageBox.Show("Chưa đủ dữ liệu!");
+                ExamId = "",
+                ExamName = mTxtAddPracticeExamName.Text,
+                IsPacticeExam = true
+            };
+
+            if (ExamDetailsAdded == null)
+            {
+                ExamDetailsAdded = new List<ExamDetail>();
             }
+            AddPracticeExam?.Invoke(practiceExamAdded, null);
+        }
+
+        private void MBtnAddExamDetail_Click(object sender, EventArgs e)
+        {
+            var practiceExam = new DoAnLTUDQL1.Exam()
+            {
+                ExamId = "",
+                ExamName = mTxtAddPracticeExamName.Text,
+                IsPacticeExam = true
+            };
+
+            ExamDetailsAdded = new List<ExamDetail>();
+            var frmTeacherExamDetail = new frmTeacherExamDetail(practiceExam, Subjects, ExamDetailsAdded);
+            frmTeacherExamDetail.ShowDialog();
         }
 
 
         // Edit exam
-        private void MTxtEditPracticeDuration_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void MCbbEditPracticeExamSubject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (mCbbEditPracticeExamSubject.SelectedItem != null)
-            {
-                var subject = mCbbEditPracticeExamSubject.SelectedItem as Subject;
-                mTxtEditPracticeExamSubjectId.Text = subject.SubjectId.ToString();
-                mTxtEditPracticeExamGradeId.Text = subject.GradeId.ToString();
-            }
-        }
-
         private void MBtnSaveEditPracticeExam_Click(object sender, EventArgs e)
         {
             if (bsListPracticeExam.Count > 0)
@@ -169,18 +137,39 @@ namespace DoAnLTUDQL1.Views.TeacherView
                     return;
                 }
 
-                var practiceExam = (PracticeExamListViewModel)mGridListPracticeExam.SelectedRows[0].DataBoundItem;
+                var practiceExam = (DoAnLTUDQL1.Exam)mGridListPracticeExam.SelectedRows[0].DataBoundItem;
                 SaveEditPracticeExam?.Invoke(practiceExam, null);
             }
         }
+
+        private void MBtnEditExamDetail_Click(object sender, EventArgs e)
+        {
+            if (bsListPracticeExam.Count > 0 && Subjects.Count > 0)
+            {
+                var practiceExamEdited = new DoAnLTUDQL1.Exam()
+                {
+                    ExamId = mTxtEditPracticeExamId.Text,
+                    ExamName = mTxtEditPracticeExamName.Text,
+                    IsPacticeExam = false
+                };
+
+                var frmTeacherExamDetail = new frmTeacherExamDetail(practiceExamEdited, Subjects, ExamDetailsEdited);
+                frmTeacherExamDetail.ShowDialog();
+            }
+        }
+
 
         // Delete exam
         private void MBtnDeletePracticeExam_Click(object sender, EventArgs e)
         {
             if (bsListPracticeExam.Count > 0)
             {
-                var practiceExamId = (string)mGridListPracticeExam.SelectedRows[0].Cells[0].Value;
-                DeletePracticeExam?.Invoke(practiceExamId, null);
+                DialogResult result = MessageBox.Show("Bạn có thật sự muốn xoá kỳ thi thử?", "Xoá kỳ thi thử", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    var practiceExamId = (string)mGridListPracticeExam.SelectedRows[0].Cells[0].Value;
+                    DeletePracticeExam?.Invoke(practiceExamId, null);
+                }
             }
         }
 
@@ -197,6 +186,30 @@ namespace DoAnLTUDQL1.Views.TeacherView
             {
                 mBtnReloadListPracticeExam.PerformClick();
             }
+
+            if (mTabPracticeExam.SelectedTab == mTabExamDetail || mTabPracticeExam.SelectedTab == mTabEditPracticeExam)
+            {
+                var practiceExam = (DoAnLTUDQL1.Exam)bsListPracticeExam.CurrencyManager.Current;
+                ReloadListExamDetail(practiceExam.ExamId, null);
+                mGridListExamDetail.DataSource = ExamDetails;
+
+                // For edited
+                ExamDetailsEdited = ExamDetails.Select(ed => new ExamDetail
+                {
+                    ExamDetailId = ed.ExamDetailId,
+                    ExamId = ed.ExamId,
+                    StartTime = ed.StartTime,
+                    Duration = ed.Duration,
+                    SubjectId = ed.SubjectId,
+                    GradeId = ed.GradeId
+                }).ToList();
+                if (ExamDetailsEdited == null)
+                {
+                    ExamDetailsEdited = new List<ExamDetail>();
+                }
+
+                SetHeaderMGridListExamDetail();
+            }
         }
         #endregion
 
@@ -208,13 +221,16 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler DeletePracticeExam;
         public event EventHandler SaveEditPracticeExam;
         public event EventHandler AddPracticeExam;
+        public event EventHandler ReloadListExamDetail;
+        public event EventHandler UpdateStudentMark;
 
         // User information
         public Teacher CurrentUser { get; set; }
         public User CurrentUserInfo { get; set; }
 
         // Reload list pracitceExam
-        public IList<PracticeExamListViewModel> PracticeExams { get; set; }
+        public IList<DoAnLTUDQL1.Exam> PracticeExams { get; set; }
+        public IList<ExamListViewModel> ExamDetails { get; set; }
 
         // Delete practiceExam
         public string DeletePracticeExamMessage
@@ -223,11 +239,11 @@ namespace DoAnLTUDQL1.Views.TeacherView
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã xoá kỳ thi thử!");
+                    MessageBox.Show("Đã xoá kỳ thi thử và toàn bộ môn thi có trong kỳ thi thử!");
                 }
                 else if (value == "Used")
                 {
-                    MessageBox.Show("Kỳ thi thử đã được sử dụng nên không thể xoá!");
+                    MessageBox.Show("Kỳ thi thử đã có môn thi được sử dụng nên không thể xoá!");
                 }
                 else
                 {
@@ -239,17 +255,18 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
         // Edit practiceExam
         public IList<Subject> Subjects { get; set; }
+        public IList<ExamDetail> ExamDetailsEdited { get; set; }
         public string SaveEditPracticeExamMessage
         {
             set
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã sửa kỳ thi thử!");
+                    MessageBox.Show("Đã sửa kỳ thi thử và cập nhật danh sách môn thi!");
                 }
                 else if (value == "Used")
                 {
-                    MessageBox.Show("Kỳ thi thử đã được sử dụng nên không thể sửa!");
+                    MessageBox.Show("Đã cập nhật lại danh sách môn thi, kỳ thi thử có môn thi được sử dụng nên không thể sửa tên!");
                 }
                 else
                 {
@@ -259,23 +276,44 @@ namespace DoAnLTUDQL1.Views.TeacherView
         }
 
         // Add practiceExam
+        public IList<ExamDetail> ExamDetailsAdded { get; set; }
         public string AddPracticeExamMessage
         {
             set
             {
                 if (value == "Succeed")
                 {
-                    MessageBox.Show("Đã tạo kỳ thi thử!");
+                    MessageBox.Show("Đã tạo kỳ thi thử và các môn thi!");
 
                     // Refresh form
                     mTxtAddPracticeExamName.ResetText();
-                    mDateTimeAddPracticeDateStart.ResetText();
-                    dateTimeAddPracticeTimeStart.ResetText();
-                    mTxtAddPracticeDuration.ResetText();
+                    ExamDetailsAdded = null;
                 }
                 else
                 {
                     MessageBox.Show("Xảy ra lỗi khi tạo kỳ thi thử!");
+                }
+            }
+        }
+
+        // Update student mark
+        public string UpdateStudentMarkMessage
+        {
+            set
+            {
+                if (value == "Succeed")
+                {
+                    MessageBox.Show("Đã cập nhật điểm thi!");
+                }
+
+                if (value == "NotYet")
+                {
+                    MessageBox.Show("Môn thi chưa đến lúc thi!");
+                }
+
+                if (value == "Failed")
+                {
+                    MessageBox.Show("Xảy ra lỗi khi cập nhật điểm thi!");
                 }
             }
         }
@@ -295,9 +333,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
             rqAddDuration = new RequiedInputValidator();
 
             rqEditExamName.ControlToValidate = mTxtEditPracticeExamName;
-            rqEditDuration.ControlToValidate = mTxtEditPracticeDuration;
+            //rqEditDuration.ControlToValidate = mTxtEditPracticeDuration;
             rqAddExamName.ControlToValidate = mTxtAddPracticeExamName;
-            rqAddDuration.ControlToValidate = mTxtAddPracticeDuration;
+            //rqAddDuration.ControlToValidate = mTxtAddPracticeDuration;
 
             EditValidatorList.Add(rqEditExamName);
             EditValidatorList.Add(rqEditDuration);
@@ -317,8 +355,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
             rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
             rgAddDuration.ErrorMessage = errorMessageNumber;
 
-            rgEditDuration.ControlToValidate = mTxtEditPracticeDuration;
-            rgAddDuration.ControlToValidate = mTxtAddPracticeDuration;
+            //rgEditDuration.ControlToValidate = mTxtEditPracticeDuration;
+            //rgAddDuration.ControlToValidate = mTxtAddPracticeDuration;
 
             EditValidatorList.Add(rgEditDuration);
 
@@ -329,9 +367,10 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 item.IsValid = false;
             }
         }
+
         private void SetHeaderMGridListPracticeExam()
         {
-            // Show header for mGridListPracticeExam
+            // Show header for mGridListExam
             mGridListPracticeExam.AutoGenerateColumns = false;
 
             mGridListPracticeExam.Columns[0].HeaderText = "Mã kỳ thi";
@@ -342,22 +381,41 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
             mGridListPracticeExam.Columns[2].Visible = false;
 
-            mGridListPracticeExam.Columns[3].HeaderText = "Ngày thi";
-            mGridListPracticeExam.Columns[3].DataPropertyName = "StartTime";
-
-            mGridListPracticeExam.Columns[4].HeaderText = "Thời gian thi";
-            mGridListPracticeExam.Columns[4].DataPropertyName = "Duration";
-
-            mGridListPracticeExam.Columns[5].HeaderText = "Mã môn học";
-            mGridListPracticeExam.Columns[5].DataPropertyName = "SubjectId";
-
-            mGridListPracticeExam.Columns[6].HeaderText = "Khối lớp";
-            mGridListPracticeExam.Columns[6].DataPropertyName = "GradeId";
-
-            mGridListPracticeExam.Columns[7].HeaderText = "Tên môn học";
-            mGridListPracticeExam.Columns[7].DataPropertyName = "SubjectName";
-
             foreach (DataGridViewColumn col in mGridListPracticeExam.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+        }
+
+        private void SetHeaderMGridListExamDetail()
+        {
+            // Show header for mGridListExam
+            mGridListExamDetail.AutoGenerateColumns = false;
+
+            mGridListExamDetail.Columns[0].HeaderText = "Mã kỳ thi";
+            mGridListExamDetail.Columns[0].DataPropertyName = "ExamId";
+
+            mGridListExamDetail.Columns[1].HeaderText = "Tên kỳ thi";
+            mGridListExamDetail.Columns[1].DataPropertyName = "ExamName";
+
+            mGridListExamDetail.Columns[2].Visible = false;
+
+            mGridListExamDetail.Columns[3].HeaderText = "Ngày thi";
+            mGridListExamDetail.Columns[3].DataPropertyName = "StartTime";
+
+            mGridListExamDetail.Columns[4].HeaderText = "Thời gian thi";
+            mGridListExamDetail.Columns[4].DataPropertyName = "Duration";
+
+            mGridListExamDetail.Columns[5].HeaderText = "Mã môn học";
+            mGridListExamDetail.Columns[5].DataPropertyName = "SubjectId";
+
+            mGridListExamDetail.Columns[6].HeaderText = "Khối lớp";
+            mGridListExamDetail.Columns[6].DataPropertyName = "GradeId";
+
+            mGridListExamDetail.Columns[7].HeaderText = "Tên môn học";
+            mGridListExamDetail.Columns[7].DataPropertyName = "SubjectName";
+
+            foreach (DataGridViewColumn col in mGridListExamDetail.Columns)
             {
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
@@ -367,12 +425,6 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             mTxtEditPracticeExamId.DataBindings.Add("Text", bsListPracticeExam, "ExamId", true, DataSourceUpdateMode.OnPropertyChanged);
             mTxtEditPracticeExamName.DataBindings.Add("Text", bsListPracticeExam, "ExamName", true, DataSourceUpdateMode.OnPropertyChanged);
-            mDateTimeEditPracticeDateStart.DataBindings.Add("Value", bsListPracticeExam, "StartTime", true, DataSourceUpdateMode.OnPropertyChanged);
-            dateTimeEditPracticeTimeStart.DataBindings.Add("Value", bsListPracticeExam, "StartTime", true, DataSourceUpdateMode.OnPropertyChanged);
-            mTxtEditPracticeDuration.DataBindings.Add("Text", bsListPracticeExam, "Duration", true, DataSourceUpdateMode.OnPropertyChanged);
-            mCbbEditPracticeExamSubject.DataBindings.Add("SelectedValue", bsListPracticeExam, "SubjectId", true, DataSourceUpdateMode.OnPropertyChanged);
-            mTxtEditPracticeExamSubjectId.DataBindings.Add("Text", bsListPracticeExam, "SubjectId", true, DataSourceUpdateMode.OnPropertyChanged);
-            mTxtEditPracticeExamGradeId.DataBindings.Add("Text", bsListPracticeExam, "GradeId", true, DataSourceUpdateMode.OnPropertyChanged);
         }
         #endregion
     }

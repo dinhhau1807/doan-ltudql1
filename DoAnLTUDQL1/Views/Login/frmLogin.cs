@@ -31,8 +31,8 @@ namespace DoAnLTUDQL1.Views.Login
             Load += FrmLogin_Load;
 
             // TEMP TO TEST
-            mTxtUsername.Text = "hxvinh";
-            mTxtPassword.Text = "123";
+            //mTxtUsername.Text = "hxvinh";
+            //mTxtPassword.Text = "123";
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)

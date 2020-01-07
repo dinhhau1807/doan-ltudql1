@@ -7,11 +7,11 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>281259c9-17f1-4f3c-a3fc-0be84c335671</rd:DataSourceID>
+      <rd:DataSourceID>db048de5-439d-4a4f-8b91-2d90ad9beb5f</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="ExamStatistic">
+    <DataSet Name="ExamRS">
       <Query>
         <DataSourceName>DoAnLTUDQL1ViewModels</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -69,7 +69,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox4">
+                        <Textbox Name="Textbox1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -82,8 +82,17 @@
                               </TextRuns>
                               <Style />
                             </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -107,15 +116,6 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Tên kì thi</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -221,9 +221,9 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>ExamStatistic</DataSetName>
-            <Top>0.11333in</Top>
-            <Left>2.23833in</Left>
+            <DataSetName>ExamRS</DataSetName>
+            <Top>0.50917in</Top>
+            <Left>4.88416in</Left>
             <Height>0.5in</Height>
             <Width>2in</Width>
             <Style>
@@ -265,15 +265,6 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>STT</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -430,6 +421,15 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Điểm</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -628,9 +628,9 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>ExamStatistic</DataSetName>
-            <Top>0.87375in</Top>
-            <Left>0.74875in</Left>
+            <DataSetName>ExamRS</DataSetName>
+            <Top>1.405in</Top>
+            <Left>3.57166in</Left>
             <Height>0.5in</Height>
             <Width>5in</Width>
             <ZIndex>1</ZIndex>
@@ -641,57 +641,11 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.27083in</Height>
+        <Height>2.38542in</Height>
         <Style />
       </Body>
-      <Width>6.5in</Width>
+      <Width>11.13416in</Width>
       <Page>
-        <PageHeader>
-          <Height>0.63542in</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Textbox Name="Textbox21">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>THỐNG KÊ KÌ THI</Value>
-                      <Style>
-                        <FontSize>18pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox21</rd:DefaultName>
-              <Top>0.14062in</Top>
-              <Height>0.375in</Height>
-              <Width>6.5in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageHeader>
-        
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
         <TopMargin>1in</TopMargin>
@@ -720,5 +674,5 @@
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>bfaf8219-f797-4b67-bfdb-e6fa3ca4fa13</rd:ReportID>
+  <rd:ReportID>c0a4b658-c5e5-4696-b89f-380cbdcb20a0</rd:ReportID>
 </Report>

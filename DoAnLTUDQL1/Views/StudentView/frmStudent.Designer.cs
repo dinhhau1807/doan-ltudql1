@@ -28,18 +28,17 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.mtcStudentPage = new MetroFramework.Controls.MetroTabControl();
 			this.mtpMain = new MetroFramework.Controls.MetroTabPage();
 			this.metroPanel6 = new MetroFramework.Controls.MetroPanel();
 			this.metroPanel7 = new MetroFramework.Controls.MetroPanel();
 			this.mpnlExamDetailInfo = new MetroFramework.Controls.MetroPanel();
-			this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
 			this.mlblDuration = new MetroFramework.Controls.MetroLabel();
 			this.mlblStartTime = new MetroFramework.Controls.MetroLabel();
 			this.mlblGradeName = new MetroFramework.Controls.MetroLabel();
@@ -103,6 +102,12 @@
 			this.metroButton1 = new MetroFramework.Controls.MetroButton();
 			this.mlblLastLoginDate = new MetroFramework.Controls.MetroLabel();
 			this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+			this.metroTile1 = new MetroFramework.Controls.MetroTile();
+			this.metroTile2 = new MetroFramework.Controls.MetroTile();
+			this.metroTile3 = new MetroFramework.Controls.MetroTile();
+			this.metroTile4 = new MetroFramework.Controls.MetroTile();
+			this.metroTile5 = new MetroFramework.Controls.MetroTile();
+			this.metroTile6 = new MetroFramework.Controls.MetroTile();
 			this.mtcStudentPage.SuspendLayout();
 			this.mtpMain.SuspendLayout();
 			this.metroPanel6.SuspendLayout();
@@ -133,13 +138,14 @@
 			this.mtcStudentPage.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mtcStudentPage.Location = new System.Drawing.Point(20, 60);
 			this.mtcStudentPage.Name = "mtcStudentPage";
-			this.mtcStudentPage.SelectedIndex = 1;
+			this.mtcStudentPage.SelectedIndex = 0;
 			this.mtcStudentPage.Size = new System.Drawing.Size(1071, 462);
 			this.mtcStudentPage.TabIndex = 0;
 			this.mtcStudentPage.UseSelectable = true;
 			// 
 			// mtpMain
 			// 
+			this.mtpMain.Controls.Add(this.metroTile3);
 			this.mtpMain.Controls.Add(this.metroPanel6);
 			this.mtpMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mtpMain.HorizontalScrollbarBarColor = true;
@@ -150,7 +156,7 @@
 			this.mtpMain.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
 			this.mtpMain.Size = new System.Drawing.Size(1063, 420);
 			this.mtpMain.TabIndex = 4;
-			this.mtpMain.Text = "Phòng chờ thi";
+			this.mtpMain.Text = "Trang chính";
 			this.mtpMain.VerticalScrollbarBarColor = true;
 			this.mtpMain.VerticalScrollbarHighlightOnWheel = false;
 			this.mtpMain.VerticalScrollbarSize = 10;
@@ -186,7 +192,6 @@
 			// 
 			// mpnlExamDetailInfo
 			// 
-			this.mpnlExamDetailInfo.Controls.Add(this.metroLabel5);
 			this.mpnlExamDetailInfo.Controls.Add(this.mlblDuration);
 			this.mpnlExamDetailInfo.Controls.Add(this.mlblStartTime);
 			this.mpnlExamDetailInfo.Controls.Add(this.mlblGradeName);
@@ -208,17 +213,6 @@
 			this.mpnlExamDetailInfo.VerticalScrollbarBarColor = true;
 			this.mpnlExamDetailInfo.VerticalScrollbarHighlightOnWheel = false;
 			this.mpnlExamDetailInfo.VerticalScrollbarSize = 10;
-			// 
-			// metroLabel5
-			// 
-			this.metroLabel5.AutoSize = true;
-			this.metroLabel5.FontSize = MetroFramework.MetroLabelSize.Tall;
-			this.metroLabel5.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-			this.metroLabel5.Location = new System.Drawing.Point(765, 25);
-			this.metroLabel5.Name = "metroLabel5";
-			this.metroLabel5.Size = new System.Drawing.Size(215, 25);
-			this.metroLabel5.TabIndex = 18;
-			this.metroLabel5.Text = "Chúc các bạn thi tốt ^.^";
 			// 
 			// mlblDuration
 			// 
@@ -356,6 +350,7 @@
 			// 
 			// mtpExamDetail
 			// 
+			this.mtpExamDetail.Controls.Add(this.metroTile2);
 			this.mtpExamDetail.Controls.Add(this.metroPanel5);
 			this.mtpExamDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mtpExamDetail.HorizontalScrollbarBarColor = true;
@@ -396,31 +391,31 @@
 			this.mdgExamDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.mdgExamDetail.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
 			this.mdgExamDetail.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.mdgExamDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle55.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle55.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle55.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+			dataGridViewCellStyle55.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+			dataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.mdgExamDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle55;
 			this.mdgExamDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.mdgExamDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.ExamNameDetail,
-			this.StartTimeDetail,
-			this.SubjectIdDetail,
-			this.SubjectNameDetail,
-			this.GradeNameDetail,
-			this.DurationDetail,
-			this.ExamDetailId});
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.mdgExamDetail.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ExamNameDetail,
+            this.StartTimeDetail,
+            this.SubjectIdDetail,
+            this.SubjectNameDetail,
+            this.GradeNameDetail,
+            this.DurationDetail,
+            this.ExamDetailId});
+			dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle56.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle56.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle56.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+			dataGridViewCellStyle56.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+			dataGridViewCellStyle56.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+			dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.mdgExamDetail.DefaultCellStyle = dataGridViewCellStyle56;
 			this.mdgExamDetail.EnableHeadersVisualStyles = false;
 			this.mdgExamDetail.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.mdgExamDetail.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -428,14 +423,14 @@
 			this.mdgExamDetail.Name = "mdgExamDetail";
 			this.mdgExamDetail.ReadOnly = true;
 			this.mdgExamDetail.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.mdgExamDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle57.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle57.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle57.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+			dataGridViewCellStyle57.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+			dataGridViewCellStyle57.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.mdgExamDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle57;
 			this.mdgExamDetail.RowHeadersWidth = 51;
 			this.mdgExamDetail.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.mdgExamDetail.RowTemplate.Height = 24;
@@ -512,6 +507,7 @@
 			// 
 			// mtpExamResult
 			// 
+			this.mtpExamResult.Controls.Add(this.metroTile1);
 			this.mtpExamResult.Controls.Add(this.metroPanel4);
 			this.mtpExamResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mtpExamResult.HorizontalScrollbarBarColor = true;
@@ -562,30 +558,30 @@
 			this.mdgExamResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.mdgExamResult.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
 			this.mdgExamResult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.mdgExamResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle58.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle58.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle58.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+			dataGridViewCellStyle58.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+			dataGridViewCellStyle58.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.mdgExamResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle58;
 			this.mdgExamResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.mdgExamResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.ExamNameResult,
-			this.StartTimeResult,
-			this.SubjectResult,
-			this.ExamCodeIdResult,
-			this.MarkResult,
-			this.StatusResult});
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.mdgExamResult.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ExamNameResult,
+            this.StartTimeResult,
+            this.SubjectResult,
+            this.ExamCodeIdResult,
+            this.MarkResult,
+            this.StatusResult});
+			dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle59.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle59.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle59.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+			dataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+			dataGridViewCellStyle59.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+			dataGridViewCellStyle59.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.mdgExamResult.DefaultCellStyle = dataGridViewCellStyle59;
 			this.mdgExamResult.EnableHeadersVisualStyles = false;
 			this.mdgExamResult.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.mdgExamResult.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -593,14 +589,14 @@
 			this.mdgExamResult.Name = "mdgExamResult";
 			this.mdgExamResult.ReadOnly = true;
 			this.mdgExamResult.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.mdgExamResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle60.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle60.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle60.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			dataGridViewCellStyle60.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+			dataGridViewCellStyle60.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+			dataGridViewCellStyle60.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.mdgExamResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle60;
 			this.mdgExamResult.RowHeadersWidth = 51;
 			this.mdgExamResult.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.mdgExamResult.RowTemplate.Height = 24;
@@ -658,6 +654,7 @@
 			// 
 			// mtpProfile
 			// 
+			this.mtpProfile.Controls.Add(this.metroTile4);
 			this.mtpProfile.Controls.Add(this.metroPanel2);
 			this.mtpProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mtpProfile.HorizontalScrollbarBarColor = true;
@@ -735,7 +732,7 @@
 			this.mtxtPhone.CustomButton.Visible = false;
 			this.mtxtPhone.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtPhone.Lines = new string[] {
-		"metroTextBox6"};
+        "metroTextBox6"};
 			this.mtxtPhone.Location = new System.Drawing.Point(657, 49);
 			this.mtxtPhone.MaxLength = 32767;
 			this.mtxtPhone.Name = "mtxtPhone";
@@ -768,7 +765,7 @@
 			this.mtxtFirstName.CustomButton.Visible = false;
 			this.mtxtFirstName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtFirstName.Lines = new string[] {
-		"metroTextBox3"};
+        "metroTextBox3"};
 			this.mtxtFirstName.Location = new System.Drawing.Point(176, 131);
 			this.mtxtFirstName.MaxLength = 32767;
 			this.mtxtFirstName.Name = "mtxtFirstName";
@@ -801,7 +798,7 @@
 			this.mtxtLastName.CustomButton.Visible = false;
 			this.mtxtLastName.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtLastName.Lines = new string[] {
-		"metroTextBox2"};
+        "metroTextBox2"};
 			this.mtxtLastName.Location = new System.Drawing.Point(176, 89);
 			this.mtxtLastName.MaxLength = 32767;
 			this.mtxtLastName.Name = "mtxtLastName";
@@ -834,7 +831,7 @@
 			this.mtxtStudentId.CustomButton.Visible = false;
 			this.mtxtStudentId.FontSize = MetroFramework.MetroTextBoxSize.Medium;
 			this.mtxtStudentId.Lines = new string[] {
-		"metroTextBox1"};
+        "metroTextBox1"};
 			this.mtxtStudentId.Location = new System.Drawing.Point(176, 49);
 			this.mtxtStudentId.MaxLength = 32767;
 			this.mtxtStudentId.Name = "mtxtStudentId";
@@ -925,6 +922,7 @@
 			// 
 			// mtpChangePassword
 			// 
+			this.mtpChangePassword.Controls.Add(this.metroTile5);
 			this.mtpChangePassword.Controls.Add(this.metroPanel1);
 			this.mtpChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mtpChangePassword.HorizontalScrollbarBarColor = true;
@@ -1100,6 +1098,7 @@
 			// 
 			// mtpLogout
 			// 
+			this.mtpLogout.Controls.Add(this.metroTile6);
 			this.mtpLogout.Controls.Add(this.metroPanel3);
 			this.mtpLogout.HorizontalScrollbarBarColor = true;
 			this.mtpLogout.HorizontalScrollbarHighlightOnWheel = false;
@@ -1174,6 +1173,72 @@
 			this.metroLabel4.Size = new System.Drawing.Size(173, 25);
 			this.metroLabel4.TabIndex = 5;
 			this.metroLabel4.Text = "Lần đăng nhập cuối:";
+			// 
+			// metroTile1
+			// 
+			this.metroTile1.ActiveControl = null;
+			this.metroTile1.Location = new System.Drawing.Point(3, 3);
+			this.metroTile1.Name = "metroTile1";
+			this.metroTile1.Size = new System.Drawing.Size(1057, 43);
+			this.metroTile1.TabIndex = 5;
+			this.metroTile1.Text = "Kết quả thi";
+			this.metroTile1.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+			this.metroTile1.UseSelectable = true;
+			// 
+			// metroTile2
+			// 
+			this.metroTile2.ActiveControl = null;
+			this.metroTile2.Location = new System.Drawing.Point(3, 3);
+			this.metroTile2.Name = "metroTile2";
+			this.metroTile2.Size = new System.Drawing.Size(1057, 43);
+			this.metroTile2.TabIndex = 6;
+			this.metroTile2.Text = "Lịch thi";
+			this.metroTile2.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+			this.metroTile2.UseSelectable = true;
+			// 
+			// metroTile3
+			// 
+			this.metroTile3.ActiveControl = null;
+			this.metroTile3.Location = new System.Drawing.Point(3, 3);
+			this.metroTile3.Name = "metroTile3";
+			this.metroTile3.Size = new System.Drawing.Size(1057, 43);
+			this.metroTile3.TabIndex = 6;
+			this.metroTile3.Text = "Trang chính";
+			this.metroTile3.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+			this.metroTile3.UseSelectable = true;
+			// 
+			// metroTile4
+			// 
+			this.metroTile4.ActiveControl = null;
+			this.metroTile4.Location = new System.Drawing.Point(3, 3);
+			this.metroTile4.Name = "metroTile4";
+			this.metroTile4.Size = new System.Drawing.Size(1057, 43);
+			this.metroTile4.TabIndex = 6;
+			this.metroTile4.Text = "Thông tin cá nhân";
+			this.metroTile4.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+			this.metroTile4.UseSelectable = true;
+			// 
+			// metroTile5
+			// 
+			this.metroTile5.ActiveControl = null;
+			this.metroTile5.Location = new System.Drawing.Point(3, 3);
+			this.metroTile5.Name = "metroTile5";
+			this.metroTile5.Size = new System.Drawing.Size(1057, 43);
+			this.metroTile5.TabIndex = 11;
+			this.metroTile5.Text = "Đổi mật khẩu";
+			this.metroTile5.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+			this.metroTile5.UseSelectable = true;
+			// 
+			// metroTile6
+			// 
+			this.metroTile6.ActiveControl = null;
+			this.metroTile6.Location = new System.Drawing.Point(3, 3);
+			this.metroTile6.Name = "metroTile6";
+			this.metroTile6.Size = new System.Drawing.Size(1057, 43);
+			this.metroTile6.TabIndex = 7;
+			this.metroTile6.Text = "Đăng xuất";
+			this.metroTile6.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+			this.metroTile6.UseSelectable = true;
 			// 
 			// frmStudent
 			// 
@@ -1265,7 +1330,6 @@
 		private MetroFramework.Controls.MetroLabel mlblGradeName;
 		private MetroFramework.Controls.MetroLabel mlblSubjectName;
 		private MetroFramework.Controls.MetroComboBox mcmbExamResult;
-		private MetroFramework.Controls.MetroLabel metroLabel5;
 		private MetroFramework.Controls.MetroGrid mdgExamDetail;
 		private MetroFramework.Controls.MetroComboBox mcmbExamDetail;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ExamNameResult;
@@ -1281,5 +1345,11 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn GradeNameDetail;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DurationDetail;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ExamDetailId;
+		private MetroFramework.Controls.MetroTile metroTile1;
+		private MetroFramework.Controls.MetroTile metroTile3;
+		private MetroFramework.Controls.MetroTile metroTile2;
+		private MetroFramework.Controls.MetroTile metroTile4;
+		private MetroFramework.Controls.MetroTile metroTile5;
+		private MetroFramework.Controls.MetroTile metroTile6;
 	}
 }
