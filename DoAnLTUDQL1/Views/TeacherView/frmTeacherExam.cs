@@ -56,6 +56,8 @@ namespace DoAnLTUDQL1.Views.TeacherView
             // Add
             mBtnAddExam.Click += MBtnAddExam_Click;
             mBtnAddExamDetail.Click += MBtnAddExamDetail_Click;
+            // Update student mark
+            mBtnUpdateStudentMark.Click += MBtnUpdateStudentMark_Click;
 
             // Startup
             mTabExam.SelectTab(0);
@@ -71,16 +73,27 @@ namespace DoAnLTUDQL1.Views.TeacherView
         }
 
 
+        // Update student mark
+        private void MBtnUpdateStudentMark_Click(object sender, EventArgs e)
+        {
+            if (mGridListExamDetail.Rows.Count > 0 && mGridListExamDetail.SelectedRows.Count > 0)
+            {
+                var examDetail = (ExamListViewModel)mGridListExamDetail.SelectedRows[0].DataBoundItem;
+                UpdateStudentMark?.Invoke(examDetail, null);
+            }
+        }
+
+
         // Add exam
         private void MBtnAddExam_Click(object sender, EventArgs e)
         {
-            //if (!AddValidatorList.All(a => a.IsValid))
-            //{
-            //    var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
-            //    InvalidValidatingControl.ControlToValidate.Focus();
+            if (!AddValidatorList.All(a => a.IsValid))
+            {
+                var InvalidValidatingControl = AddValidatorList.First(f => !f.IsValid);
+                InvalidValidatingControl.ControlToValidate.Focus();
 
-            //    return;
-            //}
+                return;
+            }
 
             var examAdded = new DoAnLTUDQL1.Exam
             {
@@ -150,8 +163,12 @@ namespace DoAnLTUDQL1.Views.TeacherView
         {
             if (bsListExam.Count > 0)
             {
-                var examId = (string)mGridListExam.SelectedRows[0].Cells[0].Value;
-                DeleteExam?.Invoke(examId, null);
+                DialogResult result = MessageBox.Show("Bạn có thật sự muốn xoá kỳ thi?", "Xoá kỳ thi", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    var examId = (string)mGridListExam.SelectedRows[0].Cells[0].Value;
+                    DeleteExam?.Invoke(examId, null);
+                }
             }
         }
 
@@ -171,26 +188,36 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
             if (mTabExam.SelectedTab == mTabExamDetail || mTabExam.SelectedTab == mTabEditExam)
             {
-                var exam = (DoAnLTUDQL1.Exam)bsListExam.CurrencyManager.Current;
-                ReloadListExamDetail(exam.ExamId, null);
-                mGridListExamDetail.DataSource = ExamDetails;
+                if (bsListExam.Count > 0)
+                {
+                    var exam = (DoAnLTUDQL1.Exam)bsListExam.CurrencyManager.Current;
+                    ReloadListExamDetail(exam.ExamId, null);
+                    mGridListExamDetail.DataSource = ExamDetails;
 
-                // For edited
-                ExamDetailsEdited = ExamDetails.Select(ed => new ExamDetail
-                {
-                    ExamDetailId = ed.ExamDetailId,
-                    ExamId = ed.ExamId,
-                    StartTime = ed.StartTime,
-                    Duration = ed.Duration,
-                    SubjectId = ed.SubjectId,
-                    GradeId = ed.GradeId
-                }).ToList();
-                if (ExamDetailsEdited == null)
-                {
-                    ExamDetailsEdited = new List<ExamDetail>();
+                    // For edited
+                    ExamDetailsEdited = ExamDetails.Select(ed => new ExamDetail
+                    {
+                        ExamDetailId = ed.ExamDetailId,
+                        ExamId = ed.ExamId,
+                        StartTime = ed.StartTime,
+                        Duration = ed.Duration,
+                        SubjectId = ed.SubjectId,
+                        GradeId = ed.GradeId
+                    }).ToList();
+                    if (ExamDetailsEdited == null)
+                    {
+                        ExamDetailsEdited = new List<ExamDetail>();
+                    }
+
+                    SetHeaderMGridListExamDetail();
                 }
+            }
 
-                SetHeaderMGridListExamDetail();
+            if (mTabExam.SelectedTab == mTabReport)
+            {
+                var frmTeacherExamReport = new frmTeacherExamReport(CurrentUser, CurrentUserInfo);
+                frmTeacherExamReport.ShowDialog();
+                mTabExam.SelectTab(0);
             }
         }
         #endregion
@@ -204,6 +231,7 @@ namespace DoAnLTUDQL1.Views.TeacherView
         public event EventHandler SaveEditExam;
         public event EventHandler AddExam;
         public event EventHandler ReloadListExamDetail;
+        public event EventHandler UpdateStudentMark;
 
         // User information
         public Teacher CurrentUser { get; set; }
@@ -276,6 +304,28 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 }
             }
         }
+
+        // Update student mark
+        public string UpdateStudentMarkMessage
+        {
+            set
+            {
+                if (value == "Succeed")
+                {
+                    MessageBox.Show("Đã cập nhật điểm thi!");
+                }
+
+                if (value == "NotYet")
+                {
+                    MessageBox.Show("Môn thi chưa đến lúc thi!");
+                }
+
+                if (value == "Failed")
+                {
+                    MessageBox.Show("Xảy ra lỗi khi cập nhật điểm thi!");
+                }
+            }
+        }
         #endregion
 
 
@@ -287,9 +337,9 @@ namespace DoAnLTUDQL1.Views.TeacherView
                 rqAddExamName, rqAddDuration;
 
             rqEditExamName = new RequiedInputValidator();
-            rqEditDuration = new RequiedInputValidator();
+            //rqEditDuration = new RequiedInputValidator();
             rqAddExamName = new RequiedInputValidator();
-            rqAddDuration = new RequiedInputValidator();
+            //rqAddDuration = new RequiedInputValidator();
 
             rqEditExamName.ControlToValidate = mTxtEditExamName;
             //rqEditDuration.ControlToValidate = mTxtEditDuration;
@@ -297,34 +347,34 @@ namespace DoAnLTUDQL1.Views.TeacherView
             //rqAddDuration.ControlToValidate = mTxtAddDuration;
 
             EditValidatorList.Add(rqEditExamName);
-            EditValidatorList.Add(rqEditDuration);
+            //EditValidatorList.Add(rqEditDuration);
 
             AddValidatorList.Add(rqAddExamName);
-            AddValidatorList.Add(rqAddDuration);
+            //AddValidatorList.Add(rqAddDuration);
         }
 
         void RegexValidatingControls()
         {
-            RegexValidator rgEditDuration, rgAddDuration;
+            //RegexValidator rgEditDuration, rgAddDuration;
 
-            string errorMessageNumber = "Thời gian làm bài phải lớn hơn 0";
+            //string errorMessageNumber = "Thời gian làm bài phải lớn hơn 0";
 
-            rgEditDuration = new RegexValidator(RegexPattern.GreaterThanZero);
-            rgEditDuration.ErrorMessage = errorMessageNumber;
-            rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
-            rgAddDuration.ErrorMessage = errorMessageNumber;
+            //rgEditDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            //rgEditDuration.ErrorMessage = errorMessageNumber;
+            //rgAddDuration = new RegexValidator(RegexPattern.GreaterThanZero);
+            //rgAddDuration.ErrorMessage = errorMessageNumber;
 
-            //rgEditDuration.ControlToValidate = mTxtEditDuration;
-            //rgAddDuration.ControlToValidate = mTxtAddDuration;
+            ////rgEditDuration.ControlToValidate = mTxtEditDuration;
+            ////rgAddDuration.ControlToValidate = mTxtAddDuration;
 
-            EditValidatorList.Add(rgEditDuration);
+            //EditValidatorList.Add(rgEditDuration);
 
-            AddValidatorList.Add(rgAddDuration);
+            //AddValidatorList.Add(rgAddDuration);
 
-            foreach (var item in AddValidatorList)
-            {
-                item.IsValid = false;
-            }
+            //foreach (var item in AddValidatorList)
+            //{
+            //    item.IsValid = false;
+            //}
         }
 
         private void SetHeaderMGridListExam()

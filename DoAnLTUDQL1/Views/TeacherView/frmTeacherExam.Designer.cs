@@ -1,39 +1,39 @@
 ﻿namespace DoAnLTUDQL1.Views.TeacherView
 {
-    partial class frmTeacherExam
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class frmTeacherExam
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mTabExam = new MetroFramework.Controls.MetroTabControl();
             this.mTabListExam = new MetroFramework.Controls.MetroTabPage();
             this.mBtnDeleteExam = new MetroFramework.Controls.MetroButton();
@@ -58,6 +58,7 @@
             this.mBtnAddExam = new MetroFramework.Controls.MetroButton();
             this.mTileAddExam = new MetroFramework.Controls.MetroTile();
             this.mTabReport = new MetroFramework.Controls.MetroTabPage();
+            this.mBtnUpdateStudentMark = new MetroFramework.Controls.MetroButton();
             this.mTabExam.SuspendLayout();
             this.mTabListExam.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mGridListExam)).BeginInit();
@@ -78,7 +79,7 @@
             this.mTabExam.FontWeight = MetroFramework.MetroTabControlWeight.Regular;
             this.mTabExam.Location = new System.Drawing.Point(20, 60);
             this.mTabExam.Name = "mTabExam";
-            this.mTabExam.SelectedIndex = 3;
+            this.mTabExam.SelectedIndex = 1;
             this.mTabExam.Size = new System.Drawing.Size(1151, 578);
             this.mTabExam.TabIndex = 1;
             this.mTabExam.UseSelectable = true;
@@ -145,23 +146,23 @@
             this.mGridListExam.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mGridListExam.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mGridListExam.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListExam.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListExam.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.mGridListExam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mGridListExam.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mGridListExam.DefaultCellStyle = dataGridViewCellStyle2;
             this.mGridListExam.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mGridListExam.EnableHeadersVisualStyles = false;
             this.mGridListExam.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -170,14 +171,14 @@
             this.mGridListExam.Name = "mGridListExam";
             this.mGridListExam.ReadOnly = true;
             this.mGridListExam.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListExam.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListExam.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.mGridListExam.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mGridListExam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mGridListExam.Size = new System.Drawing.Size(1143, 487);
@@ -185,6 +186,7 @@
             // 
             // mTabExamDetail
             // 
+            this.mTabExamDetail.Controls.Add(this.mBtnUpdateStudentMark);
             this.mTabExamDetail.Controls.Add(this.mGridListExamDetail);
             this.mTabExamDetail.Controls.Add(this.mTileExamDetail);
             this.mTabExamDetail.HorizontalScrollbarBarColor = true;
@@ -209,23 +211,23 @@
             this.mGridListExamDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mGridListExamDetail.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mGridListExamDetail.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListExamDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListExamDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.mGridListExamDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mGridListExamDetail.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mGridListExamDetail.DefaultCellStyle = dataGridViewCellStyle5;
             this.mGridListExamDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mGridListExamDetail.EnableHeadersVisualStyles = false;
             this.mGridListExamDetail.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -234,14 +236,14 @@
             this.mGridListExamDetail.Name = "mGridListExamDetail";
             this.mGridListExamDetail.ReadOnly = true;
             this.mGridListExamDetail.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListExamDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListExamDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.mGridListExamDetail.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mGridListExamDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mGridListExamDetail.Size = new System.Drawing.Size(1143, 487);
@@ -252,7 +254,7 @@
             this.mTileExamDetail.ActiveControl = null;
             this.mTileExamDetail.Location = new System.Drawing.Point(0, 3);
             this.mTileExamDetail.Name = "mTileExamDetail";
-            this.mTileExamDetail.Size = new System.Drawing.Size(1144, 40);
+            this.mTileExamDetail.Size = new System.Drawing.Size(915, 40);
             this.mTileExamDetail.TabIndex = 6;
             this.mTileExamDetail.Text = "Chi tiết kỳ thi";
             this.mTileExamDetail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -502,6 +504,17 @@
             this.mTabReport.VerticalScrollbarHighlightOnWheel = false;
             this.mTabReport.VerticalScrollbarSize = 10;
             // 
+            // mBtnUpdateStudentMark
+            // 
+            this.mBtnUpdateStudentMark.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.mBtnUpdateStudentMark.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.mBtnUpdateStudentMark.Location = new System.Drawing.Point(921, 3);
+            this.mBtnUpdateStudentMark.Name = "mBtnUpdateStudentMark";
+            this.mBtnUpdateStudentMark.Size = new System.Drawing.Size(222, 40);
+            this.mBtnUpdateStudentMark.TabIndex = 54;
+            this.mBtnUpdateStudentMark.Text = "Cập nhật điểm thi";
+            this.mBtnUpdateStudentMark.UseSelectable = true;
+            // 
             // frmTeacherExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -524,33 +537,34 @@
             this.mTabAddExam.PerformLayout();
             this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private MetroFramework.Controls.MetroTabControl mTabExam;
-        private MetroFramework.Controls.MetroTabPage mTabListExam;
-        private MetroFramework.Controls.MetroButton mBtnDeleteExam;
-        private MetroFramework.Controls.MetroButton mBtnReloadListExam;
-        private MetroFramework.Controls.MetroTile mTileListExam;
-        private MetroFramework.Controls.MetroGrid mGridListExam;
-        private MetroFramework.Controls.MetroTabPage mTabEditExam;
-        private MetroFramework.Controls.MetroButton mBtnSaveEditExam;
-        private MetroFramework.Controls.MetroTile mTileEditExam;
-        private MetroFramework.Controls.MetroTabPage mTabAddExam;
-        private MetroFramework.Controls.MetroButton mBtnAddExam;
-        private MetroFramework.Controls.MetroTile mTileAddExam;
-        private MetroFramework.Controls.MetroTabPage mTabReport;
+		private MetroFramework.Controls.MetroTabControl mTabExam;
+		private MetroFramework.Controls.MetroTabPage mTabListExam;
+		private MetroFramework.Controls.MetroButton mBtnDeleteExam;
+		private MetroFramework.Controls.MetroButton mBtnReloadListExam;
+		private MetroFramework.Controls.MetroTile mTileListExam;
+		private MetroFramework.Controls.MetroGrid mGridListExam;
+		private MetroFramework.Controls.MetroTabPage mTabEditExam;
+		private MetroFramework.Controls.MetroButton mBtnSaveEditExam;
+		private MetroFramework.Controls.MetroTile mTileEditExam;
+		private MetroFramework.Controls.MetroTabPage mTabAddExam;
+		private MetroFramework.Controls.MetroButton mBtnAddExam;
+		private MetroFramework.Controls.MetroTile mTileAddExam;
+		private MetroFramework.Controls.MetroTabPage mTabReport;
 		private MetroFramework.Controls.MetroButton mBtnAddExamDetail;
-        private MetroFramework.Controls.MetroButton mBtnEditExamDetail;
-        private MetroFramework.Controls.MetroTabPage mTabExamDetail;
-        private MetroFramework.Controls.MetroTile mTileExamDetail;
-        private MetroFramework.Controls.MetroGrid mGridListExamDetail;
-        private MetroFramework.Controls.MetroTextBox mTxtAddExamName;
-        private MetroFramework.Controls.MetroLabel mLblAddExamName;
-        private MetroFramework.Controls.MetroTextBox mTxtEditExamName;
-        private MetroFramework.Controls.MetroLabel mLblEditExamName;
-        private MetroFramework.Controls.MetroTextBox mTxtEditExamId;
-        private MetroFramework.Controls.MetroLabel mLblEditExamId;
-    }
+		private MetroFramework.Controls.MetroButton mBtnEditExamDetail;
+		private MetroFramework.Controls.MetroTabPage mTabExamDetail;
+		private MetroFramework.Controls.MetroTile mTileExamDetail;
+		private MetroFramework.Controls.MetroGrid mGridListExamDetail;
+		private MetroFramework.Controls.MetroTextBox mTxtAddExamName;
+		private MetroFramework.Controls.MetroLabel mLblAddExamName;
+		private MetroFramework.Controls.MetroTextBox mTxtEditExamName;
+		private MetroFramework.Controls.MetroLabel mLblEditExamName;
+		private MetroFramework.Controls.MetroTextBox mTxtEditExamId;
+		private MetroFramework.Controls.MetroLabel mLblEditExamId;
+		private MetroFramework.Controls.MetroButton mBtnUpdateStudentMark;
+	}
 }

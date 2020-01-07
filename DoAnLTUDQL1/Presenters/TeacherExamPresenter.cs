@@ -33,6 +33,70 @@ namespace DoAnLTUDQL1.Presenters
             view.DeleteExam += DeleteExam;
             view.SaveEditExam += SaveEditExam;
             view.AddExam += AddExam;
+            view.UpdateStudentMark += UpdateStudentMark;
+        }
+
+        private void UpdateStudentMark(object sender, EventArgs e)
+        {
+            try
+            {
+                var examDetail = sender as ExamListViewModel;
+                var startTime = examDetail.StartTime.Value + new TimeSpan(0, 0, examDetail.Duration.Value, 0, 0);
+                if (startTime < DateTime.Now)
+                {
+                    using (var context = new QLThiTracNghiemDataContext())
+                    {
+                        var students = (from s in context.Students
+                                       join c in context.Classrooms on s.ClassroomId equals c.ClassroomId
+                                       join t in context.Teaches on c.ClassroomId equals t.ClassroomId
+                                       where t.SubjectId == examDetail.SubjectId && t.GradeId == examDetail.GradeId
+                                       select s).ToList();
+
+                        var examCodes = context.ExamCodes.Where(ec => ec.SubjectId == examDetail.SubjectId && ec.GradeId == ec.GradeId && ec.IsPracticeExam == false).First();
+
+                        foreach (var s in students)
+                        {
+                            if (!context.ExamTakes.Any(et => et.StudentId == s.StudentId && et.ExamDetailId == examDetail.ExamDetailId))
+                            {
+                                var examTake = new ExamTake
+                                {
+                                    ExamDetailId = examDetail.ExamDetailId,
+                                    StudentId = s.StudentId,
+                                    StartTime = examDetail.StartTime,
+                                    EndTime = examDetail.StartTime,
+                                    ExamCodeId = examCodes.ExamCodeId
+                                };
+
+                                var examResult = new ExamResult
+                                {
+                                    ExamDetailId = examDetail.ExamDetailId,
+                                    StudentId = s.StudentId,
+                                    NumberOfCorrectAnswers = 0,
+                                    NumberOfQuestionsAnswered = 0,
+                                    Mark = 0,
+                                    ExamCodeId = examCodes.ExamCodeId
+                                };
+
+                                context.ExamTakes.InsertOnSubmit(examTake);
+                                context.ExamResults.InsertOnSubmit(examResult);
+                            }
+                        }
+
+                        context.SubmitChanges();
+                    }
+
+                    view.UpdateStudentMarkMessage = "Succeed";
+                }
+                else
+                {
+                    view.UpdateStudentMarkMessage = "NotYet";
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                view.UpdateStudentMarkMessage = "Failed";
+            }
         }
 
         private void AddExam(object sender, EventArgs e)
@@ -170,18 +234,29 @@ namespace DoAnLTUDQL1.Presenters
 
                 using (var context = new QLThiTracNghiemDataContext())
                 {
-                    var examDetail = context.ExamDetails.First(ed => ed.ExamId == examId);
-                    var countUsed = context.ExamTakes.Where(et => et.ExamDetailId == examDetail.ExamDetailId).Count();
+                    var examDetail = context.ExamDetails.FirstOrDefault(ed => ed.ExamId == examId);
+                    if (examDetail != null)
+                    {
+                        var examDetailsCount = context.ExamDetails.Where(ed => ed.ExamId == examId);
+                        var countUsed = context.ExamTakes.Where(et => examDetailsCount.Any(ed => ed.ExamDetailId == et.ExamDetailId)).Count();
 
-                    if (countUsed <= 0)
+                        if (countUsed <= 0)
+                        {
+                            var exam = context.Exams.First(ex => ex.ExamId == examId);
+
+                            var examDetails = context.ExamDetails.Where(ed => ed.ExamId == exam.ExamId);
+                            context.ExamDetails.DeleteAllOnSubmit(examDetails);
+                            context.Exams.DeleteOnSubmit(exam);
+                            context.SubmitChanges();
+
+                            check = true;
+                        }
+                    }
+                    else
                     {
                         var exam = context.Exams.First(ex => ex.ExamId == examId);
-
-                        var examDetails = context.ExamDetails.Where(ed => ed.ExamId == exam.ExamId);
-                        context.ExamDetails.DeleteAllOnSubmit(examDetails);
                         context.Exams.DeleteOnSubmit(exam);
                         context.SubmitChanges();
-
                         check = true;
                     }
                 }

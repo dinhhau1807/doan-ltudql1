@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mPanelTile = new MetroFramework.Controls.MetroPanel();
             this.mTileConfig = new MetroFramework.Controls.MetroTile();
             this.mTileLogout = new MetroFramework.Controls.MetroTile();
@@ -218,9 +218,9 @@
             this.mTabPageListUser.HorizontalScrollbarBarColor = true;
             this.mTabPageListUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabPageListUser.HorizontalScrollbarSize = 10;
-            this.mTabPageListUser.Location = new System.Drawing.Point(4, 5);
+            this.mTabPageListUser.Location = new System.Drawing.Point(4, 24);
             this.mTabPageListUser.Name = "mTabPageListUser";
-            this.mTabPageListUser.Size = new System.Drawing.Size(1144, 479);
+            this.mTabPageListUser.Size = new System.Drawing.Size(1143, 460);
             this.mTabPageListUser.TabIndex = 0;
             this.mTabPageListUser.Text = "mTabPageListUser";
             this.mTabPageListUser.VerticalScrollbarBarColor = true;
@@ -248,23 +248,23 @@
             this.mGridListUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mGridListUser.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mGridListUser.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.mGridListUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mGridListUser.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mGridListUser.DefaultCellStyle = dataGridViewCellStyle5;
             this.mGridListUser.EnableHeadersVisualStyles = false;
             this.mGridListUser.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.mGridListUser.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -273,14 +273,14 @@
             this.mGridListUser.Name = "mGridListUser";
             this.mGridListUser.ReadOnly = true;
             this.mGridListUser.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mGridListUser.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mGridListUser.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.mGridListUser.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mGridListUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mGridListUser.Size = new System.Drawing.Size(1144, 408);
@@ -315,9 +315,9 @@
             this.mTabPageEditUser.HorizontalScrollbarBarColor = true;
             this.mTabPageEditUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabPageEditUser.HorizontalScrollbarSize = 10;
-            this.mTabPageEditUser.Location = new System.Drawing.Point(4, 5);
+            this.mTabPageEditUser.Location = new System.Drawing.Point(4, 24);
             this.mTabPageEditUser.Name = "mTabPageEditUser";
-            this.mTabPageEditUser.Size = new System.Drawing.Size(1144, 479);
+            this.mTabPageEditUser.Size = new System.Drawing.Size(1143, 460);
             this.mTabPageEditUser.TabIndex = 1;
             this.mTabPageEditUser.Text = "mTabPageEditUser";
             this.mTabPageEditUser.VerticalScrollbarBarColor = true;
@@ -806,9 +806,9 @@
             this.mTabPageAddUser.HorizontalScrollbarBarColor = true;
             this.mTabPageAddUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabPageAddUser.HorizontalScrollbarSize = 10;
-            this.mTabPageAddUser.Location = new System.Drawing.Point(4, 5);
+            this.mTabPageAddUser.Location = new System.Drawing.Point(4, 24);
             this.mTabPageAddUser.Name = "mTabPageAddUser";
-            this.mTabPageAddUser.Size = new System.Drawing.Size(1144, 479);
+            this.mTabPageAddUser.Size = new System.Drawing.Size(1143, 460);
             this.mTabPageAddUser.TabIndex = 2;
             this.mTabPageAddUser.Text = "mTabPageAddUser";
             this.mTabPageAddUser.VerticalScrollbarBarColor = true;
@@ -1136,9 +1136,9 @@
             this.mTabImportExportUser.HorizontalScrollbarBarColor = true;
             this.mTabImportExportUser.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabImportExportUser.HorizontalScrollbarSize = 10;
-            this.mTabImportExportUser.Location = new System.Drawing.Point(4, 5);
+            this.mTabImportExportUser.Location = new System.Drawing.Point(4, 24);
             this.mTabImportExportUser.Name = "mTabImportExportUser";
-            this.mTabImportExportUser.Size = new System.Drawing.Size(1144, 479);
+            this.mTabImportExportUser.Size = new System.Drawing.Size(1143, 460);
             this.mTabImportExportUser.TabIndex = 3;
             this.mTabImportExportUser.Text = "mTabImportExportUser";
             this.mTabImportExportUser.VerticalScrollbarBarColor = true;
@@ -1299,7 +1299,7 @@
             this.mTxtBackupPath.SelectionLength = 0;
             this.mTxtBackupPath.SelectionStart = 0;
             this.mTxtBackupPath.ShortcutsEnabled = true;
-            this.mTxtBackupPath.Size = new System.Drawing.Size(965, 33);
+            this.mTxtBackupPath.Size = new System.Drawing.Size(937, 33);
             this.mTxtBackupPath.TabIndex = 10;
             this.mTxtBackupPath.UseSelectable = true;
             this.mTxtBackupPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1309,7 +1309,7 @@
             // 
             this.mBtnBackup.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mBtnBackup.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnBackup.Location = new System.Drawing.Point(908, 150);
+            this.mBtnBackup.Location = new System.Drawing.Point(880, 150);
             this.mBtnBackup.Name = "mBtnBackup";
             this.mBtnBackup.Size = new System.Drawing.Size(231, 41);
             this.mBtnBackup.TabIndex = 12;
@@ -1353,7 +1353,7 @@
             this.mTxtRestorePath.SelectionLength = 0;
             this.mTxtRestorePath.SelectionStart = 0;
             this.mTxtRestorePath.ShortcutsEnabled = true;
-            this.mTxtRestorePath.Size = new System.Drawing.Size(965, 33);
+            this.mTxtRestorePath.Size = new System.Drawing.Size(937, 33);
             this.mTxtRestorePath.TabIndex = 7;
             this.mTxtRestorePath.UseSelectable = true;
             this.mTxtRestorePath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -1363,7 +1363,7 @@
             // 
             this.mBtnRestore.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mBtnRestore.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnRestore.Location = new System.Drawing.Point(908, 52);
+            this.mBtnRestore.Location = new System.Drawing.Point(880, 52);
             this.mBtnRestore.Name = "mBtnRestore";
             this.mBtnRestore.Size = new System.Drawing.Size(231, 41);
             this.mBtnRestore.TabIndex = 9;
@@ -1390,9 +1390,9 @@
             this.mTabConfig.HorizontalScrollbarBarColor = true;
             this.mTabConfig.HorizontalScrollbarHighlightOnWheel = false;
             this.mTabConfig.HorizontalScrollbarSize = 10;
-            this.mTabConfig.Location = new System.Drawing.Point(4, 5);
+            this.mTabConfig.Location = new System.Drawing.Point(4, 24);
             this.mTabConfig.Name = "mTabConfig";
-            this.mTabConfig.Size = new System.Drawing.Size(1144, 479);
+            this.mTabConfig.Size = new System.Drawing.Size(1143, 460);
             this.mTabConfig.TabIndex = 4;
             this.mTabConfig.Text = "mTabConfig";
             this.mTabConfig.VerticalScrollbarBarColor = true;
@@ -1403,7 +1403,7 @@
             // 
             this.mBtnConfigTestConnection.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mBtnConfigTestConnection.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnConfigTestConnection.Location = new System.Drawing.Point(827, 54);
+            this.mBtnConfigTestConnection.Location = new System.Drawing.Point(798, 54);
             this.mBtnConfigTestConnection.Name = "mBtnConfigTestConnection";
             this.mBtnConfigTestConnection.Size = new System.Drawing.Size(154, 44);
             this.mBtnConfigTestConnection.TabIndex = 10;
@@ -1414,7 +1414,7 @@
             // 
             this.mBtnConfigSaveConnectionString.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mBtnConfigSaveConnectionString.FontWeight = MetroFramework.MetroButtonWeight.Light;
-            this.mBtnConfigSaveConnectionString.Location = new System.Drawing.Point(987, 54);
+            this.mBtnConfigSaveConnectionString.Location = new System.Drawing.Point(958, 54);
             this.mBtnConfigSaveConnectionString.Name = "mBtnConfigSaveConnectionString";
             this.mBtnConfigSaveConnectionString.Size = new System.Drawing.Size(154, 44);
             this.mBtnConfigSaveConnectionString.TabIndex = 10;
@@ -1427,7 +1427,7 @@
             // 
             // 
             this.mTxtConfigConnectionString.CustomButton.Image = null;
-            this.mTxtConfigConnectionString.CustomButton.Location = new System.Drawing.Point(934, 1);
+            this.mTxtConfigConnectionString.CustomButton.Location = new System.Drawing.Point(903, 1);
             this.mTxtConfigConnectionString.CustomButton.Name = "";
             this.mTxtConfigConnectionString.CustomButton.Size = new System.Drawing.Size(31, 31);
             this.mTxtConfigConnectionString.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -1446,7 +1446,7 @@
             this.mTxtConfigConnectionString.SelectionLength = 0;
             this.mTxtConfigConnectionString.SelectionStart = 0;
             this.mTxtConfigConnectionString.ShortcutsEnabled = true;
-            this.mTxtConfigConnectionString.Size = new System.Drawing.Size(966, 33);
+            this.mTxtConfigConnectionString.Size = new System.Drawing.Size(935, 33);
             this.mTxtConfigConnectionString.TabIndex = 3;
             this.mTxtConfigConnectionString.UseSelectable = true;
             this.mTxtConfigConnectionString.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));

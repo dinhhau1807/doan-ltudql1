@@ -92,10 +92,14 @@ namespace DoAnLTUDQL1.Views.TeacherView
 
         private void MBtnDeleteAnswer_Click(object sender, EventArgs e)
         {
-            if (bsListAnswer.Count > 0)
+            DialogResult result = MessageBox.Show("Bạn có thật sự muốn xoá câu trả lời?", "Xoá câu trả lời", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                DeleteAnswerId = (int)mGridListAnswer.SelectedRows[0].Cells[0].Value;
-                DeleteAnswer?.Invoke(this, null);
+                if (bsListAnswer.Count > 0)
+                {
+                    DeleteAnswerId = (int)mGridListAnswer.SelectedRows[0].Cells[0].Value;
+                    DeleteAnswer?.Invoke(this, null);
+                }
             }
         }
         #endregion
